@@ -11,6 +11,7 @@ import WithoutActionButton from "../Buttons/WithoutActionButton";
 import Divider from "../Divider/Divider";
 import Title from "../Text/Paragraph/Title";
 import Rating from "../Rating/Rating";
+import { cn } from "@/utils/classNames";
 
 const ServiceCard = ({
 	image,
@@ -19,6 +20,7 @@ const ServiceCard = ({
 	ratings,
 	time,
 	todays_available_schedule,
+	card_style,
 }: {
 	image: string;
 	title: string;
@@ -26,11 +28,17 @@ const ServiceCard = ({
 	ratings: number;
 	url: string;
 	todays_available_schedule: string;
+	card_style?: string;
 }) => {
 	const router = useRouter();
 
 	return (
-		<div className="  min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ">
+		<div
+			className={cn(
+				" min-h-[464px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
+				card_style
+			)}
+		>
 			<Image
 				src={image}
 				width={370}
@@ -42,9 +50,9 @@ const ServiceCard = ({
 			</Title>
 			<Heading5 styles=" mt-2 px-4 ">{title}</Heading5>
 
-			<div className="flex items-center mt-4 justify-start gap-6 px-4">
+			<div className="flex items-center mt-4 justify-between gap-6 px-4">
 				<Rating current_value={ratings} />
-				<Title>{`. ${time}`}</Title>
+				<Title>{`${time}`}</Title>
 			</div>
 		</div>
 	);

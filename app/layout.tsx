@@ -55,13 +55,13 @@ export default function RootLayout({
 				</div>
 
 				{/* Main Page will pass from here  */}
-				<div className=" max-w-body mx-auto font-main  pt-14 md:pt-40 ">
+				<div className=" max-w-body mx-auto font-main  pt-14 md:pt-20 ">
 					{children}
 				</div>
 
 				{/* Footer */}
 
-				<div className=" font-main pt-20">
+				<div className=" font-main pt-32">
 					<MainFooter />
 				</div>
 			</body>
