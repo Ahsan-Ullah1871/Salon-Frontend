@@ -1,7 +1,7 @@
 import { cn } from "@/utils/classNames";
 
 type TextINputType = {
-	title: string;
+	title?: string;
 	current_value: string;
 	set_new_value: Function;
 	note?: string;
@@ -24,15 +24,22 @@ const TextInput = ({
 	component_styles,
 }: TextINputType) => {
 	return (
-		<div className={cn(" flex flex-col gap-1 ", component_styles)}>
-			<p
-				className={cn(
-					" text-sm font-semibold text-[#172327]",
-					title_styles
-				)}
-			>
-				{title}
-			</p>
+		<div
+			className={cn(
+				" w-full flex flex-col gap-1 ",
+				component_styles
+			)}
+		>
+			{title && (
+				<p
+					className={cn(
+						" text-sm font-semibold text-[#172327]",
+						title_styles
+					)}
+				>
+					{title}
+				</p>
+			)}
 
 			<input
 				className={cn(
@@ -49,3 +56,4 @@ const TextInput = ({
 };
 
 export default TextInput;
+

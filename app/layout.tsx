@@ -1,8 +1,35 @@
+import Header from "@/components/Blocks/Header/Header";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
+import {
+	Open_Sans,
+	Raleway,
+	Albert_Sans,
+	Tienne,
+	Merriweather,
+} from "next/font/google";
+import MobileHeader from "@/components/Blocks/Header/MobileHeader";
+import MainFooter from "@/components/Blocks/Footer/MainFooter";
 
-const open_sans = Open_Sans({ subsets: ["latin"] });
+const open_sans = Open_Sans({
+	subsets: ["latin"],
+	variable: "--sub_body-font",
+});
+const albert_sans = Albert_Sans({
+	subsets: ["latin"],
+	variable: "--main-font",
+});
+
+const tienne = Tienne({
+	variable: "--spacial-font",
+	subsets: ["latin"],
+	weight: ["400"],
+});
+const merriweather = Merriweather({
+	variable: "--sub-spacial-font",
+	subsets: ["latin"],
+	weight: ["400"],
+});
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -16,7 +43,28 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={open_sans.className}>{children}</body>
+			<body
+				className={`${albert_sans.variable} ${open_sans.variable}  ${tienne.variable} ${merriweather.variable} bg-bg_color min-h-screen w-full `}
+			>
+				{/* Header */}
+				<div className=" hidden md:block font-main">
+					<Header />
+				</div>
+				<div className="   md:hidden">
+					<MobileHeader />
+				</div>
+
+				{/* Main Page will pass from here  */}
+				<div className=" max-w-body mx-auto font-main  pt-14 md:pt-40 ">
+					{children}
+				</div>
+
+				{/* Footer */}
+
+				<div className=" font-main pt-20">
+					<MainFooter />
+				</div>
+			</body>
 		</html>
 	);
 }
