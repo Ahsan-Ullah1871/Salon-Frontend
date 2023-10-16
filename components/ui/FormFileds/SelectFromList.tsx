@@ -1,16 +1,5 @@
+import { SelectFromList } from "@/types/FormFieldTypes";
 import { cn } from "@/utils/classNames";
-
-type SelectFromList = {
-	title: string;
-	current_value: string;
-	set_new_value: Function;
-	note?: string;
-	placeholder: string;
-	type?: "text" | "number" | "email" | "password" | "tel";
-	title_styles?: string;
-	field_styles?: string;
-	component_styles?: string;
-};
 
 const SelectFromList = ({
 	title,

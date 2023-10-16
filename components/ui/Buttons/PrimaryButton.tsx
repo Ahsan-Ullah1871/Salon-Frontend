@@ -5,22 +5,35 @@ import { cn } from "@/utils/classNames";
 //  button type
 type buttonType = {
 	title: string;
-	onClickHandler: Function;
+	onClickHandler?: Function;
 	className: string;
+	type: "button" | "submit" | "reset";
+	icon?: React.ReactNode;
+	is_loading: boolean;
 };
 
-const PrimaryButton = ({ title, onClickHandler, className }: buttonType) => {
+const PrimaryButton = ({
+	title,
+	onClickHandler,
+	className,
+	type = "button",
+	is_loading = false,
+	icon,
+}: buttonType) => {
 	return (
 		<button
+			onClick={() => onClickHandler && onClickHandler()}
 			className={cn(
 				"   text-center text-base font-medium  text-black_normal  text-clip px-12 py-3  bg-primary rounded-tl-2xl rounded-br-2xl  ",
 				className
 			)}
+			type={type}
+			disabled={is_loading}
 		>
-			{title}
+			<span className=" whitespace-nowrap">{title}</span>
+			{icon && <span className="w-5 h-5">{icon}</span>}
 		</button>
 	);
 };
 
 export default PrimaryButton;
-
