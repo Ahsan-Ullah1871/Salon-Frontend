@@ -31,7 +31,7 @@ const BlogCard = ({
 	return (
 		<Link
 			href={url}
-			className="  min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md duration-300 cursor-pointer "
+			className=" min-h-[400px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md duration-300 cursor-pointer "
 		>
 			<Image
 				src={image}
