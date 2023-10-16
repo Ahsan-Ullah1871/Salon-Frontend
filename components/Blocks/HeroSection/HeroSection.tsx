@@ -1,5 +1,7 @@
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import SecondaryButton from "@/components/ui/Buttons/SecondaryButton";
+import PrimaryLink from "@/components/ui/Links/PrimaryLink";
+import SecondaryLink from "@/components/ui/Links/SecondaryLinks";
 import NormalDescription from "@/components/ui/Text/Description/NormalDescription";
 import SpecialHeader from "@/components/ui/Text/Headers/SpecialHeader";
 import { ICONS } from "@/icons/AllIcons";
@@ -28,15 +30,15 @@ const HeroSection = () => {
 
 			{/* Buttons */}
 			<div className="  mt-8 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-7 ">
-				<PrimaryButton
+				<PrimaryLink
 					title="Book a service"
-					onClickHandler={() => {}}
+					url={"/"}
 					className=""
 				/>
-				<SecondaryButton
+				<SecondaryLink
 					title="Schedule a call"
 					icon={ICONS.call_icon}
-					onClickHandler={() => {}}
+					url={"/"}
 					className=""
 				/>
 			</div>

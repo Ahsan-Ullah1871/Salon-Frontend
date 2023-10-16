@@ -3,9 +3,9 @@ import { cn } from "@/utils/classNames";
 type TextINputType = {
 	title?: string;
 	current_value: string;
-	set_new_value: Function;
+	set_new_value?: Function;
 	note?: string;
-	placeholder: string;
+	placeholder?: string;
 	type?: "text" | "number" | "email" | "password" | "tel";
 	title_styles?: string;
 	field_styles?: string;
@@ -47,7 +47,10 @@ const TextInput = ({
 					field_styles
 				)}
 				value={current_value}
-				onChange={(e) => set_new_value(e.target.value)}
+				onChange={(e) =>
+					set_new_value &&
+					set_new_value(e.target.value)
+				}
 				type={type ?? "text"}
 				placeholder={placeholder}
 			/>

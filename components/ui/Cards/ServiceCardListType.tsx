@@ -13,57 +13,54 @@ import Title from "../Text/Paragraph/Title";
 import Rating from "../Rating/Rating";
 import { cn } from "@/utils/classNames";
 
-const ServiceCard = ({
+const ServiceCardListType = ({
 	image,
 	title,
 	url,
-	price = "$0",
 	ratings,
 	time,
 	todays_available_schedule,
 	card_style,
+	price = "$0",
 }: {
 	image: string;
 	title: string;
-	price: string;
 	time: string;
 	ratings: number;
 	url: string;
 	todays_available_schedule: string;
 	card_style?: string;
+	price?: string;
 }) => {
 	const router = useRouter();
 
 	return (
 		<div
 			className={cn(
-				" min-h-[464px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
+				"w-full bg-black   bg-opacity-10  p-5 shadow-md rounded-md flex items-center justify-between gap-4",
 				card_style
 			)}
 		>
-			<Image
-				src={image}
-				width={370}
-				height={280}
-				alt="FAQ"
-			/>
-			<div className="flex items-center justify-between gap-4">
-				<Title styles="mt-6 text-green font-medium px-4">
-					{todays_available_schedule}
-				</Title>
-				<Title styles="mt-6 text-green font-medium px-4">
-					{price}
-				</Title>
-			</div>
-			<Heading5 styles=" mt-2 px-4 ">{title}</Heading5>
+			<div className="flex  items-center justify-start gap-10">
+				<Image
+					src={image}
+					width={100}
+					height={100}
+					alt="im"
+					className="rounded-md"
+				/>
+				<div className="flex flex-col gap-2 ">
+					<Title styles="   text-black_deep font-bold font-sub_main">
+						{title}
+					</Title>
 
-			<div className="flex items-center mt-4 justify-between gap-6 px-4">
-				<Rating current_value={ratings} />
-				<Title>{`${time}`}</Title>
+					<Title>{`${time}`}</Title>
+				</div>
 			</div>
+			<Title styles="  text-medium text-green ">{price}</Title>
 		</div>
 	);
 };
 
-export default ServiceCard;
+export default ServiceCardListType;
 
