@@ -15,7 +15,7 @@ const config: Config = {
 				"sub-spacial": "var(--sub-spacial-font)",
 			},
 			colors: {
-				bg_color: "#F6F3EB",
+				bg_color: "var(--bg_color)",
 				primary: "#FFCE00",
 				black_normal: "#353535CC",
 				black_deep: "#353535",

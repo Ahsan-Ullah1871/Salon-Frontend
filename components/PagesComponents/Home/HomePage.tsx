@@ -1,11 +1,23 @@
+"use client";
+
 import Category from "@/components/Blocks/Catgory/Category";
 import FeatureCard from "@/components/ui/Fetaure/FeatureCard";
 import HeroSection from "@/components/Blocks/HeroSection/HeroSection";
 import FAQ from "@/components/Blocks/FAQ/FAQ";
 import Blogs from "@/components/Blocks/Blogs/Blogs";
 import ServicesCarousel from "@/components/Blocks/Services/ServicesCarousel";
+import { setValueINRootVariable } from "@/utils/colorChanging";
+import { useEffect } from "react";
 
 const HomePage = () => {
+	// Need to change latter
+	useEffect(() => {
+		setValueINRootVariable({
+			variable_name: "bg_color",
+			value: "#F6F3EB",
+		});
+	}, []);
+
 	return (
 		<div>
 			<HeroSection />

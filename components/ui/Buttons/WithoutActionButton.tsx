@@ -1,3 +1,5 @@
+"use client";
+
 import { ICONS } from "@/icons/AllIcons";
 import { cn } from "@/utils/classNames";
 
