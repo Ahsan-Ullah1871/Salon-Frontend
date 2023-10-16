@@ -1,15 +1,24 @@
 import { Form } from "@/components/ui/Form/Form";
+import SimpleLink from "@/components/ui/Links/SimpleLink";
 import Heading5 from "@/components/ui/Text/Headers/Heading5";
+import Title from "@/components/ui/Text/Paragraph/Title";
+import { useLoginMutation } from "@/redux/features/auth/authApi";
 import React, { useState } from "react";
 
 const Signin = () => {
+	// login mutation hook
+	const [login, { isLoading, isError, error, isSuccess }] =
+		useLoginMutation();
+
+	//
 	const [signInFormState, setSignInForm] = useState({
 		email: "",
 		password: "",
+		role: "customer",
 	});
 
 	// const current value
-	const current_value = (key_name: string) => {
+	const current_value = (key_name: "email" | "password") => {
 		return signInFormState?.[key_name] || "";
 	};
 	// const current value
@@ -19,14 +28,21 @@ const Signin = () => {
 
 	//
 
-	const formSubmitHandler = () => {
-		console.log("====================================");
-		console.log(signInFormState);
-		console.log("====================================");
+	const formSubmitHandler = async () => {
+		try {
+			const res = await login({
+				data: signInFormState,
+			}).unwrap();
+			console.log("====================================");
+			console.log(res);
+			console.log("====================================");
+		} catch (err: any) {
+			console.error(err.message);
+		}
 	};
 
 	return (
-		<div className="  p-4 max-w-md w-full min-h-[200px] bg-white  shadow-md  ">
+		<div className="  p-4 pb-6 max-w-md w-full min-h-[200px] bg-white  shadow-md  ">
 			<Heading5 styles="text-center font-spacial">
 				👋 Welcome Back
 			</Heading5>
@@ -86,8 +102,20 @@ const Signin = () => {
 					]}
 				/>
 			</div>
+
+			<div className="flex items-center justify-center flex-wrap gap-2 mt-4 ">
+				<Title styles="text-sm">
+					You have not account?
+				</Title>
+				<SimpleLink
+					url="/signup"
+					className=" text-sm md:text-sm"
+					title="Signup"
+				/>
+			</div>
 		</div>
 	);
 };
 
 export default Signin;
+
