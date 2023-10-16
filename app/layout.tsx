@@ -44,26 +44,9 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${albert_sans.variable} ${open_sans.variable}  ${tienne.variable} ${merriweather.variable} bg-bg_color min-h-screen w-full `}
+				className={`${albert_sans.variable} ${open_sans.variable}  ${tienne.variable} ${merriweather.variable}   min-h-screen w-full `}
 			>
-				{/* Header */}
-				<div className=" hidden md:block font-main">
-					<Header />
-				</div>
-				<div className="   md:hidden">
-					<MobileHeader />
-				</div>
-
-				{/* Main Page will pass from here  */}
-				<div className=" max-w-body mx-auto font-main  pt-14 md:pt-20 ">
-					{children}
-				</div>
-
-				{/* Footer */}
-
-				<div className=" font-main pt-32">
-					<MainFooter />
-				</div>
+				{children}
 			</body>
 		</html>
 	);

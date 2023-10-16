@@ -1,11 +1,9 @@
 "use client";
-
-import BlogsList from "@/components/Blocks/Blogs/BlogsList";
-import ServicesList from "@/components/Blocks/Services/ServicesList";
+import PageHeader from "@/components/ui/PageBanner/PageHeader";
 import { setValueINRootVariable } from "@/utils/colorChanging";
 import React, { useEffect } from "react";
 
-const Blogs = () => {
+const BlogDetails = () => {
 	// Need to change latter
 	useEffect(() => {
 		setValueINRootVariable({
@@ -16,10 +14,15 @@ const Blogs = () => {
 
 	return (
 		<div>
-			<BlogsList />
+			{/* Page Header */}
+			<PageHeader
+				page_title="Blog Details"
+				page_description="Read our article"
+				bg_image=""
+			/>
 		</div>
 	);
 };
 
-export default Blogs;
+export default BlogDetails;
 
