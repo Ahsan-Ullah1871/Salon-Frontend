@@ -29,6 +29,7 @@ const config: Config = {
 				d_gray: "#F2F2F2",
 				d_black_normal: "#83878B",
 				d_body: "#F8F8FE",
+				d_gray_text: "#BBC1C9",
 			},
 			spacing: {
 				body: "1440px",

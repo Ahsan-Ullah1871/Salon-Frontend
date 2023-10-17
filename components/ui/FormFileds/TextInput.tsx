@@ -13,6 +13,8 @@ const TextInput = ({
 	component_styles,
 	is_required = true,
 	is_disabled = false,
+	onClick,
+	onKeyDown,
 }: TextINputType) => {
 	return (
 		<div
@@ -46,9 +48,12 @@ const TextInput = ({
 				placeholder={placeholder}
 				disabled={is_disabled}
 				required={is_required}
+				onClick={onClick && onClick}
+				onKeyDown={onKeyDown && onKeyDown}
 			/>
 		</div>
 	);
 };
 
 export default TextInput;
+

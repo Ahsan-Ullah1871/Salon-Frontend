@@ -15,7 +15,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 	};
 
 	return (
-		<div className="  flex  flex-col items-center py-5 bg-d_primary rounded-3xl w-[90px] h-[95VH] my-auto fixed left-8 overflow-x-auto  scroll-smooth  scr  ">
+		<div className="  hidden  md:flex  flex-col items-center py-5 bg-d_primary rounded-3xl w-[90px] h-[95VH] my-auto fixed left-8 overflow-x-auto  scroll-smooth    ">
 			{/* logo */}
 			<Link
 				href={"/"}
@@ -35,7 +35,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 					return (
 						<Link
 							key={item.id}
-							href={`/${role}${item.url}`}
+							href={`/${role}/dashboard${item.url}`}
 							className={[
 								"w-full  border-l-4  hover:border-d_gray duration-500",
 								current_route_check(

@@ -23,3 +23,4 @@ export const apiSlice = createApi({
 	endpoints: () => ({}),
 	tagTypes: tagTypesList,
 });
+

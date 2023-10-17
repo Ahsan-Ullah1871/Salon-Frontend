@@ -13,12 +13,14 @@ export default function Modal({
 	button_icon,
 	isShowCloseButton,
 	default_modal_value,
+	panel_parent_style,
 }: // openModalFromOutside,
 // closeModalFromOutside,
 {
 	button_title?: string;
 	button_style: string;
 	panel_style: string;
+	panel_parent_style: string;
 	button_icon?: React.ReactNode;
 	children: React.ReactNode;
 	isShowCloseButton?: Boolean;
@@ -69,7 +71,12 @@ export default function Modal({
 						<div className="fixed inset-0 bg-black_deep bg-opacity-25" />
 					</Transition.Child>
 
-					<div className="fixed inset-0 overflow-y-auto">
+					<div
+						className={cn(
+							"fixed inset-0 overflow-y-auto",
+							panel_parent_style
+						)}
+					>
 						<Transition.Child
 							as={Fragment}
 							enter="ease-out duration-300"
@@ -106,3 +113,4 @@ export default function Modal({
 		</>
 	);
 }
+

@@ -17,8 +17,8 @@ const DashboardHeader = ({
 	middle_component,
 }: {
 	role?: UserRole;
-	left_side_component?: JSX.Element;
-	middle_component?: JSX.Element;
+	left_side_component?: React.ReactNode;
+	middle_component?: React.ReactNode;
 }) => {
 	const router = useRouter();
 	const pageName = usePathname();
@@ -26,9 +26,9 @@ const DashboardHeader = ({
 	const { user } = useAppSelector((state) => state.auth);
 
 	return (
-		<div className="  sticky top-12  bg-d_body py-3  px-6   flex items-center justify-between ">
+		<div className="  mb-6 flex items-center justify-between ">
 			{/*  */}
-			<div>{left_side_component}</div>
+			{left_side_component}
 
 			{/* middle_component */}
 

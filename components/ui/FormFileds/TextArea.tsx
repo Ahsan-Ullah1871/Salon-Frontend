@@ -20,15 +20,16 @@ const TextArea = ({
 				component_styles
 			)}
 		>
-			<p
-				className={cn(
-					" text-sm font-semibold text-[#172327]",
-					title_styles
-				)}
-			>
-				{title}
-			</p>
-
+			{title && (
+				<p
+					className={cn(
+						" text-sm font-semibold text-[#172327]",
+						title_styles
+					)}
+				>
+					{title}
+				</p>
+			)}
 			<textarea
 				required={is_required}
 				disabled={is_disabled}

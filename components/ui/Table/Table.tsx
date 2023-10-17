@@ -4,55 +4,72 @@ import React from "react";
 const DynamicTable = ({
 	data,
 	columns,
-	header_style,
-	column_style,
 	table_style,
 	table_header_style,
 	table_body_style,
 }: {
 	data: Array<any>;
 	columns?: Array<any>;
-	header_style: string;
-	column_style: string;
 	table_style: string;
 	table_header_style: string;
 	table_body_style: string;
 }) => {
 	return (
-		<table
-			className={cn(
-				"min-w-full divide-y divide-gray-200",
-				table_style
-			)}
-		>
+		<div className={cn(" w-full   min-w-full  ", table_style)}>
+			{/* Header row */}
 			{columns && columns?.length > 0 && (
-				<thead className={table_header_style}>
-					<tr>
-						{columns.map((column, index) => (
-							<th
-								key={index}
-								className={cn(
-									"px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider",
-									header_style
-								)}
-							>
-								{column.header}
-							</th>
-						))}
-					</tr>
-				</thead>
+				<div
+					className={cn(
+						" w-full flex items-center justify-start ",
+						table_header_style
+					)}
+				>
+					{columns.map((column, index) => (
+						<div
+							key={index}
+							className={cn(
+								" w-full  text-left text-xs font-medium text-gray-500 ",
+								column.className
+							)}
+						>
+							{column.header}
+						</div>
+					))}
+				</div>
 			)}
-			<tbody
-				className={cn(
-					"bg-white divide-y divide-gray-200",
-					table_body_style
-				)}
-			>
-				{data.map((row, rowIndex) => (
-					<tr key={rowIndex}></tr>
+
+			{/* Table body  */}
+			<div className={cn("bg-white block ", table_body_style)}>
+				{data?.map((row, rowIndex) => (
+					<div
+						className={cn(
+							"w-fill h-full 	 flex items-center justify-start ",
+							row.className
+						)}
+						key={rowIndex}
+					>
+						{row?.columns.map(
+							(
+								column: any,
+								index: number
+							) => (
+								<div
+									key={index}
+									className={cn(
+										" w-full   ",
+										column?.className
+									)}
+								>
+									{
+										column?.component
+									}
+								</div>
+							)
+						)}
+					</div>
 				))}
-			</tbody>
-		</table>
+			</div>
+		</div>
 	);
 };
 

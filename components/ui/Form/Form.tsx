@@ -1,6 +1,7 @@
 import React from "react";
 import TextInput from "../FormFileds/TextInput";
 import {
+	ImageSelectType,
 	SelectFromList,
 	TextAreaType,
 	TextINputType,
@@ -8,6 +9,7 @@ import {
 import { cn } from "@/utils/classNames";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import TextArea from "../FormFileds/TextArea";
+import ImageSelect from "../FormFileds/ImageSelect";
 
 type Field =
 	| {
@@ -29,6 +31,11 @@ type Field =
 			key: "text-area";
 			data_filed_key: string;
 			properties: TextAreaType;
+	  }
+	| {
+			key: "image-select";
+			data_filed_key: string;
+			properties: ImageSelectType;
 	  };
 
 type FormProps = {
@@ -77,6 +84,13 @@ export const Form: React.FC<FormProps> = ({
 			case "select-box":
 				return (
 					<TextInput
+						key={field.key}
+						{...field.properties}
+					/>
+				);
+			case "image-select":
+				return (
+					<ImageSelect
 						key={field.key}
 						{...field.properties}
 					/>

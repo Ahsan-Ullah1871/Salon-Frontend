@@ -34,7 +34,7 @@ export default function AuthUI({
 		<div className=" font-main  bg-d_body w-screen p-8">
 			<div>
 				<Sidebar />
-				<div className=" pl-[100px] ">
+				<div className="  md:pl-[100px] ">
 					<div>{children}</div>
 				</div>
 			</div>

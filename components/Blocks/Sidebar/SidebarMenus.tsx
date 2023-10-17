@@ -7,7 +7,7 @@ export const sidebar_menus = [
 		id: 1,
 		title: "Dashboard",
 		icon: ICONS.home_icon,
-		url: "/dashboard",
+		url: "/",
 		is_active: true,
 		is_visible: true,
 		role: [UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.WORKER],

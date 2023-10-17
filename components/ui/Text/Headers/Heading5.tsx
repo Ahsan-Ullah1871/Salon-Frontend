@@ -7,7 +7,7 @@ const Heading5 = ({
 	children,
 	styles,
 }: {
-	children: string;
+	children: string | React.ReactNode;
 	styles: string;
 }) => {
 	return (

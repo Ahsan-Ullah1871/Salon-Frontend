@@ -1,3 +1,5 @@
+import { UserFile } from "./CommonTypes";
+
 export type TextINputType = {
 	title?: string;
 	current_value: string;
@@ -10,10 +12,12 @@ export type TextINputType = {
 	component_styles?: string;
 	is_required?: boolean;
 	is_disabled?: boolean;
+	onClick?: React.MouseEventHandler<HTMLInputElement>;
+	onKeyDown?: React.MouseEventHandler<HTMLInputElement>;
 };
 
 export type TextAreaType = {
-	title: string;
+	title?: string;
 	current_value: string;
 	set_new_value: Function;
 	note?: string;
@@ -37,5 +41,18 @@ export type SelectFromList = {
 	component_styles?: string;
 	is_required?: boolean;
 	is_disabled?: boolean;
+};
+
+export type ImageSelectType = {
+	title: string;
+	current_value: string;
+	set_new_value: (value: string) => void;
+	set_new_image_value: (file: UserFile) => void;
+	height: number;
+	width: number;
+	objectFit: string;
+	isfill: boolean;
+	image_styles: string;
+	component_styles?: string;
 };
 
