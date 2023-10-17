@@ -15,6 +15,10 @@ const config: Config = {
 				"sub-spacial": "var(--sub-spacial-font)",
 			},
 			colors: {
+				success: "#00FF00",
+				error: " #FF0000",
+				warning: " #FFFF00",
+				info: "#FFA500",
 				bg_color: "var(--bg_color)",
 				primary: "#FFCE00",
 				black_normal: "#353535CC",
@@ -36,4 +40,3 @@ const config: Config = {
 	plugins: [],
 };
 export default config;
-

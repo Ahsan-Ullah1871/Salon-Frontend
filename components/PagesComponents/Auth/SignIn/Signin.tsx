@@ -1,15 +1,20 @@
+import Alert from "@/components/Blocks/Alerts/Alerts";
 import { Form } from "@/components/ui/Form/Form";
 import SimpleLink from "@/components/ui/Links/SimpleLink";
 import Heading5 from "@/components/ui/Text/Headers/Heading5";
 import Title from "@/components/ui/Text/Paragraph/Title";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Signin = () => {
 	// login mutation hook
 	const [login, { isLoading, isError, error, isSuccess }] =
 		useLoginMutation();
 
+	//
+	const [is_alert_open, setISAlertOpen] = useState(false);
+	const [alert_message, setAlertMessage] = useState("");
+	const [alert_type, setAlertType] = useState("success");
 	//
 	const [signInFormState, setSignInForm] = useState({
 		email: "",
@@ -29,20 +34,30 @@ const Signin = () => {
 	//
 
 	const formSubmitHandler = async () => {
-		try {
-			const res = await login({
-				data: signInFormState,
-			}).unwrap();
-			console.log("====================================");
-			console.log(res);
-			console.log("====================================");
-		} catch (err: any) {
-			console.error(err.message);
-		}
+		login(signInFormState);
 	};
+
+	console.log("====================================");
+	console.log(error);
+	console.log("====================================");
+
+	useEffect(() => {
+		setAlertMessage("Please enter");
+		setAlertType("error");
+		setISAlertOpen(true);
+	}, [error]);
 
 	return (
 		<div className="  p-4 pb-6 max-w-md w-full min-h-[200px] bg-white  shadow-md  ">
+			{/*  */}
+			<Alert
+				alert_type={"success"}
+				alert_message={"Thiś	is success message"}
+				is_alert_open={is_alert_open}
+				closeAlert={() => {}}
+			/>
+
+			{/*  */}
 			<Heading5 styles="text-center font-spacial">
 				👋 Welcome Back
 			</Heading5>
@@ -118,4 +133,3 @@ const Signin = () => {
 };
 
 export default Signin;
-

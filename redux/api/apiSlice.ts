@@ -3,12 +3,23 @@ import { RootState } from "../Store";
 import { axiosBaseQuery } from "@/helpers/axios/axiosBaseQuery";
 import { getBaseUrl } from "@/helpers/envConfig";
 import { tagTypesList } from "./TagTypes";
+import { getValueFromCookies } from "@/cookies/CookiesHelper";
+import { AUTH_KEY } from "@/cookies/CookiesVariableName";
 
 // Define a service using a base URL and expected endpoints
 export const apiSlice = createApi({
 	reducerPath: "api",
-	baseQuery: axiosBaseQuery({ baseUrl: getBaseUrl() }),
+	baseQuery: fetchBaseQuery({
+		baseUrl: getBaseUrl(),
+		prepareHeaders(headers, { getState }) {
+			// Access the authentication token from the Redux store
+			const accessToken = getValueFromCookies(AUTH_KEY);
+			if (accessToken) {
+				headers.set("Authorization", `${accessToken}`);
+			}
+			return headers;
+		},
+	}),
 	endpoints: () => ({}),
 	tagTypes: tagTypesList,
 });
-

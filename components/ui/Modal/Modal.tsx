@@ -12,15 +12,21 @@ export default function Modal({
 	panel_style,
 	button_icon,
 	isShowCloseButton,
-}: {
+	default_modal_value,
+}: // openModalFromOutside,
+// closeModalFromOutside,
+{
 	button_title?: string;
 	button_style: string;
 	panel_style: string;
 	button_icon?: React.ReactNode;
 	children: React.ReactNode;
 	isShowCloseButton?: Boolean;
+	default_modal_value?: boolean;
+	// openModalFromOutside:Function;
+	// closeModalFromOutside:Function;
 }) {
-	let [isOpen, setIsOpen] = useState(false);
+	let [isOpen, setIsOpen] = useState(default_modal_value ?? false);
 
 	function closeModal() {
 		setIsOpen(false);
@@ -100,4 +106,3 @@ export default function Modal({
 		</>
 	);
 }
-

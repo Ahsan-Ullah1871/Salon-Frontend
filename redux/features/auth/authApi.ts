@@ -47,46 +47,46 @@ export const authAPi = apiSlice.injectEndpoints({
 			query: (data) => ({
 				url: "/auth/signin",
 				method: "POST",
-				data: data,
+				body: data,
 			}),
-			// async onQueryStarted(arg, { queryFulfilled, dispatch }) {
-			// 	try {
-			// 		const result = await queryFulfilled;
+			async onQueryStarted(arg, { queryFulfilled, dispatch }) {
+				try {
+					const result = await queryFulfilled;
 
-			// 		console.log(
-			// 			"===================================="
-			// 		);
-			// 		console.log(result);
-			// 		console.log(
-			// 			"===================================="
-			// 		);
-			// 		// cookies.set(
-			// 		// 	"auth_details",
-			// 		// 	JSON.stringify({
-			// 		// 		isLoggedIn: true,
-			// 		// 		user: result.data.data
-			// 		// 			.user_details,
-			// 		// 		accessToken:
-			// 		// 			result.data.data
-			// 		// 				.accessToken,
-			// 		// 	}),
-			// 		// 	{ path: "/", maxAge: 6000 }
-			// 		// );
-			// 		// dispatch(
-			// 		// 	userLoggedIn({
-			// 		// 		isLoggedIn: true,
-			// 		// 		user: result.data.data
-			// 		// 			.user_details,
-			// 		// 		accessToken:
-			// 		// 			result.data.data
-			// 		// 				.accessToken,
-			// 		// 	})
-			// 		// );
-			// 	} catch (error) {
-			// 		//do nothing
-			// 		console.log({ error });
-			// 	}
-			// },
+					console.log(
+						"===================================="
+					);
+					console.log(result);
+					console.log(
+						"===================================="
+					);
+					// cookies.set(
+					// 	"auth_details",
+					// 	JSON.stringify({
+					// 		isLoggedIn: true,
+					// 		user: result.data.data
+					// 			.user_details,
+					// 		accessToken:
+					// 			result.data.data
+					// 				.accessToken,
+					// 	}),
+					// 	{ path: "/", maxAge: 6000 }
+					// );
+					// dispatch(
+					// 	userLoggedIn({
+					// 		isLoggedIn: true,
+					// 		user: result.data.data
+					// 			.user_details,
+					// 		accessToken:
+					// 			result.data.data
+					// 				.accessToken,
+					// 	})
+					// );
+				} catch (error) {
+					//do nothing
+					console.log({ error });
+				}
+			},
 		}),
 	}),
 });

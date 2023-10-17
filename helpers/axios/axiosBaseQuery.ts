@@ -2,6 +2,7 @@ import type { BaseQueryFn } from "@reduxjs/toolkit/query";
 import type { AxiosRequestConfig, AxiosError } from "axios";
 import { instance as axiosInstance } from "./axiosInstance";
 import { IMeta } from "@/types/DataResponseTypes";
+import axios from "axios";
 
 export const axiosBaseQuery =
 	(
@@ -20,18 +21,13 @@ export const axiosBaseQuery =
 	> =>
 	async ({ url, method, data, params, contentType }) => {
 		try {
-			const result = await axiosInstance({
+			const result = await axios({
 				url: baseUrl + url,
 				method,
 				data,
 				params,
 				headers: {
-					// "Content-Type": "application/json",
-					"Access-Control-Allow-Origin":
-						"http://localhost:5001/",
-					"Cache-Control": "no-cache",
-					"Content-Type":
-						"application/x-www-form-urlencoded",
+					"Content-Type": "application/json",
 				},
 				withCredentials: true,
 			});
@@ -50,4 +46,3 @@ export const axiosBaseQuery =
 			};
 		}
 	};
-

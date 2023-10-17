@@ -7,11 +7,9 @@ import {
 import axios from "axios";
 
 const instance = axios.create();
-instance.defaults.headers.post["Content-Type"] =
-	"application/x-www-form-urlencoded";
+instance.defaults.headers.post["Content-Type"] = "application/json";
 instance.defaults.headers["Accept"] = "application/json";
-instance.defaults.headers["Access-Control-Allow-Origin"] =
-	"http://localhost:5001/";
+
 instance.defaults.timeout = 100000;
 
 // Add a request interceptor
@@ -62,4 +60,3 @@ instance.interceptors.response.use(
 );
 
 export { instance };
-
