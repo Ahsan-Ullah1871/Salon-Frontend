@@ -17,7 +17,7 @@ const CategoriesPage = () => {
 	return (
 		<div className=" min-h-screen w-full h-full">
 			{/* Sticky item */}
-			<div className="sticky top-12   py-3  px-6   bg-d_body">
+			<div className="sticky top-12   z-10   py-3  px-6   bg-d_body">
 				<DashboardHeader
 					role={UserRole.ADMIN}
 					left_side_component={
@@ -43,7 +43,7 @@ const CategoriesPage = () => {
 			</div>
 
 			{/* Body */}
-			<div className=" mt-10">
+			<div className=" mt-10 h-full flex-grow">
 				<AllCatagoriesPage searchParam={searchParam} />
 			</div>
 		</div>

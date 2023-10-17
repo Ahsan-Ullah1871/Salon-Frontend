@@ -1,5 +1,6 @@
 import { tagTypes } from "@/redux/api/TagTypes";
 import { apiSlice } from "@/redux/api/apiSlice";
+import { Category } from "@/types/CommonTypes";
 import { ParamSerialization } from "@/utils/ParamsSerialization";
 
 export const categoryAPi = apiSlice.injectEndpoints({
@@ -21,60 +22,60 @@ export const categoryAPi = apiSlice.injectEndpoints({
 			providesTags: [tagTypes.categoryDetails],
 		}),
 
-		// // Add Book
-		// addBook: builder.mutation({
-		// 	query: (data: IBook) => ({
-		// 		url: `/books`,
-		// 		method: "POST",
-		// 		body: data,
-		// 	}),
-		// 	invalidatesTags: ["filteringItems", "latest_books"],
-		// }),
+		// Add Category
+		addCategory: builder.mutation({
+			query: (data: Partial<Category>) => ({
+				url: `/category`,
+				method: "POST",
+				body: data,
+			}),
+			invalidatesTags: [tagTypes.category],
+		}),
 
-		// //   delete book
-		// deleteBook: builder.mutation({
-		// 	query: ({ bookID }) => ({
-		// 		url: `/books/${bookID}`,
-		// 		method: "DELETE",
-		// 	}),
+		//   delete category
+		deleteCategory: builder.mutation({
+			query: (categoryID) => ({
+				url: `/category/${categoryID}`,
+				method: "DELETE",
+			}),
 
-		// 	invalidatesTags: ["filteringItems", "latest_books"],
+			invalidatesTags: [tagTypes.category],
 
-		// 	async onQueryStarted(
-		// 		{ bookID },
-		// 		{ dispatch, queryFulfilled }
-		// 	) {
-		// 		try {
-		// 			const { data: book_data } =
-		// 				await queryFulfilled;
+			async onQueryStarted(
+				categoryID,
+				{ dispatch, queryFulfilled }
+			) {
+				try {
+					const { data: category_data } =
+						await queryFulfilled;
 
-		// 			// const patchResult =
-		// 			if (book_data) {
-		// 				//
-		// 			}
-		// 			dispatch(
-		// 				bookApi.util.updateQueryData(
-		// 					"getBookDetails",
-		// 					bookID,
-		// 					(draft) => {
-		// 						return draft.filter(
-		// 							(item: {
-		// 								data: {
-		// 									_id: string;
-		// 								};
-		// 							}) =>
-		// 								item.data
-		// 									?._id !=
-		// 								bookID
-		// 						);
-		// 					}
-		// 				)
-		// 			);
-		// 		} catch {
-		// 			//
-		// 		}
-		// 	},
-		// }),
+					// const patchResult =
+					if (category_data) {
+						//
+					}
+					dispatch(
+						categoryAPi.util.updateQueryData(
+							"getCategories",
+							categoryID,
+							(draft) => {
+								return draft.filter(
+									(item: {
+										data: {
+											_id: string;
+										};
+									}) =>
+										item.data
+											?._id !=
+										categoryID
+								);
+							}
+						)
+					);
+				} catch {
+					//
+				}
+			},
+		}),
 
 		// editCategory
 		editCategory: builder.mutation({
@@ -129,4 +130,6 @@ export const {
 	useGetCategoriesQuery,
 	useGetCategoryDetailsQuery,
 	useEditCategoryMutation,
+	useAddCategoryMutation,
+	useDeleteCategoryMutation,
 } = categoryAPi;

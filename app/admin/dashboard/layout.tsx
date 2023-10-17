@@ -31,7 +31,7 @@ export default function AuthUI({
 	}, [authChecked, router]);
 
 	return (
-		<div className=" font-main  bg-d_body w-screen p-8">
+		<div className=" font-main  bg-d_body  w-full p-8">
 			<div>
 				<Sidebar />
 				<div className="  md:pl-[100px] ">

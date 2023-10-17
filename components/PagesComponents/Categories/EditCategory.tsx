@@ -1,5 +1,6 @@
 import CategoriesList from "@/components/Blocks/Catgory/CategoriesList";
 import CategoryEdit from "@/components/Blocks/Catgory/CategoryEdit";
+import CategoryDetailsSkeleton from "@/components/ui/Skeleton/category/CategoryDetailsSkeleton";
 import {
 	useGetCategoriesQuery,
 	useGetCategoryDetailsQuery,
@@ -22,7 +23,12 @@ const EditCategoryPage = ({ ct_id }: { ct_id: string }) => {
 
 	return (
 		<div>
-			<CategoryEdit categoryDetailsData={categoryDetailsData} />
+			{isLoading && <CategoryDetailsSkeleton />}
+			{!isLoading && (
+				<CategoryEdit
+					categoryDetailsData={categoryDetailsData}
+				/>
+			)}{" "}
 		</div>
 	);
 };

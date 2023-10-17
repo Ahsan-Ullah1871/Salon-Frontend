@@ -1,12 +1,16 @@
 import DynamicTable from "@/components/ui/Table/Table";
 import Title from "@/components/ui/Text/Paragraph/Title";
 import { Category } from "@/types/CommonTypes";
-import { IMeta } from "@/types/DataResponseTypes";
+import { IGenericErrorResponse, IMeta } from "@/types/DataResponseTypes";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ActionButtons from "../Action/ActionButtons";
 import CategoryEdit from "./CategoryEdit";
 import { usePathname, useRouter } from "next/navigation";
+import { useAppSelector } from "@/hooks/Redux";
+import { useDeleteCategoryMutation } from "@/redux/features/catgeories/categoryApi";
+import { get_error_messages } from "@/utils/error_messages";
+import ListTypeCtSkeleton from "@/components/ui/Skeleton/category/CategoryListSkeleto";
 
 const CategoriesList = ({
 	categories,
@@ -17,9 +21,39 @@ const CategoriesList = ({
 }) => {
 	const router = useRouter();
 	const pathName = usePathname();
+
+	const { user } = useAppSelector((state) => state.auth);
+
+	// login mutation hook
+	const [deleteCategory, { data, isLoading, isError, error, isSuccess }] =
+		useDeleteCategoryMutation();
+
+	//
+	const [is_alert_open, setISAlertOpen] = useState(false);
+	const [alert_message, setAlertMessage] = useState("");
+	const [alert_type, setAlertType] = useState<
+		"error" | "success" | "warning" | "info"
+	>("success");
+
+	useEffect(() => {
+		if (error && "data" in error) {
+			setISAlertOpen(true);
+			setAlertType("error");
+			const error_messages = get_error_messages(
+				error?.data as IGenericErrorResponse
+			);
+			setAlertMessage(error_messages);
+		} else if (isSuccess) {
+			setISAlertOpen(true);
+			setAlertType("success");
+			setAlertMessage("Edited  successfully");
+		}
+	}, [error, isSuccess]);
+
 	return (
 		<div className=" ">
 			<DynamicTable
+				is_table_body_hide={isLoading}
 				data={categories?.map((ct) => ({
 					id: ct.id,
 					className: " bg-white p-5 rounded-md shadow mb-5 ",
@@ -63,6 +97,11 @@ const CategoriesList = ({
 										editButtonCLick={() =>
 											router.push(
 												`${pathName}/${ct.id}`
+											)
+										}
+										deleteButtonCLick={() =>
+											deleteCategory(
+												ct.id
 											)
 										}
 									/>
