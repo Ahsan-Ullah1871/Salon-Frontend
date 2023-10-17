@@ -24,6 +24,11 @@ const config: Config = {
 				black_normal: "#353535CC",
 				black_deep: "#353535",
 				green: "#034A46",
+				d_primary: "#4170FF",
+				d_black: "#3D474D",
+				d_gray: "#F2F2F2",
+				d_black_normal: "#83878B",
+				d_body: "#F8F8FE",
 			},
 			spacing: {
 				body: "1440px",
@@ -40,3 +45,4 @@ const config: Config = {
 	plugins: [],
 };
 export default config;
+

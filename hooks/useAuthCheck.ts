@@ -24,7 +24,7 @@ export default function useAuthCheck() {
 				dispatch(
 					userLoggedIn({
 						isLoggedIn: true,
-						user: JSON.parse(get_user_details),
+						user: get_user_details,
 						accessToken: get_auth_key,
 					})
 				);

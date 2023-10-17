@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Alert from "@/components/Blocks/Alerts/Alerts";
 import { Form } from "@/components/ui/Form/Form";
 import SimpleLink from "@/components/ui/Links/SimpleLink";
 import Heading5 from "@/components/ui/Text/Headers/Heading5";
 import Title from "@/components/ui/Text/Paragraph/Title";
+import { useAppSelector } from "@/hooks/Redux";
 import useAuthCheck from "@/hooks/useAuthCheck";
 import { ICONS } from "@/icons/AllIcons";
 import { useLoginMutation } from "@/redux/features/auth/authApi";
@@ -11,9 +13,10 @@ import { get_error_messages } from "@/utils/error_messages";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-const Signin = () => {
+const Signin = ({ role = "customer", redirect_path = "/" }) => {
 	const router = useRouter();
 	const auth_checked = useAuthCheck();
+	const { user } = useAppSelector((state) => state.auth);
 	// login mutation hook
 	const [login, { isLoading, isError, error, isSuccess, data }] =
 		useLoginMutation();
@@ -28,7 +31,7 @@ const Signin = () => {
 	const [signInFormState, setSignInForm] = useState({
 		email: "",
 		password: "",
-		role: "customer",
+		role: role,
 	});
 
 	// const current value
@@ -46,9 +49,6 @@ const Signin = () => {
 		login(signInFormState);
 	};
 
-	console.log("====================================");
-	console.log(data);
-	console.log("====================================");
 	useEffect(() => {
 		if (error && "data" in error) {
 			setISAlertOpen(true);
@@ -66,8 +66,8 @@ const Signin = () => {
 
 	// redirecting effect
 	useEffect(() => {
-		if (data?.success || auth_checked) {
-			router.push("/");
+		if (data?.success || (auth_checked && user?.role === role)) {
+			router.push(redirect_path);
 		}
 	}, [data, auth_checked]);
 

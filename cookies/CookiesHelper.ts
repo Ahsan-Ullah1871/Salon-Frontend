@@ -19,7 +19,7 @@ export const getValueFromCookies = (key: string) => {
 	if (!key || typeof window === "undefined") {
 		return "";
 	}
-	return getCookie(key);
+	return getCookie(key) ? JSON.parse(getCookie(key)!) : undefined;
 };
 
 //
@@ -35,6 +35,7 @@ export const deleteValueFromCookies = (key: string) => {
 	if (!key || typeof window === "undefined") {
 		return "";
 	}
-	return deleteCookie(key);
+
+	deleteCookie(key, { path: "/" });
 };
 

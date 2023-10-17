@@ -1,4 +1,4 @@
-export const ICONS = {
+export const SM_ICONS = {
 	hand_burger: (
 		<svg
 			width="26"
@@ -24,7 +24,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8 text-primary"
+			className="w-5 h-5 text-primary"
 		>
 			<path
 				stroke-linecap="round"
@@ -116,7 +116,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -133,7 +133,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -149,7 +149,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -165,7 +165,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -181,7 +181,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -197,7 +197,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -213,7 +213,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -229,7 +229,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -240,7 +240,7 @@ export const ICONS = {
 	),
 	button_loading_icon: (
 		<svg
-			className="animate-spin mx-2   h-8 w-8  text-current"
+			className="animate-spin mx-2   h-6 w-6  text-current"
 			xmlns="http://www.w3.org/2000/svg"
 			fill="none"
 			viewBox="0 0 24 24"
@@ -267,7 +267,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -283,12 +283,12 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
 				stroke-linejoin="round"
-				d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-8a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"
+				d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 01-1.125-1.125v-3.75zM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-8.25zM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 01-1.125-1.125v-2.25z"
 			/>
 		</svg>
 	),
@@ -299,7 +299,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -315,7 +315,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -331,7 +331,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -347,7 +347,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -363,7 +363,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -379,7 +379,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -395,7 +395,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -411,7 +411,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -427,7 +427,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -443,7 +443,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -459,7 +459,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -475,7 +475,7 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-8 h-8"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
@@ -512,44 +512,12 @@ export const ICONS = {
 			viewBox="0 0 24 24"
 			stroke-width="1.5"
 			stroke="currentColor"
-			className="w-6 h-6"
+			className="w-5 h-5"
 		>
 			<path
 				stroke-linecap="round"
 				stroke-linejoin="round"
 				d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-			/>
-		</svg>
-	),
-	important: (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="currentColor"
-			className="w-8 h-8"
-		>
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"
-			/>
-		</svg>
-	),
-	notification: (
-		<svg
-			xmlns="http://www.w3.org/2000/svg"
-			fill="none"
-			viewBox="0 0 24 24"
-			stroke-width="1.5"
-			stroke="currentColor"
-			class="w-6 h-6"
-		>
-			<path
-				stroke-linecap="round"
-				stroke-linejoin="round"
-				d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0M3.124 7.5A8.969 8.969 0 015.292 3m13.416 0a8.969 8.969 0 012.168 4.5"
 			/>
 		</svg>
 	),

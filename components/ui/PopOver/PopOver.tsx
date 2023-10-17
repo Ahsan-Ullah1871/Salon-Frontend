@@ -17,9 +17,8 @@ export default function PopOver({
 			{({ open }) => (
 				<>
 					<Popover.Button
-					// 			className={`
-					// ${open ? "" : }
-					// group inline-flex items-center rounded-md bg-orange-700 px-3 py-2 text-base font-medium text-white hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+						as="div"
+						className="outline-none ring-0"
 					>
 						{button}
 					</Popover.Button>
