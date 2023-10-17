@@ -1,11 +1,11 @@
-import { IUser } from "@/types/User";
+import { User } from "@/types/CommonTypes";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 // type
 type IState = {
 	isLoggedIn: boolean;
-	user: IUser | undefined;
+	user: User | undefined;
 	accessToken: string | undefined;
 };
 

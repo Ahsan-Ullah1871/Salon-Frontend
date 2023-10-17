@@ -4,13 +4,16 @@ import Title from "@/components/ui/Text/Paragraph/Title";
 import { ICONS } from "@/icons/AllIcons";
 import { cn } from "@/utils/classNames";
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useEffect, useState } from "react";
 
 export default function Alert({
 	alert_type,
 	alert_message,
 	is_alert_open,
 	closeAlert,
+	setISAlertOpen,
+	setAlertMessage,
+	timer_sec,
 }: // openModalFromOutside,
 // closeModalFromOutside,
 {
@@ -18,16 +21,29 @@ export default function Alert({
 	alert_message: string;
 	is_alert_open: boolean;
 	closeAlert: () => void;
+	setAlertMessage: Dispatch<SetStateAction<string>>;
+	setISAlertOpen: Dispatch<SetStateAction<boolean>>;
+	timer_sec?: number;
 }) {
+	useEffect(() => {
+		if (alert_message) {
+			const timer = setTimeout(() => {
+				is_alert_open && setISAlertOpen(false);
+				is_alert_open && setAlertMessage("");
+			}, timer_sec || 5000);
+			return () => clearTimeout(timer);
+		}
+	}, [is_alert_open]);
+
 	const decide_style = () => {
 		switch (alert_type) {
 			case "error":
-				return "border-1 text-error bg-error bg-opacity-10 border-error  border-opacity-20";
+				return "border-1 text-error text-opacity-80  bg-error bg-opacity-10 border-error  border-opacity-20";
 
 			case "success":
-				return "border-1 text-white  bg-success bg-opacity-10 border-success  border-opacity-20";
+				return "border-1 text-success text-opacity-80  bg-success bg-opacity-10 border-success  border-opacity-20";
 			case "warning":
-				return "border-1 text-warning bg-warning bg-opacity-10 border-warning  border-opacity-20";
+				return "border-1 text-warning text-opacity-80  bg-warning bg-opacity-10 border-warning  border-opacity-20";
 
 			default:
 				break;
@@ -77,3 +93,4 @@ export default function Alert({
 		</>
 	);
 }
+

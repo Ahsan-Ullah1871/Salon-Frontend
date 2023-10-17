@@ -21,6 +21,8 @@ export type TextAreaType = {
 	title_styles?: string;
 	field_styles?: string;
 	component_styles?: string;
+	is_required?: boolean;
+	is_disabled?: boolean;
 };
 
 export type SelectFromList = {
@@ -33,4 +35,7 @@ export type SelectFromList = {
 	title_styles?: string;
 	field_styles?: string;
 	component_styles?: string;
+	is_required?: boolean;
+	is_disabled?: boolean;
 };
+

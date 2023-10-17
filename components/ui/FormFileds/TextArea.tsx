@@ -1,15 +1,5 @@
+import { TextAreaType } from "@/types/FormFieldTypes";
 import { cn } from "@/utils/classNames";
-
-type TextAreaType = {
-	title: string;
-	current_value: string;
-	set_new_value: Function;
-	note?: string;
-	placeholder: string;
-	title_styles?: string;
-	field_styles?: string;
-	component_styles?: string;
-};
 
 const TextArea = ({
 	title,
@@ -20,9 +10,16 @@ const TextArea = ({
 	title_styles,
 	field_styles,
 	component_styles,
+	is_required,
+	is_disabled = false,
 }: TextAreaType) => {
 	return (
-		<div className={cn(" flex flex-col gap-1 ", component_styles)}>
+		<div
+			className={cn(
+				" w-full flex flex-col gap-1 ",
+				component_styles
+			)}
+		>
 			<p
 				className={cn(
 					" text-sm font-semibold text-[#172327]",
@@ -33,6 +30,8 @@ const TextArea = ({
 			</p>
 
 			<textarea
+				required={is_required}
+				disabled={is_disabled}
 				cols={5}
 				className={cn(
 					" w-full px-4 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  ",
@@ -47,3 +46,4 @@ const TextArea = ({
 };
 
 export default TextArea;
+

@@ -1,11 +1,17 @@
 import { getCookies, setCookie, deleteCookie, getCookie } from "cookies-next";
 
 //
-export const setValueInCookies = (key: string, value: string): any => {
+export const setValueInCookies = (
+	key: string,
+	value: string,
+	maxAge?: number
+): any => {
 	if (!key || typeof window === "undefined") {
 		return "";
 	}
-	return setCookie("key", "value");
+	return setCookie(key, value, {
+		maxAge: maxAge || 604800,
+	});
 };
 
 //
