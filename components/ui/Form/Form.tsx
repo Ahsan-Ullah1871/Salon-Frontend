@@ -2,7 +2,8 @@ import React from "react";
 import TextInput from "../FormFileds/TextInput";
 import {
 	ImageSelectType,
-	SelectFromList,
+	SelectFromListType,
+	SwitchType,
 	TextAreaType,
 	TextINputType,
 } from "@/types/FormFieldTypes";
@@ -10,6 +11,8 @@ import { cn } from "@/utils/classNames";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import TextArea from "../FormFileds/TextArea";
 import ImageSelect from "../FormFileds/ImageSelect";
+import SelectFromList from "../FormFileds/SelectFromList";
+import SwitchBox from "../FormFileds/Switch";
 
 type Field =
 	| {
@@ -25,7 +28,7 @@ type Field =
 	| {
 			key: "select-box";
 			data_filed_key: string;
-			properties: SelectFromList;
+			properties: SelectFromListType;
 	  }
 	| {
 			key: "text-area";
@@ -36,6 +39,11 @@ type Field =
 			key: "image-select";
 			data_filed_key: string;
 			properties: ImageSelectType;
+	  }
+	| {
+			key: "switch";
+			data_filed_key: string;
+			properties: SwitchType;
 	  };
 
 type FormProps = {
@@ -83,7 +91,7 @@ export const Form: React.FC<FormProps> = ({
 				);
 			case "select-box":
 				return (
-					<TextInput
+					<SelectFromList
 						key={field.key}
 						{...field.properties}
 					/>
@@ -91,6 +99,13 @@ export const Form: React.FC<FormProps> = ({
 			case "image-select":
 				return (
 					<ImageSelect
+						key={field.key}
+						{...field.properties}
+					/>
+				);
+			case "switch":
+				return (
+					<SwitchBox
 						key={field.key}
 						{...field.properties}
 					/>

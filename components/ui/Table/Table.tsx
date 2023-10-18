@@ -1,6 +1,6 @@
-import CategoriesSkeleton from "@/components/Blocks/Catgory/CtegoriesSkeleton";
 import { cn } from "@/utils/classNames";
 import React from "react";
+import TableSkeleton from "../Skeleton/TableSkeleton";
 
 const DynamicTable = ({
 	data,
@@ -81,7 +81,7 @@ const DynamicTable = ({
 					))}
 				</div>
 			) : (
-				<CategoriesSkeleton />
+				<TableSkeleton />
 			)}
 		</div>
 	);

@@ -7,10 +7,12 @@ export default function PopOver({
 	children,
 	button,
 	className: PopoverClass,
+	popOverButtonClassName,
 }: {
 	children: React.ReactNode;
 	button: React.ReactNode;
 	className: string;
+	popOverButtonClassName: string;
 }) {
 	return (
 		<Popover className="relative">
@@ -18,7 +20,10 @@ export default function PopOver({
 				<>
 					<Popover.Button
 						as="div"
-						className="outline-none ring-0"
+						className={cn(
+							"outline-none ring-0",
+							popOverButtonClassName
+						)}
 					>
 						{button}
 					</Popover.Button>

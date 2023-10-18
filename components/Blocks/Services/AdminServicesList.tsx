@@ -1,22 +1,23 @@
 import DynamicTable from "@/components/ui/Table/Table";
 import Title from "@/components/ui/Text/Paragraph/Title";
-import { Category } from "@/types/CommonTypes";
+import { Category, Service } from "@/types/CommonTypes";
 import { IGenericErrorResponse, IMeta } from "@/types/DataResponseTypes";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ActionButtons from "../Action/ActionButtons";
-import CategoryEdit from "./CategoryEdit";
+import ServiceEdit from "./ServiceEdit";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "@/hooks/Redux";
 import { useDeleteCategoryMutation } from "@/redux/features/catgeories/categoryApi";
 import { get_error_messages } from "@/utils/error_messages";
 import TableSkeleton from "@/components/ui/Skeleton/TableSkeleton";
+import { useDeleteServiceMutation } from "@/redux/features/service/serviceApi";
 
-const CategoriesList = ({
-	categories,
+const AdminServicesList = ({
+	categories: services,
 	meta_data,
 }: {
-	categories: Category[];
+	categories: Service[];
 	meta_data: IMeta;
 }) => {
 	const router = useRouter();
@@ -25,8 +26,8 @@ const CategoriesList = ({
 	const { user } = useAppSelector((state) => state.auth);
 
 	// login mutation hook
-	const [deleteCategory, { data, isLoading, isError, error, isSuccess }] =
-		useDeleteCategoryMutation();
+	const [deleteService, { data, isLoading, isError, error, isSuccess }] =
+		useDeleteServiceMutation();
 
 	//
 	const [is_alert_open, setISAlertOpen] = useState(false);
@@ -46,7 +47,7 @@ const CategoriesList = ({
 		} else if (isSuccess) {
 			setISAlertOpen(true);
 			setAlertType("success");
-			setAlertMessage("Edited  successfully");
+			setAlertMessage("Deleted  successfully");
 		}
 	}, [error, isSuccess]);
 
@@ -54,15 +55,15 @@ const CategoriesList = ({
 		<div className=" ">
 			<DynamicTable
 				is_table_body_hide={isLoading}
-				data={categories?.map((ct) => ({
-					id: ct.id,
+				data={services?.map((service) => ({
+					id: service.id,
 					className: " bg-white p-5 rounded-md shadow mb-5 ",
 					columns: [
 						{
 							className: "hidden md:block  ",
 							component: (
 								<Title styles=" text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{ct?.id}
+									{service?.id}
 								</Title>
 							),
 						},
@@ -70,7 +71,7 @@ const CategoriesList = ({
 							className: "px-4",
 							component: (
 								<Title styles="  text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{ct?.name}
+									{service?.name}
 								</Title>
 							),
 						},
@@ -81,12 +82,30 @@ const CategoriesList = ({
 									width={60}
 									height={60}
 									src={
-										ct?.image_url
+										service?.image_url
 									}
-									alt={ct.name}
+									alt={
+										service.name
+									}
 									objectFit="cover"
 									className="rounded-md"
 								/>
+							),
+						},
+						{
+							className: " flex items-center justify-center",
+							component: (
+								<Title
+									styles={`text-sm font-medium ${
+										service?.is_available
+											? " text-green"
+											: "text-error"
+									}`}
+								>
+									{service?.is_available
+										? "Available"
+										: "Unavailable"}
+								</Title>
 							),
 						},
 						{
@@ -96,12 +115,12 @@ const CategoriesList = ({
 									<ActionButtons
 										editButtonCLick={() =>
 											router.push(
-												`${pathName}/${ct.id}`
+												`${pathName}/${service.id}`
 											)
 										}
 										deleteButtonCLick={() =>
-											deleteCategory(
-												ct.id
+											deleteService(
+												service.id
 											)
 										}
 									/>
@@ -124,6 +143,10 @@ const CategoriesList = ({
 						className: " hidden md:block text-center text-lg font-medium text-d_black",
 					},
 					{
+						header: "Status",
+						className: "  text-center text-lg font-medium text-d_black",
+					},
+					{
 						header: " Action",
 						className: " text-end px-6 text-lg font-medium text-d_black",
 					},
@@ -136,5 +159,5 @@ const CategoriesList = ({
 	);
 };
 
-export default CategoriesList;
+export default AdminServicesList;
 

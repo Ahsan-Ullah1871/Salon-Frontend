@@ -3,6 +3,9 @@ export enum tagTypes {
 	category = "category",
 	categoryDetails = "category_details",
 	file = "file",
+	service = "service",
+	service_details = "service_details",
+	service_by_category = "service_by_category",
 }
 
 export const tagTypesList = [
@@ -10,5 +13,7 @@ export const tagTypesList = [
 	tagTypes.category,
 	tagTypes.categoryDetails,
 	tagTypes.file,
+	tagTypes.service_details,
+	tagTypes.service_by_category,
 ];
 

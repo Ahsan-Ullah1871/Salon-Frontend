@@ -81,7 +81,7 @@ const AddNewCategory = () => {
 				is_alert_open={is_alert_open}
 				setISAlertOpen={setISAlertOpen}
 				setAlertMessage={setAlertMessage}
-				closeAlert={() => {}}
+				closeAlert={() => setISAlertOpen(false)}
 			/>
 
 			{/*  */}

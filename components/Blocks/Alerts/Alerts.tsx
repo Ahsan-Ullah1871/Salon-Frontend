@@ -30,7 +30,7 @@ export default function Alert({
 			const timer = setTimeout(() => {
 				is_alert_open && setISAlertOpen(false);
 				is_alert_open && setAlertMessage("");
-			}, timer_sec || 5000);
+			}, timer_sec || 4000);
 			return () => clearTimeout(timer);
 		}
 	}, [is_alert_open]);
@@ -38,12 +38,12 @@ export default function Alert({
 	const decide_style = () => {
 		switch (alert_type) {
 			case "error":
-				return "border-1 text-error text-opacity-80  bg-error bg-opacity-10 border-error  border-opacity-20";
+				return "border-1 text-white text-opacity-80  bg-error bg-opacity-10 border-error  border-opacity-20";
 
 			case "success":
-				return "border-1 text-success text-opacity-80  bg-success bg-opacity-10 border-success  border-opacity-20";
+				return "border-1 text-d_primary text-opacity-80  bg-d_primary bg-opacity-10 border-success  border-opacity-20";
 			case "warning":
-				return "border-1 text-warning text-opacity-80  bg-warning bg-opacity-10 border-warning  border-opacity-20";
+				return "border-1 text-white text-opacity-80  bg-warning bg-opacity-10 border-warning  border-opacity-20";
 
 			default:
 				break;

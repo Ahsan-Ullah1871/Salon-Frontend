@@ -8,18 +8,25 @@ import { ICONS } from "@/icons/AllIcons";
 import { get_error_messages } from "@/utils/error_messages";
 import { IGenericErrorResponse } from "@/types/DataResponseTypes";
 import { useRouter } from "next/navigation";
-import { useEditCategoryMutation } from "@/redux/features/catgeories/categoryApi";
+import {
+	useAddCategoryMutation,
+	useEditCategoryMutation,
+} from "@/redux/features/catgeories/categoryApi";
 import Heading5 from "@/components/ui/Text/Headers/Heading5";
+import { useAppSelector } from "@/hooks/Redux";
+import { useAddServiceMutation } from "@/redux/features/service/serviceApi";
 
-const CategoryEdit = ({
-	categoryDetailsData,
+const AddNewService = ({
+	categories_list,
 }: {
-	categoryDetailsData: Category;
+	categories_list: Category[];
 }) => {
 	const router = useRouter();
+	const { user } = useAppSelector((state) => state.auth);
+
 	// login mutation hook
-	const [editCategory, { data, isLoading, isError, error, isSuccess }] =
-		useEditCategoryMutation();
+	const [addService, { data, isLoading, isError, error, isSuccess }] =
+		useAddServiceMutation();
 
 	//
 	const [is_alert_open, setISAlertOpen] = useState(false);
@@ -28,42 +35,47 @@ const CategoryEdit = ({
 		"error" | "success" | "warning" | "info"
 	>("success");
 
+	// 	 "name": "Service Name  6",
+	//   "image_url": "https://res.cloudinary.com/ddymieyrr/image/upload/v1697284911/salon/at7xm1twli5kgrasywhl.jpg",
+	//   "image_id": "49e3cde4-7cad-4e04-8c09-e751a70dc345",
+	//   "description": "This is a service description (optional)",
+	//   "price": 100,
+	//   "duration": "1 hour",
+	//   "category_id": "be83072f-a4c4-4f72-be92-2757eb0774b0",
+	//   "is_available": true
 	//
-	const [categoryForm, setCategoryForm] = useState({
-		name: categoryDetailsData?.name,
-		image_url: categoryDetailsData?.image_url,
-		description: categoryDetailsData?.description,
-		image_id: categoryDetailsData?.image_id,
+	const [serviceForm, setServiceForm] = useState({
+		name: "",
+		image_url: "",
+		description: "",
+		image_id: "",
+		price: "",
+		duration: "",
+		category_id: "",
+		is_available: true,
 	});
-
-	// useEffect
-	useEffect(() => {
-		setCategoryForm({
-			name: categoryDetailsData?.name,
-			image_url: categoryDetailsData?.image_url,
-			description: categoryDetailsData?.description,
-			image_id: categoryDetailsData?.image_id,
-		});
-	}, [categoryDetailsData]);
 
 	// const current value
 	const current_value = (
-		key_name: "name" | "image_url" | "description"
+		key_name:
+			| "name"
+			| "image_url"
+			| "description"
+			| "price"
+			| "duration"
+			| "category_id"
 	) => {
-		return categoryForm?.[key_name] || "";
+		return serviceForm?.[key_name] || "";
 	};
 	// const current value
 	const update_value = (key_name: string, value: string) => {
-		setCategoryForm((prev) => ({ ...prev, [key_name]: value }));
+		setServiceForm((prev) => ({ ...prev, [key_name]: value }));
 	};
 
 	//
 
 	const formSubmitHandler = async () => {
-		editCategory({
-			categoryID: categoryDetailsData.id,
-			category_data: categoryForm,
-		});
+		addService({ ...serviceForm, price: Number(serviceForm.price) });
 	};
 
 	useEffect(() => {
@@ -78,6 +90,8 @@ const CategoryEdit = ({
 			setISAlertOpen(true);
 			setAlertType("success");
 			setAlertMessage("Edited  successfully");
+
+			router.push(`/${user?.role}/dashboard/services`);
 		}
 	}, [error, isSuccess]);
 
@@ -95,7 +109,7 @@ const CategoryEdit = ({
 
 			{/*  */}
 			<Heading5 styles="text-center font-spacial">
-				Edit "{categoryDetailsData?.name}"
+				New Service
 			</Heading5>
 
 			{/*  */}
@@ -108,9 +122,9 @@ const CategoryEdit = ({
 							? ICONS.button_loading_icon
 							: ""
 					}
-					button_stye="w-full mt-4 bg-d_primary text-white "
+					button_stye="w-full mt-4 bg-d_primary text-white col-span-2 "
 					formSubmitHandler={() => formSubmitHandler()}
-					form_style=" max-w-md mx-auto p-6 bg-white shadow rounded-lg flex flex-col gap-4"
+					form_style=" max-w-5xl mx-auto p-6 bg-white shadow rounded-lg  grid grid-cols-1 grid-cols-2"
 					fields_list={[
 						{
 							data_filed_key: "image_url",
@@ -133,10 +147,6 @@ const CategoryEdit = ({
 								set_new_image_value: (
 									image: UserFile
 								) => {
-									console.log(
-										image
-									);
-
 									update_value(
 										"image_url",
 										image.url
@@ -149,19 +159,22 @@ const CategoryEdit = ({
 								objectFit: "cover",
 								isfill: false,
 								image_styles:
-									" block  mx-auto",
+									" block  mx-auto  max-w-md max-h-[300px]",
 								component_styles:
-									"w-full",
+									"w-full col-span-2 max-w-full",
 							},
 						},
+
 						{
 							data_filed_key: "name",
 							key: "input-text",
 							properties: {
-								title: "Category Name",
+								title: "Service Name",
 								placeholder:
-									"Enter category name",
+									"Enter service name",
 								type: "text",
+								component_styles:
+									"col-span-2 md:col-span-1",
 								is_required: true,
 								current_value:
 									current_value(
@@ -176,14 +189,88 @@ const CategoryEdit = ({
 									),
 							},
 						},
+						{
+							data_filed_key: "category_id",
+							key: "select-box",
+							properties: {
+								title: "Category",
+								default_option_text:
+									"Select Category",
+								component_styles:
+									"col-span-2 md:col-span-1",
+								drop_down_items:
+									categories_list?.map(
+										(ct) => ({
+											label: ct.name,
+											value: ct.id,
+										})
+									),
+
+								current_value:
+									current_value(
+										"category_id"
+									),
+								set_new_value: (
+									value: string
+								) =>
+									update_value(
+										"category_id",
+										value
+									),
+							},
+						},
+						{
+							data_filed_key: "price",
+							key: "input-text",
+							properties: {
+								title: "Service Price",
+								placeholder:
+									"Enter service price ",
+								type: "number",
+								is_required: true,
+								current_value:
+									current_value(
+										"price"
+									),
+								set_new_value: (
+									value: string
+								) =>
+									update_value(
+										"price",
+										value
+									),
+							},
+						},
+						{
+							data_filed_key: "duration",
+							key: "input-text",
+							properties: {
+								title: "Service Duration",
+								placeholder:
+									"Enter estimate service duration example:1 hour",
+								type: "text",
+								is_required: true,
+								current_value:
+									current_value(
+										"duration"
+									),
+								set_new_value: (
+									value: string
+								) =>
+									update_value(
+										"duration",
+										value
+									),
+							},
+						},
 
 						{
 							data_filed_key: "description",
 							key: "text-area",
 							properties: {
-								title: "Category Description",
+								title: "Service Description",
 								placeholder:
-									"Enter category description",
+									"Enter service description",
 								is_required: true,
 								current_value:
 									current_value(
@@ -196,6 +283,8 @@ const CategoryEdit = ({
 										"description",
 										value
 									),
+								component_styles:
+									"col-span-2",
 							},
 						},
 					]}
@@ -205,5 +294,5 @@ const CategoryEdit = ({
 	);
 };
 
-export default CategoryEdit;
+export default AddNewService;
 
