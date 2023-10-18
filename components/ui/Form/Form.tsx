@@ -1,6 +1,7 @@
 import React from "react";
 import TextInput from "../FormFileds/TextInput";
 import {
+	DatePickerType,
 	ImageSelectType,
 	SelectFromListType,
 	SwitchType,
@@ -13,6 +14,7 @@ import TextArea from "../FormFileds/TextArea";
 import ImageSelect from "../FormFileds/ImageSelect";
 import SelectFromList from "../FormFileds/SelectFromList";
 import SwitchBox from "../FormFileds/Switch";
+import DateInputPicker from "../DatePicker/DateInputPicker";
 
 type Field =
 	| {
@@ -44,6 +46,11 @@ type Field =
 			key: "switch";
 			data_filed_key: string;
 			properties: SwitchType;
+	  }
+	| {
+			key: "date-picker";
+			data_filed_key: string;
+			properties: DatePickerType;
 	  };
 
 type FormProps = {
@@ -106,6 +113,13 @@ export const Form: React.FC<FormProps> = ({
 			case "switch":
 				return (
 					<SwitchBox
+						key={field.key}
+						{...field.properties}
+					/>
+				);
+			case "date-picker":
+				return (
+					<DateInputPicker
 						key={field.key}
 						{...field.properties}
 					/>

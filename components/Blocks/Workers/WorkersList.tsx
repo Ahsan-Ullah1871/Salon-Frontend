@@ -1,23 +1,25 @@
 import DynamicTable from "@/components/ui/Table/Table";
 import Title from "@/components/ui/Text/Paragraph/Title";
-import { Category, Service } from "@/types/CommonTypes";
+import { Category, Service, Worker } from "@/types/CommonTypes";
 import { IGenericErrorResponse, IMeta } from "@/types/DataResponseTypes";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ActionButtons from "../Action/ActionButtons";
-import ServiceEdit from "./ServiceEdit";
+import ServiceEdit from "./WorkerEdit";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "@/hooks/Redux";
 import { useDeleteCategoryMutation } from "@/redux/features/catgeories/categoryApi";
 import { get_error_messages } from "@/utils/error_messages";
 import TableSkeleton from "@/components/ui/Skeleton/TableSkeleton";
 import { useDeleteServiceMutation } from "@/redux/features/service/serviceApi";
+import { ICONS } from "@/icons/AllIcons";
+import { useDeleteWorkerMutation } from "@/redux/features/workers/workerApi";
 
-const AdminServicesList = ({
-	services,
+const WorkersList = ({
+	workers,
 	meta_data,
 }: {
-	services: Service[];
+	workers: Worker[];
 	meta_data: IMeta;
 }) => {
 	const router = useRouter();
@@ -26,8 +28,8 @@ const AdminServicesList = ({
 	const { user } = useAppSelector((state) => state.auth);
 
 	// login mutation hook
-	const [deleteService, { data, isLoading, isError, error, isSuccess }] =
-		useDeleteServiceMutation();
+	const [deleteWorker, { data, isLoading, isError, error, isSuccess }] =
+		useDeleteWorkerMutation();
 
 	//
 	const [is_alert_open, setISAlertOpen] = useState(false);
@@ -55,15 +57,15 @@ const AdminServicesList = ({
 		<div className=" ">
 			<DynamicTable
 				is_table_body_hide={isLoading}
-				data={services?.map((service) => ({
-					id: service.id,
+				data={workers?.map((worker) => ({
+					id: worker.id,
 					className: " bg-white p-5 rounded-md shadow mb-5 ",
 					columns: [
 						{
 							className: "hidden md:block  ",
 							component: (
 								<Title styles=" text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{service?.id}
+									{worker?.id}
 								</Title>
 							),
 						},
@@ -71,25 +73,30 @@ const AdminServicesList = ({
 							className: "px-4",
 							component: (
 								<Title styles="  text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{service?.name}
+									{worker?.name}
 								</Title>
 							),
 						},
 						{
 							className: "hidden md:flex items-center justify-center",
-							component: (
+							component: worker?.user
+								?.profile_image ? (
 								<Image
 									width={60}
 									height={60}
 									src={
-										service?.image_url
+										worker
+											?.user
+											?.profile_image
 									}
-									alt={
-										service.name
-									}
+									alt={worker.name}
 									objectFit="cover"
 									className="rounded-md"
 								/>
+							) : (
+								<span>
+									{ICONS.user}
+								</span>
 							),
 						},
 						{
@@ -97,14 +104,14 @@ const AdminServicesList = ({
 							component: (
 								<Title
 									styles={`text-sm font-medium ${
-										service?.is_available
+										worker?.is_authorized
 											? " text-green"
 											: "text-error"
 									}`}
 								>
-									{service?.is_available
-										? "Available"
-										: "Unavailable"}
+									{worker?.is_authorized
+										? "Authorized"
+										: "Unauthorized"}
 								</Title>
 							),
 						},
@@ -115,12 +122,12 @@ const AdminServicesList = ({
 									<ActionButtons
 										editButtonCLick={() =>
 											router.push(
-												`${pathName}/${service.id}`
+												`${pathName}/${worker.id}`
 											)
 										}
 										deleteButtonCLick={() =>
-											deleteService(
-												service.id
+											deleteWorker(
+												worker.id
 											)
 										}
 									/>
@@ -159,5 +166,5 @@ const AdminServicesList = ({
 	);
 };
 
-export default AdminServicesList;
+export default WorkersList;
 

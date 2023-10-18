@@ -10,7 +10,7 @@ import UserRole from "@/types/UserRole";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-const CreateCategory = () => {
+const CreateService = () => {
 	const [searchParam, setSearchParam] = useState("");
 	const pathname = usePathname();
 	const { user } = useAppSelector((state) => state.auth);
@@ -51,5 +51,5 @@ const CreateCategory = () => {
 	);
 };
 
-export default CreateCategory;
+export default CreateService;
 

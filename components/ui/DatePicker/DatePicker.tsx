@@ -10,7 +10,7 @@ const ServiceDatePicker = () => {
 	return (
 		<DatePicker
 			selected={startDate}
-			onChange={(date) => setStartDate(date)}
+			onChange={(date: Date) => setStartDate(date)}
 			inline
 			className="!w-screen"
 		/>

@@ -28,16 +28,17 @@ export type Worker = {
 	id: string;
 	is_authorized: boolean;
 	user_id: string;
+	user?: User;
 	email: string;
 	name: string;
 	father_name: string;
 	mother_name: string;
 	is_married: boolean;
-	phone_number: number;
+	phone_number: string;
 	permanent_address: string;
 	current_address: string;
-	national_id: number;
-	birth_date: Date;
+	national_id: string;
+	birth_date: string;
 	worker_history?: CV[];
 	schedules?: Schedule[];
 	created_at: Date;
@@ -184,3 +185,4 @@ export type UserFile = {
 	created_at: Date;
 	updated_at: Date;
 };
+

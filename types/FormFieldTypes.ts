@@ -37,6 +37,18 @@ export type TextAreaType = {
 	is_required?: boolean;
 	is_disabled?: boolean;
 };
+export type DatePickerType = {
+	title?: string;
+	current_value: Date;
+	set_new_value: Function;
+	note?: string;
+	placeholder: string;
+	title_styles?: string;
+	field_styles?: string;
+	component_styles?: string;
+	is_required?: boolean;
+	is_disabled?: boolean;
+};
 
 export type SelectFromListType = {
 	title: string;

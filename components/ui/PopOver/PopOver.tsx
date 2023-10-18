@@ -11,8 +11,8 @@ export default function PopOver({
 }: {
 	children: React.ReactNode;
 	button: React.ReactNode;
-	className: string;
-	popOverButtonClassName: string;
+	className?: string;
+	popOverButtonClassName?: string;
 }) {
 	return (
 		<Popover className="relative">

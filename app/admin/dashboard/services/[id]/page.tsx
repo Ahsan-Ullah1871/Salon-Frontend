@@ -13,7 +13,7 @@ import UserRole from "@/types/UserRole";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-const CategoriesPage = ({ params }: { params: { id: string } }) => {
+const UpdateService = ({ params }: { params: { id: string } }) => {
 	const [searchParam, setSearchParam] = useState("");
 	const pathname = usePathname();
 	const { user } = useAppSelector((state) => state.auth);
@@ -54,5 +54,5 @@ const CategoriesPage = ({ params }: { params: { id: string } }) => {
 	);
 };
 
-export default CategoriesPage;
+export default UpdateService;
 

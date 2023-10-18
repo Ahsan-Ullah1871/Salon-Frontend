@@ -33,6 +33,15 @@ export const sidebar_menus = [
 	},
 	{
 		id: 1,
+		title: "Workers",
+		icon: ICONS.brifcess,
+		url: "/workers",
+		is_active: true,
+		is_visible: true,
+		role: [UserRole.ADMIN, UserRole.SUPER_ADMIN],
+	},
+	{
+		id: 1,
 		title: "Schedule",
 		icon: ICONS.schedule,
 		url: "/schedule",

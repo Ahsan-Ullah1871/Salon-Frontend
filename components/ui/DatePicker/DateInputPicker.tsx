@@ -2,38 +2,72 @@
 "use client";
 
 import { ICONS } from "@/icons/AllIcons";
-import { forwardRef, useState } from "react";
+import { ForwardedRef, forwardRef, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TextInput from "../FormFileds/TextInput";
 import { cn } from "@/utils/classNames";
 import Title from "../Text/Paragraph/Title";
+import { DatePickerType } from "@/types/FormFieldTypes";
+import { SM_ICONS } from "@/icons/SmalllIcon";
 
-const DateInputPicker = ({ field_styles }) => {
-	const [startDate, setStartDate] = useState(new Date());
-
-	const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
-		<button
-			className={cn(
-				" mx-auto !w-full max-w-xl px-4 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  flex items-center gap-3 "
-				// field_styles
-			)}
-			onClick={onClick}
-			ref={ref}
-		>
-			<span className="h-6 w-6  text-black_normal">
-				{ICONS.schedule}
-			</span>
-			<Title styles=" md:text-base">{value}</Title>
-		</button>
-	));
+const DateInputPicker = ({
+	title,
+	current_value,
+	set_new_value,
+	note,
+	placeholder,
+	title_styles,
+	field_styles,
+	component_styles,
+	is_required,
+	is_disabled = false,
+}: DatePickerType) => {
+	const ExampleCustomInput = forwardRef(
+		(
+			{ value, onClick }: any,
+			ref: ForwardedRef<HTMLButtonElement> // Define the type for 'ref' as ForwardedRef with the appropriate type
+		) => (
+			<button
+				type="button"
+				className={cn(
+					" w-full px-4 flex items-center justify-start gap-2 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  ",
+					field_styles
+				)}
+				onClick={onClick}
+				ref={ref}
+			>
+				<span className="  text-black_normal">
+					{SM_ICONS.calender}
+				</span>
+				<Title styles=" md:text-base">{value}</Title>
+			</button>
+		)
+	);
 	return (
-		<DatePicker
-			selected={startDate}
-			onChange={(date) => setStartDate(date)}
-			className=" !block"
-			customInput={<ExampleCustomInput />}
-		/>
+		<div
+			className={cn(
+				" w-full flex flex-col gap-1 ",
+				component_styles
+			)}
+		>
+			{title && (
+				<p
+					className={cn(
+						" text-sm font-semibold text-[#172327]",
+						title_styles
+					)}
+				>
+					{title}
+				</p>
+			)}
+			<DatePicker
+				selected={current_value}
+				onChange={(date) => set_new_value(date)}
+				className="!block"
+				customInput={<ExampleCustomInput />}
+			/>
+		</div>
 	);
 };
 
