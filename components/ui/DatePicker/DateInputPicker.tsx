@@ -21,28 +21,36 @@ const DateInputPicker = ({
 	field_styles,
 	component_styles,
 	is_required,
-	is_disabled = false,
+	showTimeSelect = false,
 }: DatePickerType) => {
 	const ExampleCustomInput = forwardRef(
 		(
 			{ value, onClick }: any,
 			ref: ForwardedRef<HTMLButtonElement> // Define the type for 'ref' as ForwardedRef with the appropriate type
-		) => (
-			<button
-				type="button"
-				className={cn(
-					" w-full px-4 flex items-center justify-start gap-2 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  ",
-					field_styles
-				)}
-				onClick={onClick}
-				ref={ref}
-			>
-				<span className="  text-black_normal">
-					{SM_ICONS.calender}
-				</span>
-				<Title styles=" md:text-base">{value}</Title>
-			</button>
-		)
+		) => {
+			return (
+				<button
+					type="button"
+					className={cn(
+						" w-full px-4 flex items-center justify-start gap-2 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  ",
+						field_styles
+					)}
+					onClick={onClick}
+					ref={ref}
+				>
+					<span className="  text-black_normal">
+						{showTimeSelect
+							? SM_ICONS.schedule
+							: SM_ICONS.calender}
+					</span>
+					<Title styles=" md:text-base">
+						{showTimeSelect
+							? current_value.toLocaleTimeString()
+							: current_value.toLocaleDateString()}
+					</Title>
+				</button>
+			);
+		}
 	);
 	return (
 		<div
@@ -64,6 +72,9 @@ const DateInputPicker = ({
 			<DatePicker
 				selected={current_value}
 				onChange={(date) => set_new_value(date)}
+				showTimeSelect={showTimeSelect}
+				showTimeSelectOnly={showTimeSelect}
+				timeFormat="HH:mm"
 				className="!block"
 				customInput={<ExampleCustomInput />}
 			/>

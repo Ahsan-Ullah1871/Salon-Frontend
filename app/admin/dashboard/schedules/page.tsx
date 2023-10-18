@@ -3,6 +3,7 @@
 import DashboardHeader from "@/components/Blocks/Header/DashboardHeader";
 import SearchBar from "@/components/Blocks/SearchBlock/SearchBar";
 import AllCatagoriesPage from "@/components/PagesComponents/Categories/AllCatagoriesPage";
+import AllSchedulesPage from "@/components/PagesComponents/Schedule/AllSchedulesPage";
 import AllServicesPage from "@/components/PagesComponents/Services/AllServicesPage";
 import AllWorkersPage from "@/components/PagesComponents/Workers/AllWorkerssPage";
 import PrimaryLink from "@/components/ui/Links/PrimaryLink";
@@ -12,7 +13,7 @@ import UserRole from "@/types/UserRole";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 
-const WorkersPage = () => {
+const SchedulesPage = () => {
 	const [searchParam, setSearchParam] = useState("");
 	const pathname = usePathname();
 
@@ -32,13 +33,13 @@ const WorkersPage = () => {
 
 				<div>
 					<Heading1 styles=" md:text-2xl md:leading-[30px]  md:font-bold text-start font-sub_main">
-						All Workers
+						All Schedules list
 					</Heading1>
 				</div>
 				<div className="mt-6 flex items-center justify-end">
 					<PrimaryLink
 						url={`${pathname}/create`}
-						title="Add new worker"
+						title="Add new schedule"
 						className="bg-d_primary border border-d_primary hover:bg-transparent p-2  rounded-md text-white hover:text-d_primary duration-500 "
 					/>
 				</div>
@@ -46,11 +47,11 @@ const WorkersPage = () => {
 
 			{/* Body */}
 			<div className=" mt-10 h-full flex-grow">
-				<AllWorkersPage searchParam={searchParam} />
+				<AllSchedulesPage searchParam={searchParam} />
 			</div>
 		</div>
 	);
 };
 
-export default WorkersPage;
+export default SchedulesPage;
 

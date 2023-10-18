@@ -47,7 +47,7 @@ export type DatePickerType = {
 	field_styles?: string;
 	component_styles?: string;
 	is_required?: boolean;
-	is_disabled?: boolean;
+	showTimeSelect?: boolean;
 };
 
 export type SelectFromListType = {

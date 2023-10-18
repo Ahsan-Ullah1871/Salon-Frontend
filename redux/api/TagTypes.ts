@@ -8,6 +8,8 @@ export enum tagTypes {
 	service_by_category = "service_by_category",
 	worker = "worker",
 	worker_details = "worker_details",
+	schedule = "schedule",
+	schedule_details = "schedule_details",
 }
 
 export const tagTypesList = [
@@ -19,5 +21,7 @@ export const tagTypesList = [
 	tagTypes.service_by_category,
 	tagTypes.worker,
 	tagTypes.worker_details,
+	tagTypes.schedule,
+	tagTypes.schedule_details,
 ];
 
