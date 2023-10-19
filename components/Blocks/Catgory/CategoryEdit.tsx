@@ -133,10 +133,6 @@ const CategoryEdit = ({
 								set_new_image_value: (
 									image: UserFile
 								) => {
-									console.log(
-										image
-									);
-
 									update_value(
 										"image_url",
 										image.url

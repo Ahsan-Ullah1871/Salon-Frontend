@@ -11,8 +11,7 @@ import {
 import { decodedToken } from "@/helpers/jwtHelper";
 import { User } from "@/types/CommonTypes";
 
-export const getUserInfoFromToken = (authToken) => {
-	// console.log(authToken);
+export const getUserInfoFromToken = (authToken: string) => {
 	if (authToken) {
 		const decodedData = decodedToken(authToken);
 		return decodedData;

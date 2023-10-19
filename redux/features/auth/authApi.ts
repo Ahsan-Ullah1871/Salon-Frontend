@@ -64,7 +64,6 @@ export const authAPi = apiSlice.injectEndpoints({
 					);
 				} catch (error) {
 					//do nothing
-					console.log({ arg });
 				}
 			},
 		}),
@@ -123,7 +122,6 @@ export const authAPi = apiSlice.injectEndpoints({
 					);
 				} catch (error) {
 					//do nothing
-					console.log({ error });
 				}
 			},
 		}),
