@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import { Form } from "@/components/ui/Form/Form";
 import Modal from "@/components/ui/Modal/Modal";
 import { SM_ICONS } from "@/icons/SmalllIcon";

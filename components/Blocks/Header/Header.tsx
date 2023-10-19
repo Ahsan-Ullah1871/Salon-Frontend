@@ -37,6 +37,7 @@ const Header = () => {
 			{/* Button */}
 			<div>
 				<PrimaryButton
+					type="button"
 					title="SignIn"
 					onClickHandler={() => {}}
 					className=""

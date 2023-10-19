@@ -1,5 +1,6 @@
 export enum tagTypes {
 	user = "user",
+	user_details = "user_details",
 	category = "category",
 	categoryDetails = "category_details",
 	file = "file",
@@ -17,10 +18,12 @@ export enum tagTypes {
 	blog_details = "blog_details",
 	review = "review",
 	review_details = "review_details",
+	user_profile = "user_profile",
 }
 
 export const tagTypesList = [
 	tagTypes.user,
+	tagTypes.user_details,
 	tagTypes.category,
 	tagTypes.categoryDetails,
 	tagTypes.file,
@@ -37,5 +40,6 @@ export const tagTypesList = [
 	tagTypes.blog_by_service,
 	tagTypes.review,
 	tagTypes.review_details,
+	tagTypes.user_profile,
 ];
 

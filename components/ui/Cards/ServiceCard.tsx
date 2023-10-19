@@ -25,7 +25,7 @@ const ServiceCard = ({
 }: {
 	image: string;
 	title: string;
-	price: string;
+	price?: string;
 	time: string;
 	ratings: number;
 	url: string;

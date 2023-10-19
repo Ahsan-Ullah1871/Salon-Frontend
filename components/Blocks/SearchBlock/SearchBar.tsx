@@ -8,9 +8,11 @@ import React, { useState } from "react";
 const SearchBar = ({
 	searchParam,
 	setSearchParam,
+	search_placeholder,
 }: {
 	searchParam: string;
 	setSearchParam: React.Dispatch<React.SetStateAction<string>>;
+	search_placeholder?: string;
 }) => {
 	const [temp_vale, setTRempValue] = useState(searchParam);
 	return (
@@ -18,11 +20,13 @@ const SearchBar = ({
 			<TextInput
 				component_styles="max-w-[350px]  "
 				field_styles="  pl-14 w-full rounded-md border-d_gray_text border-opacity-70"
-				placeholder="Search categories by name"
+				placeholder={search_placeholder ?? "Search...."}
 				current_value={temp_vale}
-				set_new_value={(vl) => setTRempValue(vl)}
-				onKeyDown={(event) => {
-					if (event.key === "Enter") {
+				set_new_value={(vl: React.SetStateAction<string>) =>
+					setTRempValue(vl)
+				}
+				onKeyDown={(event: any) => {
+					if (event?.key === "Enter") {
 						setSearchParam(temp_vale);
 					}
 				}}

@@ -1,11 +1,6 @@
 import { tagTypes } from "@/redux/api/TagTypes";
 import { apiSlice } from "@/redux/api/apiSlice";
-import {
-	Category,
-	Appointment,
-	appointment,
-	Worker,
-} from "@/types/CommonTypes";
+import { Category, Appointment, Worker } from "@/types/CommonTypes";
 import { ParamSerialization } from "@/utils/ParamsSerialization";
 
 export const appointmentApi = apiSlice.injectEndpoints({

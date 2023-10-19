@@ -27,6 +27,9 @@ const ReviewsPage = () => {
 						<SearchBar
 							searchParam={searchParam}
 							setSearchParam={setSearchParam}
+							search_placeholder={
+								"Search reviews"
+							}
 						/>
 					}
 				/>

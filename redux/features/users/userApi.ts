@@ -1,11 +1,19 @@
+import { setValueInCookies } from "@/cookies/CookiesHelper";
+import {
+	AUTH_KEY,
+	LOGGED_IN,
+	REFRESH_KEY,
+	USER_DETAILS,
+} from "@/cookies/CookiesVariableName";
 import { tagTypes } from "@/redux/api/TagTypes";
 import { apiSlice } from "@/redux/api/apiSlice";
-import { Category, Service } from "@/types/CommonTypes";
+import { Category, User } from "@/types/CommonTypes";
 import { ParamSerialization } from "@/utils/ParamsSerialization";
+import { userLoggedIn } from "../auth/authSlice";
 
 export const userApi = apiSlice.injectEndpoints({
 	endpoints: (builder) => ({
-		//Get All service
+		//Get All user
 		getUsers: builder.query({
 			query: (args: Record<string, unknown>) => {
 				const query = args ? ParamSerialization(args) : "";
@@ -14,67 +22,56 @@ export const userApi = apiSlice.injectEndpoints({
 			providesTags: [tagTypes.user],
 		}),
 
-		//Get All  service  by ct /category/:categoryID/
-		// just pagination will support for this
-		// getServicesByCategory: builder.query({
-		// 	query: ({
-		// 		params,
-		// 		categoryID,
-		// 	}: {
-		// 		params: Record<string, unknown>;
-		// 		categoryID: string;
-		// 	}) => {
-		// 		const query = params
-		// 			? ParamSerialization(params)
-		// 			: "";
-		// 		return `/service/category/${categoryID}/?${query}`;
-		// 	},
-		// 	providesTags: [tagTypes.service_by_category],
-		// }),
-
-		//Get  service details
-		getWorkerDetails: builder.query({
-			query: (workerID) => {
-				return `/worker/${workerID}`;
+		//Get  user details
+		getUserDetails: builder.query({
+			query: (userID) => {
+				return `/user/${userID}`;
 			},
-			providesTags: [tagTypes.worker_details],
+			providesTags: [tagTypes.user_details],
+		}),
+		//Get  user details
+		getUserProfile: builder.query({
+			query: () => {
+				return `/user/profile`;
+			},
+			providesTags: [tagTypes.user_profile],
 		}),
 
-		// Add service
-		addWorker: builder.mutation({
-			query: (data: Partial<Service>) => ({
-				url: `/worker/create`,
+		// Add user
+		addUser: builder.mutation({
+			query: (data: Partial<User>) => ({
+				url: `/user/create`,
 				method: "POST",
 				body: data,
 			}),
-			invalidatesTags: [tagTypes.worker],
+			invalidatesTags: [tagTypes.user],
 		}),
 
-		//   delete service
-		deleteWorker: builder.mutation({
-			query: (workerID) => ({
-				url: `/worker/${workerID}`,
+		//   delete user
+		deleteUser: builder.mutation({
+			query: (userID) => ({
+				url: `/user/${userID}`,
 				method: "DELETE",
 			}),
 
-			invalidatesTags: [tagTypes.worker],
+			invalidatesTags: [tagTypes.user, tagTypes.user_profile],
 
 			async onQueryStarted(
-				workerID,
+				userID,
 				{ dispatch, queryFulfilled }
 			) {
 				try {
-					const { data: worker_data } =
+					const { data: user_data } =
 						await queryFulfilled;
 
 					// const patchResult =
-					if (worker_data) {
+					if (user_data) {
 						//
 					}
 					dispatch(
 						userApi.util.updateQueryData(
-							"getWorkers",
-							workerID,
+							"getUsers",
+							userID,
 							(draft) => {
 								return draft.filter(
 									(item: {
@@ -84,7 +81,7 @@ export const userApi = apiSlice.injectEndpoints({
 									}) =>
 										item.data
 											?._id !=
-										workerID
+										userID
 								);
 							}
 						)
@@ -95,43 +92,132 @@ export const userApi = apiSlice.injectEndpoints({
 			},
 		}),
 
-		// editCategory
-		editWorker: builder.mutation({
-			query: ({ workerID, worker_data }) => ({
-				url: `/worker/${workerID}`,
+		// edit user
+		editUser: builder.mutation({
+			query: ({ userID, user_data }) => ({
+				url: `/user/${userID}`,
 				method: "PATCH",
-				body: { ...worker_data },
+				body: { ...user_data },
 			}),
 			invalidatesTags: [
-				tagTypes.worker,
-				tagTypes.worker_details,
+				tagTypes.user,
+				tagTypes.user_details,
+				tagTypes.user_profile,
 			],
 
 			async onQueryStarted(
-				{ workerID, worker_data },
+				{ userID, user_data },
 				{ dispatch, queryFulfilled }
 			) {
 				// test part
-				if (!workerID) {
+				if (!userID) {
 					//
 				}
 
 				try {
-					const { data: worker_data } =
+					const { data: user_data } =
 						await queryFulfilled;
 
-					const updatedService = worker_data;
+					const updateduser = user_data;
 
 					// const patchResult =
 
 					dispatch(
 						userApi.util.updateQueryData(
-							"getWorkerDetails",
-							workerID,
+							"getUserDetails",
+							userID,
 							(draft) => {
 								Object.assign(
 									draft,
-									updatedService
+									updateduser
+								);
+							}
+						)
+					);
+				} catch {
+					//
+				}
+			},
+		}),
+
+		// edit user
+		editProfile: builder.mutation({
+			query: ({ userID, user_data }) => ({
+				url: `/user/edit_profile/${userID}`,
+				method: "PATCH",
+				body: { ...user_data },
+			}),
+			invalidatesTags: [
+				tagTypes.user,
+				tagTypes.user_details,
+				tagTypes.user_profile,
+			],
+
+			async onQueryStarted(
+				{ userID, user_data },
+				{ dispatch, queryFulfilled }
+			) {
+				// test part
+				if (!userID) {
+					//
+				}
+
+				try {
+					const { data: user_data } =
+						await queryFulfilled;
+
+					const updateduser = user_data;
+
+					// const patchResult =
+					setValueInCookies(
+						USER_DETAILS,
+						JSON.stringify(updateduser.data.user),
+						86400
+					);
+					setValueInCookies(
+						AUTH_KEY,
+						JSON.stringify(
+							updateduser.data.token
+						),
+						86400
+					);
+					setValueInCookies(
+						LOGGED_IN,
+						JSON.stringify(true),
+						86400
+					);
+					setValueInCookies(
+						AUTH_KEY,
+						JSON.stringify(
+							updateduser.data.token
+						),
+						86400
+					);
+					setValueInCookies(
+						REFRESH_KEY,
+						JSON.stringify(
+							updateduser.data.refresh_token
+						),
+						86400
+					);
+
+					dispatch(
+						userLoggedIn({
+							isLoggedIn: true,
+							user: updateduser.data.user,
+							accessToken:
+								updateduser.data.token,
+						})
+					);
+
+					dispatch(
+						userApi.util.updateQueryData(
+							"getUserDetails",
+							userID,
+							(draft) => {
+								Object.assign(
+									draft,
+									updateduser
 								);
 							}
 						)
@@ -146,8 +232,10 @@ export const userApi = apiSlice.injectEndpoints({
 
 export const {
 	useGetUsersQuery,
-	useGetWorkerDetailsQuery,
-	useAddWorkerMutation,
-	useEditWorkerMutation,
-	useDeleteWorkerMutation,
+	useGetUserDetailsQuery,
+	useAddUserMutation,
+	useEditUserMutation,
+	useDeleteUserMutation,
+	useGetUserProfileQuery,
+	useEditProfileMutation,
 } = userApi;

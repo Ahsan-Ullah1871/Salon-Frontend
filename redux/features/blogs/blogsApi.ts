@@ -1,6 +1,6 @@
 import { tagTypes } from "@/redux/api/TagTypes";
 import { apiSlice } from "@/redux/api/apiSlice";
-import { Category, blog } from "@/types/CommonTypes";
+import { BlogPost, Category } from "@/types/CommonTypes";
 import { ParamSerialization } from "@/utils/ParamsSerialization";
 
 export const blogAPi = apiSlice.injectEndpoints({
@@ -42,7 +42,7 @@ export const blogAPi = apiSlice.injectEndpoints({
 
 		// Add blog
 		addBlog: builder.mutation({
-			query: (data: Partial<blog>) => ({
+			query: (data: Partial<BlogPost>) => ({
 				url: `/blog/create`,
 				method: "POST",
 				body: data,

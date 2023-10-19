@@ -15,45 +15,11 @@ const FAQ = () => {
 					swiper_slide_style=" !h-[364px]  !w-[300px] md:!w-[350px]"
 					Items={[
 						<FAQCard
+							key={""}
 							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
-							icon={ICONS.call_icon}
-						/>,
-						<FAQCard
-							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
-							icon={ICONS.call_icon}
-						/>,
-						<FAQCard
-							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
-							icon={ICONS.call_icon}
-						/>,
-						<FAQCard
-							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
-							icon={ICONS.call_icon}
-						/>,
-						<FAQCard
-							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
-							icon={ICONS.call_icon}
-						/>,
-						<FAQCard
-							title={`We're here to help 24 hours a day.`}
-							button_title="Call Now"
-							image="/img/faq.png"
-							url="/test"
+							button_title={"Call Now"}
+							image={"/img/faq.png"}
+							url={"/test"}
 							icon={ICONS.call_icon}
 						/>,
 					]}

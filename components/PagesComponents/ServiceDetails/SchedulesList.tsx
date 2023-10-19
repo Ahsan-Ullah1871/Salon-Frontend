@@ -7,7 +7,7 @@ const SchedulesList = () => {
 	return (
 		<div className=" bg-white w-full  py-[90px] md:py-[100px] px-[20px] md:px-[100px] flex flex-col md:flex-row items-start justify-start  gap-5 md:gap-10">
 			<div className="   w-full  px-6 py-4 bg-white md:hidden sticky top-0">
-				<DateInputPicker field_styles={""} />
+				{/* <DateInputPicker field_styles={""} /> */}
 			</div>
 			{/* Schediles */}
 			<div className=" flex-grow flex flex-col gap-6  ">

@@ -11,8 +11,8 @@ interface ScheduleCardProps {
 	workerName: string;
 	scheduleDate: string;
 	duration: string;
-	start_time: string;
-	end_time: string;
+	start_time?: string;
+	end_time?: string;
 	isBooked: boolean;
 }
 

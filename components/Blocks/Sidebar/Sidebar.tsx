@@ -41,7 +41,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 								current_route_check(
 									`/${role}/dashboard${item.url}`
 								)
-									? "order-d_gray "
+									? "border-d_gray "
 									: "border-transparent",
 							].join(" ")}
 						>
@@ -55,7 +55,14 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 			<div className=" w-full  end-0 h-full  flex-grow flex items-end justify-end mb-10">
 				<Link
 					href={`/${role}/dashboard/settings`}
-					className="w-full  border-l-4 border-transparent hover:border-d_gray duration-500"
+					className={[
+						"w-full  border-l-4   hover:border-d_gray duration-500",
+						current_route_check(
+							`/${role}/dashboard/settings`
+						)
+							? "border-d_gray "
+							: "border-transparent",
+					].join(" ")}
 				>
 					<span className=" w-8 h-8 text-white mx-auto flex items-center text-lg ">
 						{ICONS.setting}

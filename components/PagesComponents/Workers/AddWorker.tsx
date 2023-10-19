@@ -16,7 +16,7 @@ const AddWorker = () => {
 
 	return (
 		<div>
-			<AddNewWorker users_list={users?.data} />
+			<AddNewWorker users_list={users?.data?.data} />
 		</div>
 	);
 };

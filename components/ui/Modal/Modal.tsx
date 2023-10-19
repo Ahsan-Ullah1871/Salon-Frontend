@@ -20,7 +20,7 @@ export default function Modal({
 	button_title?: string;
 	button_style: string;
 	panel_style: string;
-	panel_parent_style: string;
+	panel_parent_style?: string;
 	button_icon?: React.ReactNode;
 	children: React.ReactNode;
 	isShowCloseButton?: Boolean;

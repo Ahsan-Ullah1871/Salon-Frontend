@@ -14,6 +14,7 @@ const SelectFromList = ({
 	component_styles,
 	default_option_text,
 	options_style,
+	is_disabled,
 }: SelectFromListType) => {
 	return (
 		<div className={cn(" flex flex-col gap-1 ", component_styles)}>
@@ -27,6 +28,7 @@ const SelectFromList = ({
 			</p>
 
 			<PopOver
+				is_disabled={is_disabled ?? false}
 				className=" w-full  right-0 mt-3 rounded-md shadow-md   "
 				popOverButtonClassName={cn(
 					" relative w-full px-4 py-3 border outline outline-1 outline-[#E5EAEF] rounded-md bg-transparent placeholder-[#6F767E]  border-r-[20px] border-transparent",

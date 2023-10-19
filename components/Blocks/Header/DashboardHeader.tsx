@@ -50,8 +50,25 @@ const DashboardHeader = ({
 					className=" w-[200px]   right-0 mt-3 rounded-md shadow-md   "
 					button={
 						<button className="flex items-center gap-4 outline-none ring-0">
-							{ICONS.user} {user?.name}{" "}
-							<span className=" hidden md:block4">
+							{user?.profile_image ? (
+								<Image
+									src={
+										user.profile_image
+									}
+									width={40}
+									height={40}
+									alt="Profile"
+									objectFit="contain"
+									className="rounded-full"
+								/>
+							) : (
+								<span>
+									{" "}
+									{ICONS.user}
+								</span>
+							)}
+							{user?.name}{" "}
+							<span className=" hidden md:block">
 								{ICONS.dow_arrow}
 							</span>
 						</button>

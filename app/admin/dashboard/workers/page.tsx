@@ -26,6 +26,9 @@ const WorkersPage = () => {
 						<SearchBar
 							searchParam={searchParam}
 							setSearchParam={setSearchParam}
+							search_placeholder={
+								"Search workers..."
+							}
 						/>
 					}
 				/>

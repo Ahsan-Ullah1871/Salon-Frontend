@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import { cn } from "@/utils/classNames";
 
-function classNames(...classes) {
+function classNames(...classes: any) {
 	return classes.filter(Boolean).join(" ");
 }
 

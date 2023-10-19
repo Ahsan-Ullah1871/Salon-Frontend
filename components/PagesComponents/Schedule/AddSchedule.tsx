@@ -3,7 +3,6 @@ import AddNewService from "@/components/Blocks/Services/AddNewService";
 import AddNewWorker from "@/components/Blocks/Workers/AddNewWorker";
 import { useGetCategoriesQuery } from "@/redux/features/catgeories/categoryApi";
 import { useGetServicesQuery } from "@/redux/features/service/serviceApi";
-import { useGetUsersQuery } from "@/redux/features/users/userApi";
 import { useGetWorkersQuery } from "@/redux/features/workers/workerApi";
 
 const AddSchedule = () => {

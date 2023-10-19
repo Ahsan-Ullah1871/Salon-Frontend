@@ -4,12 +4,12 @@ import { cn } from "@/utils/classNames";
 
 //  button type
 type buttonType = {
-	title: string;
+	title?: string;
 	onClickHandler?: Function;
-	className: string;
-	type: "button" | "submit" | "reset";
+	className?: string;
+	type?: "button" | "submit" | "reset";
 	icon?: React.ReactNode;
-	is_loading: boolean;
+	is_loading?: boolean;
 };
 
 const PrimaryButton = ({
@@ -27,7 +27,7 @@ const PrimaryButton = ({
 				"   text-center text-base font-medium  text-black_normal  text-clip px-12 py-3  bg-primary rounded-tl-2xl rounded-br-2xl  flex items-center justify-center gap-2 ",
 				className
 			)}
-			type={type}
+			type={type ?? "button"}
 			disabled={is_loading}
 		>
 			<span className=" whitespace-nowrap">{title}</span>

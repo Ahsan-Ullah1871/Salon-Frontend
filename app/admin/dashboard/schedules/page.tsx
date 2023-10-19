@@ -27,6 +27,9 @@ const SchedulesPage = () => {
 						<SearchBar
 							searchParam={searchParam}
 							setSearchParam={setSearchParam}
+							search_placeholder={
+								"Search schedule"
+							}
 						/>
 					}
 				/>

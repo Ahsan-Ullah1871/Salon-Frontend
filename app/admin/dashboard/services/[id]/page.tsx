@@ -28,6 +28,9 @@ const UpdateService = ({ params }: { params: { id: string } }) => {
 						<SearchBar
 							searchParam={searchParam}
 							setSearchParam={setSearchParam}
+							search_placeholder={
+								"Search services"
+							}
 						/>
 					}
 				/>

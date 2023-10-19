@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import SecondaryButton from "@/components/ui/Buttons/SecondaryButton";
 import PrimaryLink from "@/components/ui/Links/PrimaryLink";

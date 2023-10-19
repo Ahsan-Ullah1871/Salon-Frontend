@@ -49,7 +49,7 @@ const TextInput = ({
 				disabled={is_disabled}
 				required={is_required}
 				onClick={onClick && onClick}
-				onKeyDown={onKeyDown && onKeyDown}
+				onKeyDown={onKeyDown && ((e: any) => onKeyDown(e))}
 			/>
 		</div>
 	);

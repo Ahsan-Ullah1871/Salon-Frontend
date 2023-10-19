@@ -13,7 +13,6 @@ import {
 	useGetServiceDetailsQuery,
 	useGetServicesQuery,
 } from "@/redux/features/service/serviceApi";
-import { useGetUsersQuery } from "@/redux/features/users/userApi";
 import {
 	useGetWorkerDetailsQuery,
 	useGetWorkersQuery,

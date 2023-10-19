@@ -8,11 +8,13 @@ export default function PopOver({
 	button,
 	className: PopoverClass,
 	popOverButtonClassName,
+	is_disabled = false,
 }: {
 	children: React.ReactNode;
 	button: React.ReactNode;
 	className?: string;
 	popOverButtonClassName?: string;
+	is_disabled?: boolean;
 }) {
 	return (
 		<Popover className="relative">
@@ -24,6 +26,7 @@ export default function PopOver({
 							"outline-none ring-0",
 							popOverButtonClassName
 						)}
+						disabled={is_disabled}
 					>
 						{button}
 					</Popover.Button>

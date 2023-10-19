@@ -21,15 +21,7 @@ const CreateSchedule = () => {
 		<div className=" min-h-screen w-full h-full">
 			{/* Sticky item */}
 			<div className="sticky top-12    z-10  py-3  px-6   bg-d_body">
-				<DashboardHeader
-					role={UserRole.ADMIN}
-					left_side_component={
-						<SearchBar
-							searchParam={searchParam}
-							setSearchParam={setSearchParam}
-						/>
-					}
-				/>
+				<DashboardHeader role={UserRole.ADMIN} />
 
 				<div>
 					<Heading1 styles=" md:text-2xl md:leading-[30px]  md:font-bold text-start font-sub_main">

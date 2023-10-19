@@ -5,13 +5,13 @@ import {
 	Category,
 	Schedule,
 	Service,
+	User,
 	Worker,
 } from "@/types/CommonTypes";
 import { IGenericErrorResponse, IMeta } from "@/types/DataResponseTypes";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import ActionButtons from "../Action/ActionButtons";
-import ServiceEdit from "./ScheduleEdit";
 import { usePathname, useRouter } from "next/navigation";
 import { useAppSelector } from "@/hooks/Redux";
 import { useDeleteCategoryMutation } from "@/redux/features/catgeories/categoryApi";
@@ -32,11 +32,11 @@ import { useEditAppointmentMutation } from "@/redux/features/appointment/appoint
 import Alert from "../Alerts/Alerts";
 import { cn } from "@/utils/classNames";
 
-const AppointmentsList = ({
-	appointments,
+const UsersList = ({
+	users,
 	meta_data,
 }: {
-	appointments: Appointment[];
+	users: User[];
 	meta_data: IMeta;
 }) => {
 	const router = useRouter();
@@ -84,19 +84,15 @@ const AppointmentsList = ({
 			{/*  */}
 			<DynamicTable
 				is_table_body_hide={isLoading}
-				data={appointments?.map((appointment) => ({
-					id: appointment.id,
+				data={users?.map((user) => ({
+					id: user.id,
 					className: " bg-white p-5 rounded-md shadow mb-5 ",
 					columns: [
 						{
 							className: "hidden md:block  ",
 							component: (
 								<Title styles=" text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{
-										appointment
-											?.user
-											?.name
-									}
+									{user?.name}
 								</Title>
 							),
 						},
@@ -104,11 +100,7 @@ const AppointmentsList = ({
 							className: "hidden md:block  ",
 							component: (
 								<Title styles=" px-4 text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{
-										appointment
-											?.service
-											?.name
-									}
+									{user?.email}
 								</Title>
 							),
 						},
@@ -116,9 +108,9 @@ const AppointmentsList = ({
 							className: "px-4",
 							component: (
 								<Title styles="  text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{new Date(
-										appointment?.created_at
-									).toDateString()}
+									{
+										user?.phone_number
+									}
 								</Title>
 							),
 						},
@@ -128,24 +120,15 @@ const AppointmentsList = ({
 								<Title
 									styles={`text-sm font-medium `}
 								>
-									{new Date(
-										appointment?.date
-									).toLocaleTimeString()}
+									{user?.created_at
+										? new Date(
+												user?.created_at
+										  ).toDateString()
+										: ""}
 								</Title>
 							),
 						},
-						{
-							className: " flex items-center justify-center",
-							component: (
-								<Title
-									styles={`text-sm font-medium `}
-								>
-									{new Date(
-										appointment?.start_time
-									).toLocaleTimeString()}
-								</Title>
-							),
-						},
+
 						{
 							className: " flex items-center justify-center",
 							component: (
@@ -157,9 +140,7 @@ const AppointmentsList = ({
 										// )
 									)}
 								>
-									{
-										appointment?.status
-									}
+									{user?.role}
 								</Title>
 							),
 						},
@@ -168,47 +149,41 @@ const AppointmentsList = ({
 							component: (
 								<div className="w-full flex items-center justify-end pl-6">
 									<ActionButtons
-										// editButtonCLick={() =>
-										// 	router.push(
-										// 		`${pathName}/${appointment.id}`
-										// 	)
-										// }
-										dropdown_action={{
-											not_found_text:
-												"There have not any status for change",
-											title: "Change Status",
-											menus: getAdminStatusOptions(
-												appointment?.status
-											).map(
-												(
-													item
-												) => {
-													return {
-														title: `Change to "${item}"`,
+									// editButtonCLick={() =>
+									// 	router.push(
+									// 		`${pathName}/${appointment.id}`
+									// 	)
+									// }
+									// dropdown_action={{
+									// 	not_found_text:
+									// 		"There have not any status for change",
+									// 	title: "Change Status",
+									// 	menus: getAdminStatusOptions(
+									// 		user?.status
+									// 	).map(
+									// 		(
+									// 			item
+									// 		) => {
+									// 			return {
+									// 				title: `Change to "${item}"`,
 
-														classes: `!text-[${
-															statusColors[
-																appointment
-																	.status
-															]
-														}]`,
-														onCLickHandle:
-															() => {
-																editAppointment(
-																	{
-																		appointmentID:
-																			appointment.id,
-																		appointment_data:
-																			{
-																				status: item,
-																			},
-																	}
-																);
-															},
-													};
-												}
-											),
-										}}
+									// 				onCLickHandle:
+									// 					() => {
+									// 						editAppointment(
+									// 							{
+									// 								appointmentID:
+									// 									user.id,
+									// 								appointment_data:
+									// 									{
+									// 										status: item,
+									// 									},
+									// 							}
+									// 						);
+									// 					},
+									// 			};
+									// 		}
+									// 	),
+									// }}
 									/>
 								</div>
 							),
@@ -217,27 +192,24 @@ const AppointmentsList = ({
 				}))}
 				columns={[
 					{
-						header: "Customer",
+						header: "Name",
 						className: "block px-4 text-lg font-medium text-d_black",
 					},
 					{
-						header: "Service",
+						header: "Email",
 						className: " hidden md:block px-4 text-lg font-medium text-d_black",
 					},
 					{
-						header: "Created AT",
+						header: "Phone ",
 						className: " hidden md:block px-6 text-lg font-medium text-d_black",
 					},
 					{
-						header: " Working Date",
+						header: " Created AT",
 						className: " hidden md:block text-center text-lg font-medium text-d_black",
 					},
+
 					{
-						header: "Start Time",
-						className: "  text-center text-lg font-medium text-d_black",
-					},
-					{
-						header: "Status",
+						header: "Role",
 						className: "  text-center text-lg font-medium text-d_black",
 					},
 					{
@@ -253,5 +225,5 @@ const AppointmentsList = ({
 	);
 };
 
-export default AppointmentsList;
+export default UsersList;
 

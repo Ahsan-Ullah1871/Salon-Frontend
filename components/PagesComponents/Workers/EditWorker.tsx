@@ -42,7 +42,7 @@ const EditWorker = ({ workerID }: { workerID: string }) => {
 			{isLoading && <CategoryDetailsSkeleton />}
 			{!isLoading && (
 				<WorkerEdit
-					users_list={users?.data}
+					users_list={users?.data?.data}
 					worker_details={workerData}
 				/>
 			)}{" "}
