@@ -4,10 +4,17 @@ import Rating from "@/components/ui/Rating/Rating";
 import NormalDescription from "@/components/ui/Text/Description/NormalDescription";
 import Heading1 from "@/components/ui/Text/Headers/Heading1";
 import Title from "@/components/ui/Text/Paragraph/Title";
+import { Service } from "@/types/CommonTypes";
 import Image from "next/image";
 import React from "react";
 
-const FullDescription = () => {
+const FullDescription = ({
+	service_details,
+	setSelectedIndex,
+}: {
+	service_details: Service;
+	setSelectedIndex: Function;
+}) => {
 	return (
 		<div
 			className=" bg-white w-full  py-[90px] md:py-[100px] px-[20px] md:px-[100px] grid grid-cols-1 md:grid-cols-2 
@@ -16,24 +23,21 @@ const FullDescription = () => {
 			{/* 1st column */}
 			<div className=" flex flex-col gap-4 items-start justify-center  ">
 				<Heading1 styles="text-start font-sub-spacial">
-					Everything You Need to Know About the Delta
-					Variant
+					{service_details.name}
 				</Heading1>
 				<NormalDescription styles="text-start  ">
-					The Delta variant has taken over the country
-					as the most prevalent COVID-19 strain. We
-					know that it can
+					{service_details.description}
 				</NormalDescription>
 
 				<PrimaryButton
 					title="Book now"
-					onClickHandler={() => {}}
+					onClickHandler={() => setSelectedIndex(1)}
 					className=" mt-5 md:mt-8 py-3 px-5 "
 				/>
 
 				<div className="flex items-center mt-4 justify-between gap-6 w-full">
 					<Title styles=" text-green font-medium  ">
-						$100
+						${service_details?.price}
 					</Title>
 					<Rating current_value={3} />
 				</div>
@@ -42,7 +46,7 @@ const FullDescription = () => {
 			{/* Image and 2nd column */}
 			<div className="flex justify-center md:justify-end relative">
 				<Image
-					src={"/img/product.png"}
+					src={service_details.image_url}
 					height={560}
 					width={470}
 					alt="feature"

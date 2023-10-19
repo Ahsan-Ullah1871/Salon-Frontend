@@ -27,6 +27,10 @@ import {
 	useAddScheduleMutation,
 	useEditScheduleMutation,
 } from "@/redux/features/schedule/scheduleApi";
+import {
+	DateISOConverter,
+	TimeISOConverter,
+} from "@/constants/DateStriingCOnverter";
 
 const ScheduleEdit = ({
 	workers,
@@ -89,21 +93,15 @@ const ScheduleEdit = ({
 			scheduleID: schedule_details.id,
 			schedule_data: {
 				...scheduleForm,
-				date: scheduleForm.date.toISOString(),
-				start_time: `${
-					scheduleForm.date.toISOString().split("T")[0]
-				}T${
+				date: DateISOConverter(scheduleForm.date),
+				start_time: TimeISOConverter(
+					scheduleForm.date,
 					scheduleForm.start_time
-						.toISOString()
-						.split("T")[1]
-				}`,
-				end_time: `${
-					scheduleForm.date.toISOString().split("T")[0]
-				}T${
+				),
+				end_time: TimeISOConverter(
+					scheduleForm.date,
 					scheduleForm.end_time
-						.toISOString()
-						.split("T")[1]
-				}`,
+				),
 			},
 		});
 	};

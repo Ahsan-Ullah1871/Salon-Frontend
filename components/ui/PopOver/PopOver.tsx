@@ -17,7 +17,10 @@ export default function PopOver({
 	is_disabled?: boolean;
 }) {
 	return (
-		<Popover className="relative">
+		<Popover
+			as="div"
+			className="relative"
+		>
 			{({ open }) => (
 				<>
 					<Popover.Button

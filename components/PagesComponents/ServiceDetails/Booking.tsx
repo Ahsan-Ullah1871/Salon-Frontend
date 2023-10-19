@@ -1,3 +1,4 @@
+import Alert from "@/components/Blocks/Alerts/Alerts";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import ScheduleCard from "@/components/ui/Cards/ScheduleCard";
 import ServiceCardListType from "@/components/ui/Cards/ServiceCardListType";
@@ -5,15 +6,99 @@ import Rating from "@/components/ui/Rating/Rating";
 import NormalDescription from "@/components/ui/Text/Description/NormalDescription";
 import Heading1 from "@/components/ui/Text/Headers/Heading1";
 import Title from "@/components/ui/Text/Paragraph/Title";
+import { useAppSelector } from "@/hooks/Redux";
+import { useAddAppointmentMutation } from "@/redux/features/appointment/appointmentApi";
+import { Schedule, Service } from "@/types/CommonTypes";
+import { IGenericErrorResponse } from "@/types/DataResponseTypes";
+import AppointmentStatus from "@/types/ServiceStatus";
+import { checkUserAuthenticationFromCLientSide } from "@/utils/auth";
+import { get_error_messages } from "@/utils/error_messages";
 import Image from "next/image";
-import React from "react";
+import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
-const Booking = () => {
+const Booking = ({
+	service_details,
+	setSelectedIndex,
+	selectedSchedule,
+	setSelectedSchedule,
+}: {
+	service_details: Service;
+	setSelectedIndex: Function;
+	selectedSchedule: Schedule | null;
+	setSelectedSchedule: Function;
+}) => {
+	const router = useRouter();
+	const { user } = useAppSelector((state) => state.auth);
+
+	const auth_details = checkUserAuthenticationFromCLientSide();
+	// login mutation hook
+	const [addAppointment, { data, isLoading, isError, error, isSuccess }] =
+		useAddAppointmentMutation();
+
+	//
+	const [is_alert_open, setISAlertOpen] = useState(false);
+	const [alert_message, setAlertMessage] = useState("");
+	const [alert_type, setAlertType] = useState<
+		"error" | "success" | "warning" | "info"
+	>("success");
+
+	const [appointmentForm, setAppointmentForm] = useState({
+		user_id: auth_details?.user_details?.id,
+		service_id: service_details.id,
+		schedule_id: selectedSchedule?.id,
+		status: AppointmentStatus.BOOKED,
+		date: selectedSchedule?.date,
+		start_time: selectedSchedule?.start_time,
+		end_time: selectedSchedule?.end_time,
+	});
+
+	//
+
+	const confirmHandler = async () => {
+		if (selectedSchedule == null) {
+			setISAlertOpen(true);
+			setAlertType("error");
+			setAlertMessage("Select a schedule");
+
+			return false;
+		}
+		addAppointment({
+			...appointmentForm,
+		});
+	};
+
+	useEffect(() => {
+		if (error && "data" in error) {
+			setISAlertOpen(true);
+			setAlertType("error");
+			const error_messages = get_error_messages(
+				error?.data as IGenericErrorResponse
+			);
+			setAlertMessage(error_messages);
+		} else if (isSuccess) {
+			setISAlertOpen(true);
+			setAlertType("success");
+			setAlertMessage("Edited  successfully");
+			router.push(`/customer/dashboard/`);
+		}
+	}, [error, isSuccess]);
+
 	return (
 		<div
 			className="     grid grid-cols-1 md:grid-cols-6 
          gap-10"
 		>
+			{/*Alert  */}
+			<Alert
+				alert_type={alert_type}
+				alert_message={alert_message}
+				is_alert_open={is_alert_open}
+				setISAlertOpen={setISAlertOpen}
+				setAlertMessage={setAlertMessage}
+				closeAlert={() => setISAlertOpen(false)}
+			/>
+
 			<div className=" py-8 md:col-span-4 bg-white shadow-md  rounded-md  px-6">
 				{/* 1st row */}
 				<div className="  flex flex-col gap-4 items-start justify-center  ">
@@ -23,17 +108,16 @@ const Booking = () => {
 
 					<div className="  w-full">
 						<ServiceCardListType
-							key={""}
-							image={"/img/blog.png"}
-							title={
-								"Keeping Kids Active and Engaged at Home"
+							key={service_details.id}
+							image={
+								service_details.image_url
 							}
+							title={service_details.name}
 							url={"/"}
-							time={"! hour"}
-							todays_available_schedule={
-								"20 seats available "
-							}
+							time={service_details.duration}
+							todays_available_schedule={""}
 							ratings={4}
+							price={service_details.price.toString()}
 						/>
 					</div>
 				</div>
@@ -44,16 +128,30 @@ const Booking = () => {
 					</Heading1>
 
 					<div className="  w-full">
-						<ScheduleCard
-							imageSrc="/img/blog.png"
-							imageAlt="se"
-							imageHeight={80}
-							imageWidth={80}
-							workerName="Ahsan Ullah"
-							scheduleDate="29 January 2023 at 12=00 AM"
-							duration="1 hour"
-							isBooked={true}
-						/>
+						{selectedSchedule && (
+							<ScheduleCard
+								workerName={
+									selectedSchedule
+										?.worker
+										?.name
+								}
+								scheduleDate={
+									selectedSchedule?.date as unknown as string
+								}
+								duration={
+									service_details.duration
+								}
+								isAvailable={
+									selectedSchedule?.available
+								}
+								start_time={
+									selectedSchedule?.start_time as unknown as string
+								}
+								end_time={
+									selectedSchedule?.end_time as unknown as string
+								}
+							/>
+						)}
 					</div>
 				</div>
 			</div>
@@ -68,30 +166,36 @@ const Booking = () => {
 						<Title styles="   text-black_deep font-medium  ">
 							Subtotal
 						</Title>
-						<Title styles="    ">3</Title>
+						<Title styles="    ">1</Title>
 					</div>
 					<div className="flex items-center justify-between gap-2">
 						<Title styles="   text-black_deep font-medium  ">
 							Toatl
 						</Title>
-						<Title styles="    ">100</Title>
+						<Title styles="    ">
+							${service_details.price}
+						</Title>
 					</div>
 					<div className="flex items-center justify-between gap-2">
 						<Title styles="   text-black_deep font-medium  ">
 							Service Charge
 						</Title>
-						<Title styles="    ">2</Title>
+						<Title styles="    ">$10</Title>
 					</div>
 					<div className="flex items-center justify-between gap-2">
 						<Title styles="   text-black_deep font-medium  ">
 							Estimated Total
 						</Title>
-						<Title styles="    ">200</Title>
+						<Title styles="    ">
+							${service_details.price + 10}
+						</Title>
 					</div>
 
 					<PrimaryButton
 						title="Confirm now "
-						onClickHandler={() => {}}
+						onClickHandler={() =>
+							confirmHandler()
+						}
 						className=" mt-5 md:mt-8 py-3 px-5 "
 					/>
 				</div>

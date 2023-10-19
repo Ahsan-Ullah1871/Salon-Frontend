@@ -57,7 +57,7 @@ const ServiceCardListType = ({
 					<Title>{`${time}`}</Title>
 				</div>
 			</div>
-			<Title styles="  text-medium text-green ">{price}</Title>
+			<Title styles="  text-medium text-green ">${price}</Title>
 		</div>
 	);
 };

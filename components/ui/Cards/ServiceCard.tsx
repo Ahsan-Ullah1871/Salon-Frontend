@@ -35,7 +35,8 @@ const ServiceCard = ({
 	const router = useRouter();
 
 	return (
-		<div
+		<Link
+			href={url}
 			className={cn(
 				" min-h-[464px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
 				card_style
@@ -64,7 +65,7 @@ const ServiceCard = ({
 				<Rating current_value={ratings} />
 				<Title>{`${time}`}</Title>
 			</div>
-		</div>
+		</Link>
 	);
 };
 

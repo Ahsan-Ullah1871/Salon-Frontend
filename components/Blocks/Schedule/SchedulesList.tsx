@@ -80,7 +80,7 @@ const DashboardSchedulesList = ({
 								<Title styles="  text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
 									{new Date(
 										schedule?.date
-									).toDateString()}
+									).toLocaleDateString()}
 								</Title>
 							),
 						},

@@ -36,10 +36,6 @@ const ProfileIno = ({ profile_details }: { profile_details: User }) => {
 	const router = useRouter();
 	const { user } = useAppSelector((state) => state.auth);
 
-	console.log("====================================");
-	console.log(user);
-	console.log("====================================");
-
 	// login mutation hook
 	const [editProfile, { data, isLoading, isError, error, isSuccess }] =
 		useEditProfileMutation();

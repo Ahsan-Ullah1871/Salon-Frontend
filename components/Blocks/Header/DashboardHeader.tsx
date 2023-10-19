@@ -26,10 +26,6 @@ const DashboardHeader = ({
 
 	const { user } = useAppSelector((state) => state.auth);
 
-	console.log("====================================");
-	console.log(user);
-	console.log("====================================");
-
 	return (
 		<div className="  mb-6 flex items-center justify-between ">
 			{/*  */}

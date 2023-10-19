@@ -17,6 +17,10 @@ import { useAppSelector } from "@/hooks/Redux";
 import { useAddServiceMutation } from "@/redux/features/service/serviceApi";
 import { useAddWorkerMutation } from "@/redux/features/workers/workerApi";
 import { useAddScheduleMutation } from "@/redux/features/schedule/scheduleApi";
+import {
+	DateISOConverter,
+	TimeISOConverter,
+} from "@/constants/DateStriingCOnverter";
 
 const AddNewSchedule = ({
 	workers,
@@ -62,13 +66,15 @@ const AddNewSchedule = ({
 	const formSubmitHandler = async () => {
 		addSchedule({
 			...scheduleForm,
-			date: scheduleForm.date.toISOString(),
-			start_time: `${
-				scheduleForm.date.toISOString().split("T")[0]
-			}T${scheduleForm.start_time.toISOString().split("T")[1]}`,
-			end_time: `${
-				scheduleForm.date.toISOString().split("T")[0]
-			}T${scheduleForm.end_time.toISOString().split("T")[1]}`,
+			date: DateISOConverter(scheduleForm.date),
+			start_time: TimeISOConverter(
+				scheduleForm.date,
+				scheduleForm.start_time
+			),
+			end_time: TimeISOConverter(
+				scheduleForm.date,
+				scheduleForm.end_time
+			),
 		});
 	};
 
