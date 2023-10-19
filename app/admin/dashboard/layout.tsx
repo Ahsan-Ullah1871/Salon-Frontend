@@ -24,7 +24,7 @@ export default function AuthUI({
 	useEffect(() => {
 		if (
 			!auth_check?.is_logged_in ||
-			auth_check?.user_details?.role !== UserRole.ADMIN
+			auth_check?.user_details?.role == UserRole.CUSTOMER
 		) {
 			router.push("/admin/signin");
 		}

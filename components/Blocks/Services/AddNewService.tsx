@@ -91,7 +91,7 @@ const AddNewService = ({
 			setAlertType("success");
 			setAlertMessage("Added  successfully");
 
-			router.push(`/${user?.role}/dashboard/services`);
+			router.push(`/admin/dashboard/services`);
 		}
 	}, [error, isSuccess]);
 

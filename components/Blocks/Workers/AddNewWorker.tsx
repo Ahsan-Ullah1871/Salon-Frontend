@@ -89,7 +89,7 @@ const AddNewWorker = ({ users_list }: { users_list: User[] }) => {
 			setAlertType("success");
 			setAlertMessage("Added  successfully");
 
-			router.push(`/${user?.role}/dashboard/workers`);
+			router.push(`/admin/dashboard/workers`);
 		}
 	}, [error, isSuccess]);
 

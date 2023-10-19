@@ -33,7 +33,7 @@ const UpdateSchedule = ({ params }: { params: { id: string } }) => {
 				</div>
 				<div className="mt-6 flex items-center justify-end">
 					<PrimaryLink
-						url={`/${user?.role}/dashboard/schedules/create`}
+						url={`/admin/dashboard/schedules/create`}
 						title="Add new category"
 						className="bg-transparent border border-d_primary hover:bg-transparent p-2  rounded-md   text-d_primary duration-500 "
 					/>

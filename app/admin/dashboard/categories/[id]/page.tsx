@@ -30,7 +30,7 @@ const CategoriesPage = ({ params }: { params: { id: string } }) => {
 				</div>
 				<div className="mt-6 flex items-center justify-end">
 					<PrimaryLink
-						url={`/${user?.role}/dashboard/categories/create`}
+						url={`/admin/dashboard/categories/create`}
 						title="Add new category"
 						className="bg-d_primary border border-d_primary hover:bg-transparent p-2  rounded-md text-white hover:text-d_primary duration-500 "
 					/>

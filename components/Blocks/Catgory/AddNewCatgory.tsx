@@ -68,7 +68,7 @@ const AddNewCategory = () => {
 			setAlertType("success");
 			setAlertMessage("Added  successfully");
 
-			router.push(`/${user?.role}/dashboard/categories`);
+			router.push(`/admin/dashboard/categories`);
 		}
 	}, [error, isSuccess]);
 

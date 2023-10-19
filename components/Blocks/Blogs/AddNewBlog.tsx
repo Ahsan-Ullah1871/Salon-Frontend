@@ -84,7 +84,7 @@ const AddNewBlog = ({ services_list }: { services_list: Service[] }) => {
 			setAlertType("success");
 			setAlertMessage("Blog added  successfully");
 
-			router.push(`/${user?.role}/dashboard/blogs`);
+			router.push(`/admin/dashboard/blogs`);
 		}
 	}, [error, isSuccess]);
 

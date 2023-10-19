@@ -85,7 +85,7 @@ const AddNewSchedule = ({
 			setAlertType("success");
 			setAlertMessage("Deleted  successfully");
 
-			router.push(`/${user?.role}/dashboard/schedules`);
+			router.push(`/admin/dashboard/schedules`);
 		}
 	}, [error, isSuccess]);
 

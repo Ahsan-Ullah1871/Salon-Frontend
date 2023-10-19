@@ -11,6 +11,7 @@ import { useAppSelector } from "@/hooks/Redux";
 import { useDeleteCategoryMutation } from "@/redux/features/catgeories/categoryApi";
 import { get_error_messages } from "@/utils/error_messages";
 import TableSkeleton from "@/components/ui/Skeleton/TableSkeleton";
+import Alert from "../Alerts/Alerts";
 
 const CategoriesList = ({
 	categories,
@@ -52,6 +53,16 @@ const CategoriesList = ({
 
 	return (
 		<div className=" ">
+			{/*Alert  */}
+			<Alert
+				alert_type={alert_type}
+				alert_message={alert_message}
+				is_alert_open={is_alert_open}
+				setISAlertOpen={setISAlertOpen}
+				setAlertMessage={setAlertMessage}
+				closeAlert={() => setISAlertOpen(false)}
+			/>
+
 			<DynamicTable
 				is_table_body_hide={isLoading}
 				data={categories?.map((ct) => ({

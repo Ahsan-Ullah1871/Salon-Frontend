@@ -33,7 +33,7 @@ const UserSetting = () => {
 				</div>
 				<div className="mt-6 flex items-center justify-end">
 					<PrimaryLink
-						url={`/${user?.role}/dashboard/`}
+						url={`/admin/dashboard/`}
 						title="Dashboard"
 						className="bg-d_primary border border-d_primary hover:bg-transparent p-2  rounded-md text-white hover:text-d_primary duration-500 "
 					/>

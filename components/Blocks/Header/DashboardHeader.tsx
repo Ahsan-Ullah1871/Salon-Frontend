@@ -10,9 +10,10 @@ import { ICONS } from "@/icons/AllIcons";
 import UserRole from "@/types/UserRole";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/utils/classNames";
+import Title from "@/components/ui/Text/Paragraph/Title";
 
 const DashboardHeader = ({
-	role = UserRole.ADMIN,
+	role,
 	left_side_component,
 	middle_component,
 }: {
@@ -24,6 +25,10 @@ const DashboardHeader = ({
 	const pageName = usePathname();
 
 	const { user } = useAppSelector((state) => state.auth);
+
+	console.log("====================================");
+	console.log(user);
+	console.log("====================================");
 
 	return (
 		<div className="  mb-6 flex items-center justify-between ">
@@ -88,7 +93,7 @@ const DashboardHeader = ({
 												menu.isLinkType
 											) {
 												router.push(
-													`/${role}/dashboard${menu.url}`
+													`/admin/dashboard${menu.url}`
 												);
 											} else {
 												menu.clickHandler &&
@@ -114,6 +119,10 @@ const DashboardHeader = ({
 								);
 							}
 						)}
+
+						<Title styles="  text-center   md:text-[14px]  capitalize ">
+							Role: {`(${user?.role})`}
+						</Title>
 					</div>
 				</PopOver>
 			</div>

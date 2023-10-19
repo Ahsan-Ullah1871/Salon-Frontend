@@ -15,7 +15,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 	};
 
 	return (
-		<div className="  hidden  md:flex  flex-col items-center py-5 bg-d_primary rounded-3xl w-[90px] h-[95VH] my-auto fixed left-8 overflow-x-auto  scroll-smooth    ">
+		<div className="  hidden  md:flex  flex-col items-center py-5 bg-d_primary rounded-3xl w-[90px] h-[95VH] my-auto fixed left-8   scroll-smooth  overflow-x-auto   ">
 			{/* logo */}
 			<Link
 				href={"/"}
@@ -35,11 +35,11 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 					return (
 						<Link
 							key={item.id}
-							href={`/${role}/dashboard${item.url}`}
+							href={`/admin/dashboard${item.url}`}
 							className={[
-								"w-full  border-l-4  hover:border-d_gray duration-500",
+								"w-full  border-l-4  hover:border-d_gray duration-50 tooltip",
 								current_route_check(
-									`/${role}/dashboard${item.url}`
+									`/admin/dashboard${item.url}`
 								)
 									? "border-d_gray "
 									: "border-transparent",
@@ -48,17 +48,20 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 							<span className=" w-8 h-8 text-white mx-auto flex items-center text-lg ">
 								{item.icon}
 							</span>
+							<span className="top_default whitespace-nowrap  !bg-gray-600 !text-gray-50">
+								{item.title}
+							</span>
 						</Link>
 					);
 				})}
 			</div>
-			<div className=" w-full  end-0 h-full  flex-grow flex items-end justify-end mb-10">
+			<div className=" w-full  end-0 h-full  flex-grow flex items-end justify-end mt-6 mb-10">
 				<Link
-					href={`/${role}/dashboard/settings`}
+					href={`/admin/dashboard/settings`}
 					className={[
 						"w-full  border-l-4   hover:border-d_gray duration-500",
 						current_route_check(
-							`/${role}/dashboard/settings`
+							`/admin/dashboard/settings`
 						)
 							? "border-d_gray "
 							: "border-transparent",
