@@ -12,6 +12,8 @@ const TextArea = ({
 	component_styles,
 	is_required,
 	is_disabled = false,
+	row,
+	col,
 }: TextAreaType) => {
 	return (
 		<div
@@ -33,7 +35,8 @@ const TextArea = ({
 			<textarea
 				required={is_required}
 				disabled={is_disabled}
-				cols={5}
+				cols={col ?? 5}
+				rows={row ?? 5}
 				className={cn(
 					" w-full px-4 py-3 border border-[#E5EAEF] rounded-md bg-transparent  outline-none   placeholder-[#6F767E]  ",
 					field_styles

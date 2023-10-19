@@ -36,6 +36,8 @@ export type TextAreaType = {
 	component_styles?: string;
 	is_required?: boolean;
 	is_disabled?: boolean;
+	row?: number;
+	col?: number;
 };
 export type DatePickerType = {
 	title?: string;

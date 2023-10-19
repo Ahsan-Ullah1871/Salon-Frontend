@@ -10,29 +10,38 @@ import { useRouter } from "next/navigation";
 import WithoutActionButton from "../Buttons/WithoutActionButton";
 import Divider from "../Divider/Divider";
 import Title from "../Text/Paragraph/Title";
+import ActionButtons from "@/components/Blocks/Action/ActionButtons";
 
-const BlogCard = ({
+const BlogCard2 = ({
 	image,
 	title,
 	url,
 	tags,
 	author,
 	date,
+	deleteButtonCLick,
+	editButtonCLick,
 }: {
 	image: string;
 	title: string;
 	author: string;
-	date: string;
+	date?: Date | null;
 	url: string;
 	tags: Array<string>;
+	deleteButtonCLick: Function;
+	editButtonCLick: Function;
 }) => {
 	const router = useRouter();
 
 	return (
-		<Link
-			href={url}
-			className=" min-h-[400px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md duration-300 cursor-pointer "
-		>
+		<div className=" min-h-[400px]    sm:min-h-[470px]   max-w-[370px]   relative    bg-d_black_normal  bg-opacity-10 pb-6  shadow-none hover:shadow-md duration-300  ">
+			<div className="absolute top-2 right-2 bg-white rounded-md px-2 py-1">
+				<ActionButtons
+					deleteButtonCLick={() => deleteButtonCLick()}
+					editButtonCLick={() => editButtonCLick()}
+				/>
+			</div>
+
 			<Image
 				src={image}
 				width={370}
@@ -40,7 +49,7 @@ const BlogCard = ({
 				alt="FAQ"
 			/>
 			<Heading5 styles=" px-4 mt-6 ">{title}</Heading5>
-			<div className="mt-7 px-4">
+			<div className="mt-7 px-4 flex items-center justify-start gap-3">
 				{tags?.map((tag) => {
 					return (
 						<WithoutActionButton
@@ -56,11 +65,13 @@ const BlogCard = ({
 
 			<div className=" px-4 flex items-center  justify-start gap-6">
 				<Title>{author}</Title>
-				<Title>{`. ${date}`}</Title>
+				<Title>{`. ${
+					date ? new Date(date)?.toDateString() : ""
+				}`}</Title>
 			</div>
-		</Link>
+		</div>
 	);
 };
 
-export default BlogCard;
+export default BlogCard2;
 

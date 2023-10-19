@@ -87,7 +87,7 @@ const AddNewWorker = ({ users_list }: { users_list: User[] }) => {
 		} else if (isSuccess) {
 			setISAlertOpen(true);
 			setAlertType("success");
-			setAlertMessage("Edited  successfully");
+			setAlertMessage("Added  successfully");
 
 			router.push(`/${user?.role}/dashboard/workers`);
 		}
@@ -113,7 +113,7 @@ const AddNewWorker = ({ users_list }: { users_list: User[] }) => {
 			{/*  */}
 			<div className=" w-full mt-5">
 				<Form
-					button_title="Save updated info"
+					button_title="Save new worker info"
 					is_loading={isLoading}
 					button_icon={
 						isLoading

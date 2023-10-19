@@ -66,7 +66,7 @@ const AddNewCategory = () => {
 		} else if (isSuccess) {
 			setISAlertOpen(true);
 			setAlertType("success");
-			setAlertMessage("Edited  successfully");
+			setAlertMessage("Added  successfully");
 
 			router.push(`/${user?.role}/dashboard/categories`);
 		}
@@ -92,7 +92,7 @@ const AddNewCategory = () => {
 			{/*  */}
 			<div className=" w-full mt-5">
 				<Form
-					button_title="Save updated info"
+					button_title="Save new categeory"
 					is_loading={isLoading}
 					button_icon={
 						isLoading

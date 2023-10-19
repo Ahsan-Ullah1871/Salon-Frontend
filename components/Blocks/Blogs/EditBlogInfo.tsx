@@ -1,7 +1,7 @@
 import { Form } from "@/components/ui/Form/Form";
 import Modal from "@/components/ui/Modal/Modal";
 import { SM_ICONS } from "@/icons/SmalllIcon";
-import { Category, UserFile } from "@/types/CommonTypes";
+import { BlogPost, Category, Service, UserFile } from "@/types/CommonTypes";
 import React, { useEffect, useState } from "react";
 import Alert from "../Alerts/Alerts";
 import { ICONS } from "@/icons/AllIcons";
@@ -15,18 +15,24 @@ import {
 import Heading5 from "@/components/ui/Text/Headers/Heading5";
 import { useAppSelector } from "@/hooks/Redux";
 import { useAddServiceMutation } from "@/redux/features/service/serviceApi";
+import {
+	useAddBlogMutation,
+	useEditBlogMutation,
+} from "@/redux/features/blogs/blogsApi";
 
-const AddNewService = ({
-	categories_list,
+const EditBlogInfo = ({
+	services_list,
+	blog_details,
 }: {
-	categories_list: Category[];
+	services_list: Service[];
+	blog_details: BlogPost;
 }) => {
 	const router = useRouter();
 	const { user } = useAppSelector((state) => state.auth);
 
 	// login mutation hook
-	const [addService, { data, isLoading, isError, error, isSuccess }] =
-		useAddServiceMutation();
+	const [editBlog, { data, isLoading, isError, error, isSuccess }] =
+		useEditBlogMutation();
 
 	//
 	const [is_alert_open, setISAlertOpen] = useState(false);
@@ -35,47 +41,60 @@ const AddNewService = ({
 		"error" | "success" | "warning" | "info"
 	>("success");
 
-	// 	 "name": "Service Name  6",
-	//   "image_url": "https://res.cloudinary.com/ddymieyrr/image/upload/v1697284911/salon/at7xm1twli5kgrasywhl.jpg",
-	//   "image_id": "49e3cde4-7cad-4e04-8c09-e751a70dc345",
-	//   "description": "This is a service description (optional)",
-	//   "price": 100,
-	//   "duration": "1 hour",
-	//   "category_id": "be83072f-a4c4-4f72-be92-2757eb0774b0",
-	//   "is_available": true
-	//
-	const [serviceForm, setServiceForm] = useState({
-		name: "",
+	const [blogForm, setBlogForm] = useState({
+		title: "",
+		content: "",
+		author_id: user?.id,
 		image_url: "",
-		description: "",
 		image_id: "",
-		price: "",
-		duration: "",
-		category_id: "",
-		is_available: true,
+		tags: "",
+		service_id: "",
+		published: true,
+		publishedAt: new Date(),
 	});
+
+	// useEffect
+	useEffect(() => {
+		setBlogForm({
+			title: blog_details.title,
+			content: blog_details.content,
+			author_id: blog_details.author_id,
+			image_url: blog_details.image_url,
+			image_id: blog_details.image_id,
+			tags: blog_details.tags,
+			service_id: blog_details.service_id ?? "",
+			published: blog_details.published,
+			publishedAt: blog_details.publishedAt
+				? new Date(blog_details.publishedAt)
+				: new Date(),
+		});
+	}, [blog_details]);
 
 	// const current value
 	const current_value = (
 		key_name:
-			| "name"
+			| "title"
+			| "content"
+			| "author_id"
+			| "tags"
 			| "image_url"
-			| "description"
-			| "price"
-			| "duration"
-			| "category_id"
+			| "service_id"
 	) => {
-		return serviceForm?.[key_name] || "";
+		return blogForm?.[key_name] || "";
 	};
 	// const current value
 	const update_value = (key_name: string, value: string) => {
-		setServiceForm((prev) => ({ ...prev, [key_name]: value }));
+		setBlogForm((prev) => ({ ...prev, [key_name]: value }));
 	};
 
 	//
 
 	const formSubmitHandler = async () => {
-		addService({ ...serviceForm, price: Number(serviceForm.price) });
+		let fields_data: Partial<BlogPost> = blogForm;
+		if (fields_data?.service_id === "") {
+			delete fields_data?.service_id;
+		}
+		editBlog({ blogID: blog_details.id, blog_data: blogForm });
 	};
 
 	useEffect(() => {
@@ -89,9 +108,7 @@ const AddNewService = ({
 		} else if (isSuccess) {
 			setISAlertOpen(true);
 			setAlertType("success");
-			setAlertMessage("Added  successfully");
-
-			router.push(`/${user?.role}/dashboard/services`);
+			setAlertMessage("Blog updated  successfully");
 		}
 	}, [error, isSuccess]);
 
@@ -109,13 +126,13 @@ const AddNewService = ({
 
 			{/*  */}
 			<Heading5 styles="text-center font-spacial">
-				New Service
+				Edit Blog
 			</Heading5>
 
 			{/*  */}
 			<div className=" w-full mt-5">
 				<Form
-					button_title="Save new service"
+					button_title="Save updated  info"
 					is_loading={isLoading}
 					button_icon={
 						isLoading
@@ -166,40 +183,40 @@ const AddNewService = ({
 						},
 
 						{
-							data_filed_key: "name",
+							data_filed_key: "title",
 							key: "input-text",
 							properties: {
-								title: "Service Name",
+								title: "Title",
 								placeholder:
-									"Enter service name",
+									"Enter blog title",
 								type: "text",
 								component_styles:
 									"col-span-2 md:col-span-1",
 								is_required: true,
 								current_value:
 									current_value(
-										"name"
+										"title"
 									),
 								set_new_value: (
 									value: string
 								) =>
 									update_value(
-										"name",
+										"title",
 										value
 									),
 							},
 						},
 						{
-							data_filed_key: "category_id",
+							data_filed_key: "service_id",
 							key: "select-box",
 							properties: {
-								title: "Category",
+								title: "Service (optional)",
 								default_option_text:
-									"Select Category",
+									"Select Service",
 								component_styles:
 									"col-span-2 md:col-span-1",
 								drop_down_items:
-									categories_list?.map(
+									services_list?.map(
 										(ct) => ({
 											label: ct.name,
 											value: ct.id,
@@ -208,79 +225,86 @@ const AddNewService = ({
 
 								current_value:
 									current_value(
-										"category_id"
+										"service_id"
 									),
 								set_new_value: (
 									value: string
 								) =>
 									update_value(
-										"category_id",
-										value
-									),
-							},
-						},
-						{
-							data_filed_key: "price",
-							key: "input-text",
-							properties: {
-								title: "Service Price",
-								placeholder:
-									"Enter service price ",
-								type: "number",
-								is_required: true,
-								current_value:
-									current_value(
-										"price"
-									),
-								set_new_value: (
-									value: string
-								) =>
-									update_value(
-										"price",
-										value
-									),
-							},
-						},
-						{
-							data_filed_key: "duration",
-							key: "input-text",
-							properties: {
-								title: "Service Duration",
-								placeholder:
-									"Enter estimate service duration example:1 hour",
-								type: "text",
-								is_required: true,
-								current_value:
-									current_value(
-										"duration"
-									),
-								set_new_value: (
-									value: string
-								) =>
-									update_value(
-										"duration",
+										"service_id",
 										value
 									),
 							},
 						},
 
 						{
-							data_filed_key: "description",
-							key: "text-area",
+							data_filed_key: "Tags",
+							key: "input-text",
 							properties: {
-								title: "Service Description",
+								title: "Tags",
 								placeholder:
-									"Enter service description",
+									"Enter multiple tags by comma separator",
+								type: "text",
 								is_required: true,
 								current_value:
 									current_value(
-										"description"
+										"tags"
 									),
 								set_new_value: (
 									value: string
 								) =>
 									update_value(
-										"description",
+										"tags",
+										value
+									),
+							},
+						},
+						{
+							data_filed_key: "publishedAt",
+							key: "date-picker",
+							properties: {
+								title: "Date",
+								placeholder: "",
+								component_styles:
+									"col-span-2 md:col-span-1",
+
+								current_value:
+									blogForm?.publishedAt,
+								set_new_value: (
+									value: Date
+								) => {
+									setBlogForm(
+										(
+											prev
+										) => ({
+											...prev,
+											publishedAt:
+												value,
+										})
+									);
+								},
+							},
+						},
+
+						{
+							data_filed_key: "content",
+							key: "text-area",
+							properties: {
+								title: "Content",
+								placeholder:
+									"Enter blog content",
+								is_required: true,
+								row: 10,
+								current_value:
+									current_value(
+										"content"
+									),
+
+								set_new_value: (
+									value: string
+								) =>
+									update_value(
+										"content",
 										value
 									),
 								component_styles:
@@ -294,5 +318,5 @@ const AddNewService = ({
 	);
 };
 
-export default AddNewService;
+export default EditBlogInfo;
 

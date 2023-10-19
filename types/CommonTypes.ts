@@ -148,10 +148,12 @@ export type BlogPost = {
 	tags: string;
 	author_id: string;
 	author: User;
-	service_id: string | null;
-	service: Service | null;
+	service_id?: string;
+	service?: Service | null;
+	image_url: string;
+	image_id: string;
 	published: boolean;
-	publishedAt: Date | null;
+	publishedAt?: Date | null;
 	createdAt: Date;
 	updatedAt: Date;
 };
