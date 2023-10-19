@@ -33,15 +33,15 @@ const HeroSection = () => {
 			<div className="  mt-8 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-7 ">
 				<PrimaryLink
 					title="Book a service"
-					url={"/"}
+					url={"/services"}
 					className=""
 				/>
-				<SecondaryLink
+				{/* <SecondaryLink
 					title="Schedule a call"
 					icon={ICONS.call_icon}
 					url={"/"}
 					className=""
-				/>
+				/> */}
 			</div>
 
 			{/* Image  */}

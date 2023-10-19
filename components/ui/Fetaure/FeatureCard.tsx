@@ -54,6 +54,7 @@ const FeatureCard = ({
 					height={560}
 					width={470}
 					alt="feature"
+					className="rounded-lg"
 				/>
 			</div>
 		</div>

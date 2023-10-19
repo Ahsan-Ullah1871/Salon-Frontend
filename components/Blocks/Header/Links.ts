@@ -48,3 +48,21 @@ export const dashboard_dropdown_menus = [
 	},
 ];
 
+export const customer_dropdown_menus = [
+	{
+		title: "Update profile",
+		isLinkType: true,
+		url: "/settings",
+		clickHandler: null,
+		icon: SM_ICONS.pencil,
+	},
+	{
+		title: "Log out",
+		isLinkType: false,
+		url: "",
+		clickHandler: () => logoutAnyUser(),
+		classes: "hover:text-error",
+		icon: SM_ICONS.log_out,
+	},
+];
+

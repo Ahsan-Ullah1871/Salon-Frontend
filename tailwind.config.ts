@@ -12,6 +12,7 @@ const config: Config = {
 				sub: "var(--sub_body-font)",
 				main: "var(--main-font)",
 				spacial: "var(--spacial-font)",
+				art: "var(--art-type-font)",
 				"sub-spacial": "var(--sub-spacial-font)",
 			},
 			colors: {
@@ -20,6 +21,7 @@ const config: Config = {
 				warning: " #FFFF00",
 				info: "#FFA500",
 				bg_color: "var(--bg_color)",
+				bg_color_home: "#F6F3EB",
 				primary: "#FFCE00",
 				black_normal: "#353535CC",
 				black_deep: "#353535",

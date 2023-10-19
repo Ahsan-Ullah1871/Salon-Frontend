@@ -4,8 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { header_menus } from "./Links";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
+import PrimaryLink from "@/components/ui/Links/PrimaryLink";
+import { checkUserAuthenticationFromCLientSide } from "@/utils/auth";
+import HeaderMenu from "./HeaderMenu";
 
 const Header = () => {
+	const auth_check = checkUserAuthenticationFromCLientSide();
+
 	return (
 		<div className=" bg-bg_color py-6 px-6   max-w-body mx-auto  flex items-center justify-between ">
 			{/* logo */}
@@ -35,14 +40,16 @@ const Header = () => {
 			</div>
 
 			{/* Button */}
-			<div>
-				<PrimaryButton
-					type="button"
+
+			{auth_check?.is_logged_in ? (
+				<HeaderMenu user={auth_check.user_details} />
+			) : (
+				<PrimaryLink
 					title="SignIn"
-					onClickHandler={() => {}}
+					url={"/signin"}
 					className=""
 				/>
-			</div>
+			)}
 		</div>
 	);
 };

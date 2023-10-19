@@ -41,13 +41,16 @@ const ServiceCard = ({
 				card_style
 			)}
 		>
-			<Image
-				src={image}
-				width={370}
-				height={280}
-				alt="FAQ"
-			/>
-			<div className="flex items-center justify-between gap-4">
+			<div className="w-[370px] h-[280px] relative">
+				<Image
+					src={image}
+					alt="FAQ"
+					objectFit="cover"
+					fill
+				/>
+			</div>
+
+			<div className="flex items-center justify-between gap-4 obje">
 				<Title styles="mt-6 text-green font-medium px-4">
 					{todays_available_schedule}
 				</Title>

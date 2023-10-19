@@ -7,6 +7,7 @@ import {
 	Albert_Sans,
 	Tienne,
 	Merriweather,
+	Seaweed_Script,
 } from "next/font/google";
 import MobileHeader from "@/components/Blocks/Header/MobileHeader";
 import MainFooter from "@/components/Blocks/Footer/MainFooter";
@@ -30,6 +31,11 @@ const merriweather = Merriweather({
 	subsets: ["latin"],
 	weight: ["400"],
 });
+const seaweed_Script = Seaweed_Script({
+	variable: "--art-type-font",
+	subsets: ["latin"],
+	weight: ["400"],
+});
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -44,7 +50,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body
-				className={`${albert_sans.variable} ${open_sans.variable}  ${tienne.variable} ${merriweather.variable}   min-h-screen w-full `}
+				className={`${albert_sans.variable} ${open_sans.variable}  ${tienne.variable}  ${seaweed_Script.variable} ${merriweather.variable}   min-h-screen w-full bg-bg_color_home `}
 			>
 				{children}
 			</body>
