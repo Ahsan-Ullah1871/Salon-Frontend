@@ -22,7 +22,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 				className=" p-3 bg-white rounded-lg"
 			>
 				<Image
-					src={"/img/Logo_small.png"}
+					src={"/img/logo_small.png"}
 					height={24}
 					width={24}
 					alt="Logo"

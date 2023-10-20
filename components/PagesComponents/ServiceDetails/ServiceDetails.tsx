@@ -23,7 +23,7 @@ const ServiceDetails = ({ service_details }: { service_details: Service }) => {
 				{/* Page Header */}
 				<PageHeader
 					page_title="Service Details"
-					page_description="Selec from schedule"
+					page_description="Book a service by schedule"
 					bg_image=""
 				/>
 				<div className="">

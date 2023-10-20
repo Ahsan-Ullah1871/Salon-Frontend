@@ -21,7 +21,7 @@ const Rating = ({
 			<button
 				type="button"
 				className={[
-					"w-6 h-6",
+					"w-8 h-8",
 					current_value >= 1
 						? "text-primary"
 						: "text-gray-300",

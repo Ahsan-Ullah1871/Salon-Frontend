@@ -24,7 +24,7 @@ const CategoriesListCarousel = ({ categories }: { categories: Category[] }) => {
 					return (
 						<Image
 							src={ct.image_url}
-							width={200}
+							width={100}
 							height={100}
 							alt={ct.name}
 							key={ct.id}

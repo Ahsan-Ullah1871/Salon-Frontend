@@ -31,16 +31,18 @@ const BlogCard = ({
 	return (
 		<Link
 			href={url}
-			className=" min-h-[400px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md duration-300 cursor-pointer "
+			className=" min-h-[400px]  sm:min-h-[520px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md duration-300 cursor-pointer "
 		>
-			<Image
-				src={image}
-				width={370}
-				height={280}
-				alt="FAQ"
-			/>
+			<div className="max-w-[370px] h-[280px] relative">
+				<Image
+					src={image}
+					fill
+					objectFit="cocer"
+					alt="blog"
+				/>
+			</div>
 			<Heading5 styles=" px-4 mt-6 ">{title}</Heading5>
-			<div className="mt-7 px-4">
+			<div className="mt-7 px-4 flex items-center justify-start flex-wrap gap-4">
 				{tags?.map((tag) => {
 					return (
 						<WithoutActionButton

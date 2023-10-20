@@ -13,7 +13,7 @@ import Title from "../Text/Paragraph/Title";
 import Rating from "../Rating/Rating";
 import { cn } from "@/utils/classNames";
 
-const ServiceCard = ({
+const ServiceCard2 = ({
 	image,
 	title,
 	url,
@@ -38,11 +38,11 @@ const ServiceCard = ({
 		<Link
 			href={url}
 			className={cn(
-				" min-h-[464px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
+				" min-h-[464px]  sm:min-h-[404px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
 				card_style
 			)}
 		>
-			<div className="w-[370px] h-[280px] relative">
+			<div className=" max-w-[370px] h-[280px] relative">
 				<Image
 					src={image}
 					alt="FAQ"
@@ -56,6 +56,7 @@ const ServiceCard = ({
 					{todays_available_schedule}
 				</Title> */}
 				<Heading5 styles=" mt-2 px-4 ">{title}</Heading5>
+
 				<Title styles="mt-6 text-green font-medium px-4">
 					{price}
 				</Title>
@@ -69,5 +70,5 @@ const ServiceCard = ({
 	);
 };
 
-export default ServiceCard;
+export default ServiceCard2;
 

@@ -1,22 +1,26 @@
-"use client";
-
 import BlogsList from "@/components/Blocks/Blogs/BlogsList";
 import ServicesList from "@/components/Blocks/Services/ServicesList";
-import { setValueINRootVariable } from "@/utils/colorChanging";
-import React, { useEffect } from "react";
+import { BLOG_PATH } from "@/constants/RuterPath";
+import { getBaseUrl } from "@/helpers/envConfig";
 
-const Blogs = () => {
-	// Need to change latter
-	useEffect(() => {
-		setValueINRootVariable({
-			variable_name: "bg_color",
-			value: "#F6F3EB",
-		});
-	}, []);
+// Get Latest service
+async function getServices() {
+	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}?page=1&size=200`, {
+		cache: "no-store",
+	});
+	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
+		throw new Error("Failed to fetch data");
+	}
+	return res.json();
+}
+
+const Blogs = async () => {
+	const { data: blogs_data } = await getServices();
 
 	return (
 		<div>
-			<BlogsList />
+			<BlogsList blogs_data={blogs_data?.data} />
 		</div>
 	);
 };

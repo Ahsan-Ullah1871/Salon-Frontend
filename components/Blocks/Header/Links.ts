@@ -9,25 +9,25 @@ export const header_menus = [
 		isShow: true,
 	},
 	{
-		title: "About",
-		url: "/about",
+		title: "Services",
+		url: "/services",
 		isShow: true,
 	},
 	{
-		title: "About",
-		url: "/about",
+		title: "Blogs",
+		url: "/blogs",
 		isShow: true,
 	},
-	{
-		title: "About",
-		url: "/about",
-		isShow: true,
-	},
-	{
-		title: "About",
-		url: "/about",
-		isShow: true,
-	},
+	// {
+	// 	title: "About",
+	// 	url: "/about",
+	// 	isShow: true,
+	// },
+	// {
+	// 	title: "Feedback",
+	// 	url: "/feedback",
+	// 	isShow: true,
+	// },
 ];
 
 export const dashboard_dropdown_menus = [

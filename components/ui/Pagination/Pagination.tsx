@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import ReactPaginate from "react-paginate";
 
@@ -6,7 +8,7 @@ const PaginationFunction = ({
 	pageCount,
 	current_page,
 }: {
-	moreData: (value: number) => any;
+	moreData?: (value: number) => any;
 	pageCount: number;
 	current_page: number;
 }) => {
@@ -30,6 +32,7 @@ const PaginationFunction = ({
 					</svg>
 				}
 				onPageChange={(data) =>
+					moreData &&
 					moreData(Number(data.selected) + 1)
 				}
 				pageRangeDisplayed={5}

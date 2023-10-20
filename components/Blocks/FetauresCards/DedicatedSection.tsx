@@ -8,7 +8,7 @@ const DedicatedSection = () => {
 	return (
 		<div className=" g-transparent w-full max-w-body px-6 py-20 ">
 			<div className="   flex flex-col gap-6 mb-[50px] text-green max-w-[700px] mx-auto ">
-				<Heading1 styles="  text-bg text-center  font-medium ">
+				<Heading1 styles="  text-bg text-center font-spacial  font-medium  text-[34px] md:text-[58px] leading-[40px] md:leading-[68px] ">
 					We have dedicate on this service
 				</Heading1>
 

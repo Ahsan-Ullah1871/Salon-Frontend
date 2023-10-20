@@ -154,7 +154,7 @@ export type BlogPost = {
 	image_id: string;
 	published: boolean;
 	publishedAt?: Date | null;
-	createdAt: Date;
+	created_at: Date;
 	updatedAt: Date;
 };
 

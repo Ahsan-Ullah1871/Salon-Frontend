@@ -23,7 +23,7 @@ export default function AuthUI({
 	const authChecked = useAuthCheck();
 
 	return (
-		<div className=" font-main  bg-d_body  w-full  p-4 md:p-8">
+		<div className=" min-h-screen font-main  bg-d_body  w-full  p-4 md:p-8">
 			<div>
 				<CustomerSidebar />
 				<CustomerBottomNavbar />

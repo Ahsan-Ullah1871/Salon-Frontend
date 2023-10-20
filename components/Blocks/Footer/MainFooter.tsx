@@ -67,12 +67,25 @@ const MainFooter = () => {
 					</Link>
 				</p>
 
-				<Link
-					className=" text-sm font-normal text-white  text-opacity-75"
-					href={"https://github.com/Ahsan-Ullah1871"}
-				>
-					Terms of Use Privacy Policy Terms of Service
-				</Link>
+				<div className="flex flex-col gap-2">
+					<Link
+						href={"/admin"}
+						type="email"
+						className=" text-white text-opacity-80  text-base md:text-base "
+					>
+						Admin Login
+					</Link>
+
+					<Link
+						className=" text-sm font-normal text-white  text-opacity-75"
+						href={
+							"https://github.com/Ahsan-Ullah1871"
+						}
+					>
+						Terms of Use Privacy Policy Terms of
+						Service
+					</Link>
+				</div>
 			</div>
 		</div>
 	);

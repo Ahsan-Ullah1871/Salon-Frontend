@@ -23,12 +23,10 @@ const HomePage = ({
 	return (
 		<div className="">
 			<HeroSection />
-
 			{/* Categor Section  */}
 			<div className=" mt-[50px] md:mt-[100px]">
 				<CategoriesListCarousel categories={categories} />
 			</div>
-
 			{/* Feature1 */}
 			<div className=" mt-10 md:mt-20 ">
 				<FeatureCard
@@ -40,27 +38,23 @@ const HomePage = ({
 					ctaLink={"/services"}
 				/>
 			</div>
-
 			{/* Services */}
-			<div className="mt-[150px]">
+			<div className="mt-[150px] px-6 md:px-0">
 				<ServicesCarousel
 					latest_services={latest_services}
 				/>
 			</div>
-
 			{/* Deidicated block */}
 			<div className="mt-[50px]">
 				<DedicatedSection />
 			</div>
-
 			{/* FAQ */}
-			<div className=" px-6">
+			{/* <div className=" px-6">
 				<FAQ />
-			</div>
-
+			</div> */}
 			{/* Blogs */}
-			<div>
-				<Blogs />
+			<div className="my-20  px-6 md:px-0">
+				<Blogs blogs={blogs} />
 			</div>
 		</div>
 	);
