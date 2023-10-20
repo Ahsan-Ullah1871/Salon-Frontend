@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import SecondaryButton from "@/components/ui/Buttons/SecondaryButton";
 import PrimaryLink from "@/components/ui/Links/PrimaryLink";
@@ -32,15 +33,15 @@ const HeroSection = () => {
 			<div className="  mt-8 md:mt-16 flex flex-col md:flex-row items-center justify-center gap-7 ">
 				<PrimaryLink
 					title="Book a service"
-					url={"/"}
+					url={"/services"}
 					className=""
 				/>
-				<SecondaryLink
+				{/* <SecondaryLink
 					title="Schedule a call"
 					icon={ICONS.call_icon}
 					url={"/"}
 					className=""
-				/>
+				/> */}
 			</div>
 
 			{/* Image  */}

@@ -1,16 +1,5 @@
+import { TextINputType } from "@/types/FormFieldTypes";
 import { cn } from "@/utils/classNames";
-
-type TextINputType = {
-	title?: string;
-	current_value: string;
-	set_new_value?: Function;
-	note?: string;
-	placeholder?: string;
-	type?: "text" | "number" | "email" | "password" | "tel";
-	title_styles?: string;
-	field_styles?: string;
-	component_styles?: string;
-};
 
 const TextInput = ({
 	title,
@@ -22,6 +11,10 @@ const TextInput = ({
 	title_styles,
 	field_styles,
 	component_styles,
+	is_required = true,
+	is_disabled = false,
+	onClick,
+	onKeyDown,
 }: TextINputType) => {
 	return (
 		<div
@@ -53,6 +46,10 @@ const TextInput = ({
 				}
 				type={type ?? "text"}
 				placeholder={placeholder}
+				disabled={is_disabled}
+				required={is_required}
+				onClick={onClick && onClick}
+				onKeyDown={onKeyDown && ((e: any) => onKeyDown(e))}
 			/>
 		</div>
 	);

@@ -1,10 +1,11 @@
 import Carousel from "@/components/ui/Carousel/Carousel";
 import NormalDescription from "@/components/ui/Text/Description/NormalDescription";
 import Heading1 from "@/components/ui/Text/Headers/Heading1";
+import { Category } from "@/types/CommonTypes";
 import Image from "next/image";
 import React from "react";
 
-const Category = () => {
+const CategoriesListCarousel = ({ categories }: { categories: Category[] }) => {
 	return (
 		<div>
 			{/* Title */}
@@ -19,125 +20,23 @@ const Category = () => {
 				Salon Market Spotlight.
 			</NormalDescription>
 			<Carousel
-				Items={[
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct1.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-					<Image
-						src={"/img/ct2.png"}
-						width={200}
-						height={100}
-						alt="ct"
-						key={"ct1"}
-						objectFit="contain"
-					/>,
-				]}
+				Items={categories?.map((ct) => {
+					return (
+						<Image
+							src={ct.image_url}
+							width={200}
+							height={100}
+							alt={ct.name}
+							key={ct.id}
+							objectFit="contain rounded-lg"
+						/>
+					);
+				})}
 				swiper_slide_style="!w-[200px] !h-[100px]"
 			/>
 		</div>
 	);
 };
 
-export default Category;
+export default CategoriesListCarousel;
 

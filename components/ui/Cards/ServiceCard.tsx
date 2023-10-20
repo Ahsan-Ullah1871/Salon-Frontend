@@ -25,7 +25,7 @@ const ServiceCard = ({
 }: {
 	image: string;
 	title: string;
-	price: string;
+	price?: string;
 	time: string;
 	ratings: number;
 	url: string;
@@ -35,19 +35,23 @@ const ServiceCard = ({
 	const router = useRouter();
 
 	return (
-		<div
+		<Link
+			href={url}
 			className={cn(
 				" min-h-[464px]  sm:min-h-[504px]   max-w-[370px]   relative    bg-transparent  shadow-none hover:shadow-md  cursor-pointer  duration-300  ",
 				card_style
 			)}
 		>
-			<Image
-				src={image}
-				width={370}
-				height={280}
-				alt="FAQ"
-			/>
-			<div className="flex items-center justify-between gap-4">
+			<div className="w-[370px] h-[280px] relative">
+				<Image
+					src={image}
+					alt="FAQ"
+					objectFit="cover"
+					fill
+				/>
+			</div>
+
+			<div className="flex items-center justify-between gap-4 obje">
 				<Title styles="mt-6 text-green font-medium px-4">
 					{todays_available_schedule}
 				</Title>
@@ -61,7 +65,7 @@ const ServiceCard = ({
 				<Rating current_value={ratings} />
 				<Title>{`${time}`}</Title>
 			</div>
-		</div>
+		</Link>
 	);
 };
 

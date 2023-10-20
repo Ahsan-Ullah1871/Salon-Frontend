@@ -1,6 +1,5 @@
 "use client";
 
-import Category from "@/components/Blocks/Catgory/Category";
 import FeatureCard from "@/components/ui/Fetaure/FeatureCard";
 import HeroSection from "@/components/Blocks/HeroSection/HeroSection";
 import FAQ from "@/components/Blocks/FAQ/FAQ";
@@ -8,42 +7,50 @@ import Blogs from "@/components/Blocks/Blogs/Blogs";
 import ServicesCarousel from "@/components/Blocks/Services/ServicesCarousel";
 import { setValueINRootVariable } from "@/utils/colorChanging";
 import { useEffect } from "react";
+import { BlogPost, Category, Service } from "@/types/CommonTypes";
+import CategoriesListCarousel from "@/components/Blocks/Catgory/Category";
+import DedicatedSection from "@/components/Blocks/FetauresCards/DedicatedSection";
 
-const HomePage = () => {
-	// Need to change latter
-	useEffect(() => {
-		setValueINRootVariable({
-			variable_name: "bg_color",
-			value: "#F6F3EB",
-		});
-	}, []);
-
+const HomePage = ({
+	categories,
+	blogs,
+	latest_services,
+}: {
+	categories: Category[];
+	blogs: BlogPost[];
+	latest_services: Service[];
+}) => {
 	return (
-		<div>
+		<div className="">
 			<HeroSection />
 
 			{/* Categor Section  */}
 			<div className=" mt-[50px] md:mt-[100px]">
-				<Category />
+				<CategoriesListCarousel categories={categories} />
 			</div>
 
 			{/* Feature1 */}
 			<div className=" mt-10 md:mt-20 ">
 				<FeatureCard
-					right_image={"/img/feature1.png"}
-					left_header_image={"/img/feature1_sub.png"}
-					title={"	Luxurious Pampering"}
-					description={`Indulge in the ultimate salon experience with
-					our 'Luxurious Pampering' selection. Immerse
-					yourself in a world of relaxation and
-					rejuvenation as our skilled stylists and
-					professionals pamper you from head to toe.
-					Discover the epitome of self-care with our
-					exclusive treatments and services. Unwind and
-					revitalize in style`}
+					right_image={"/img/feature2.jpg"}
+					left_header_image={"/img/feature2_sub.png"}
+					title={"Rejuvenating Facial"}
+					description={`Start your day with a personalized facial treatment that caters to your unique skin needs. Our experienced estheticians will analyze your skin and choose the perfect products to restore your skin's natural glow.`}
 					cta_title={"See our services"}
 					ctaLink={"/services"}
 				/>
+			</div>
+
+			{/* Services */}
+			<div className="mt-[150px]">
+				<ServicesCarousel
+					latest_services={latest_services}
+				/>
+			</div>
+
+			{/* Deidicated block */}
+			<div className="mt-[50px]">
+				<DedicatedSection />
 			</div>
 
 			{/* FAQ */}
@@ -54,10 +61,6 @@ const HomePage = () => {
 			{/* Blogs */}
 			<div>
 				<Blogs />
-			</div>
-			{/* Services */}
-			<div className="mt-10">
-				<ServicesCarousel />
 			</div>
 		</div>
 	);

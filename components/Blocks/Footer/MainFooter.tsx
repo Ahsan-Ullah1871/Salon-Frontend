@@ -40,6 +40,7 @@ const MainFooter = () => {
 						field_styles=" text-black_deep bg-white shadow  py-4 w-full"
 					/>
 					<PrimaryButton
+						type="button"
 						title="Get Notifications"
 						onClickHandler={() => {}}
 						className="  whitespace-nowrap  py-4"

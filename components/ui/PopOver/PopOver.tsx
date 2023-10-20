@@ -7,19 +7,29 @@ export default function PopOver({
 	children,
 	button,
 	className: PopoverClass,
+	popOverButtonClassName,
+	is_disabled = false,
 }: {
 	children: React.ReactNode;
 	button: React.ReactNode;
-	className: string;
+	className?: string;
+	popOverButtonClassName?: string;
+	is_disabled?: boolean;
 }) {
 	return (
-		<Popover className="relative">
+		<Popover
+			as="div"
+			className="relative"
+		>
 			{({ open }) => (
 				<>
 					<Popover.Button
-					// 			className={`
-					// ${open ? "" : }
-					// group inline-flex items-center rounded-md bg-orange-700 px-3 py-2 text-base font-medium text-white hover:text-opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
+						as="div"
+						className={cn(
+							"outline-none ring-0",
+							popOverButtonClassName
+						)}
+						disabled={is_disabled}
 					>
 						{button}
 					</Popover.Button>

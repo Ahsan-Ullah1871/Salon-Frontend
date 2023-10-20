@@ -39,8 +39,8 @@ const BlogCard = ({
 				height={280}
 				alt="FAQ"
 			/>
-			<Heading5 styles=" mt-6 ">{title}</Heading5>
-			<div className="mt-7">
+			<Heading5 styles=" px-4 mt-6 ">{title}</Heading5>
+			<div className="mt-7 px-4">
 				{tags?.map((tag) => {
 					return (
 						<WithoutActionButton
@@ -54,7 +54,7 @@ const BlogCard = ({
 
 			<Divider divider_style="w-full h-[1px]  text-black_deep my-6  bg-opacity-20 " />
 
-			<div className="flex items-center  justify-start gap-6">
+			<div className=" px-4 flex items-center  justify-start gap-6">
 				<Title>{author}</Title>
 				<Title>{`. ${date}`}</Title>
 			</div>

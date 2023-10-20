@@ -1,19 +1,21 @@
 import Title from "../Text/Paragraph/Title";
 import Image from "next/image";
 import { ICONS } from "@/icons/AllIcons";
+import { SM_ICONS } from "@/icons/SmalllIcon";
 
 // Define a type for the props
 interface ScheduleCardProps {
-	imageSrc: string;
-	imageAlt: string;
-	imageHeight: number;
-	imageWidth: number;
-	workerName: string;
-	scheduleDate: string;
-	duration: string;
-	start_time: string;
-	end_time: string;
-	isBooked: boolean;
+	imageSrc?: string;
+	imageAlt?: string;
+	imageHeight?: number;
+	imageWidth?: number;
+	workerName?: string;
+	scheduleDate?: string;
+	duration?: string;
+	start_time?: string;
+	end_time?: string;
+	isAvailable?: boolean;
+	onselectHandler?: any;
 }
 
 const ScheduleCard: React.FC<ScheduleCardProps> = ({
@@ -24,58 +26,78 @@ const ScheduleCard: React.FC<ScheduleCardProps> = ({
 	workerName,
 	scheduleDate,
 	duration,
-	isBooked,
+	isAvailable,
 	start_time,
 	end_time,
+	onselectHandler,
 }) => {
 	return (
-		<div className="bg-white p-5 rounded-md shadow-md w-full flex items-center justify-start flex-wrap gap-5">
-			<Image
+		<div
+			onClick={() => {
+				onselectHandler && onselectHandler();
+			}}
+			className="bg-white p-5 cursor-pointer rounded-md shadow-md w-full flex items-center justify-start flex-wrap gap-5"
+		>
+			{/* <Image
 				src={imageSrc}
 				alt={imageAlt}
 				height={imageHeight}
 				width={imageWidth}
 				objectFit="cover"
 				className="rounded-full"
-			/>
+			/> */}
 
 			{/* Worker name and Date */}
 			<div className="flex flex-col gap-1">
 				<Title styles="font-medium">{workerName}</Title>
 				<div className="flex items-center justify-start gap-2">
 					<span className="h-6 w-6 text-black_normal">
-						{ICONS.schedule}
+						{SM_ICONS.calender}
 					</span>
-					<Title styles="md:text-base">
-						{scheduleDate}
-					</Title>
+					{scheduleDate && (
+						<Title styles="md:text-base">
+							{new Date(
+								scheduleDate
+							).toLocaleDateString()}
+						</Title>
+					)}
 				</div>
 			</div>
 
 			{/* Worker name and Date */}
 			<div className="flex flex-col gap-1 lg:px-10">
 				<Title styles="font-medium">{duration}</Title>
-				<div className="flex items-center justify-start gap-2">
+				<div className="flex items-center justify-start gap-2 ">
 					<span className="h-6 w-6 text-black_normal">
-						{ICONS.clock}
+						{SM_ICONS.clock}
 					</span>
-					<Title styles="md:text-base">
-						12:00 AM - 12:59 AM
-					</Title>
+					{start_time && end_time && (
+						<Title styles="md:text-base">
+							{new Date(
+								start_time
+							).toLocaleTimeString()}{" "}
+							-{" "}
+							{new Date(
+								end_time
+							).toLocaleTimeString()}
+						</Title>
+					)}
 				</div>
 			</div>
 
 			{/* Is available */}
 			<div className="flex items-center justify-start gap-2">
-				<span className="h-6 w-6 text-black_normal">
-					{ICONS.block}
-				</span>
+				{!isAvailable && (
+					<span className="h-6 w-6 text-black_normal">
+						{SM_ICONS.block}
+					</span>
+				)}
 				<Title
 					styles={`md:text-base ${
-						isBooked ? "text-green" : ""
+						isAvailable ? "text-green" : ""
 					}`}
 				>
-					{isBooked ? "Booked" : "Available"}
+					{isAvailable ? "Available" : "Booked"}
 				</Title>
 			</div>
 		</div>
