@@ -7,10 +7,10 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<div className={`  bg-bg_color min-h-screen w-full `}>
 			{/* Header */}
-			<div className=" hidden md:block font-main">
+			<div className=" hidden md:block font-main sticky top-0 bg-bg_color_home shadow z-20">
 				<Header />
 			</div>
-			<div className="   md:hidden">
+			<div className="sticky top-0 bg-bg_color_home shadow z-20   md:hidden">
 				<MobileHeader />
 			</div>
 
@@ -29,3 +29,4 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export default MainLayout;
+

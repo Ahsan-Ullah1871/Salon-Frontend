@@ -1,5 +1,5 @@
 import HomePage from "@/components/PagesComponents/Home/HomePage";
-import { CATEGORY_PATH, SERVICE_PATH } from "@/constants/RuterPath";
+import { BLOG_PATH, CATEGORY_PATH, SERVICE_PATH } from "@/constants/RuterPath";
 import { getBaseUrl } from "@/helpers/envConfig";
 import { redirect } from "next/navigation";
 
@@ -8,7 +8,7 @@ async function getCategories() {
 	const res = await fetch(
 		`${getBaseUrl()}${CATEGORY_PATH}?page=1&size=50`,
 		{
-			cache: "force-cache",
+			cache: "no-store",
 		}
 	);
 	if (!res.ok) {
@@ -23,7 +23,7 @@ async function getServices() {
 	const res = await fetch(
 		`${getBaseUrl()}${SERVICE_PATH}?page=1&size=10`,
 		{
-			cache: "force-cache",
+			cache: "no-store",
 		}
 	);
 	if (!res.ok) {
@@ -35,12 +35,9 @@ async function getServices() {
 
 // Get Latest service
 async function getBlogs() {
-	const res = await fetch(
-		`${getBaseUrl()}${SERVICE_PATH}?blog=1&size=10`,
-		{
-			cache: "force-cache",
-		}
-	);
+	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}?blog=1&size=10`, {
+		cache: "no-store",
+	});
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary
 		throw new Error("Failed to fetch data");

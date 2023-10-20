@@ -80,7 +80,7 @@ const Booking = ({
 			setISAlertOpen(true);
 			setAlertType("success");
 			setAlertMessage("Edited  successfully");
-			router.push(`/customer/dashboard/`);
+			router.push(`/dashboard/`);
 		}
 	}, [error, isSuccess]);
 

@@ -1,4 +1,4 @@
-type ISendResponse<T, K> = {
+export type ISendResponse<T, K> = {
 	status_code: number;
 	message: string;
 	success: boolean;

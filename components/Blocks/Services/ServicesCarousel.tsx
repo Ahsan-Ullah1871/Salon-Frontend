@@ -14,11 +14,11 @@ const ServicesCarousel = ({
 	return (
 		<div>
 			<div className=" max-w-2xl mx-auto flex flex-col gap-6 mb-[50px] ">
-				<Title styles="   text-2xl text-white  px-4 py-2  mx-auto bg-primary rounded-[50px] text-center   w-28">
+				<Title styles="   text-2xl text-white  px-4 py-2  mx-auto bg-primary rounded-[50px] text-center ">
 					Services{" "}
 				</Title>
 
-				<Heading1 styles=" text-center  font-medium ">
+				<Heading1 styles=" text-center font-spacial  font-medium  text-[34px] md:text-[58px] leading-[40px] md:leading-[68px] font-medium ">
 					Custom Beauty Makeovers
 				</Heading1>
 
@@ -43,6 +43,7 @@ const ServicesCarousel = ({
 							todays_available_schedule={
 								"20 seats available "
 							}
+							price={`$ ${service.price}`}
 							ratings={4}
 						/>
 					);

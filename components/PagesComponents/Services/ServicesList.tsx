@@ -1,21 +1,30 @@
-"use client";
-
 import ServicesList from "@/components/Blocks/Services/ServicesList";
+import { SERVICE_PATH } from "@/constants/RuterPath";
+import { getBaseUrl } from "@/helpers/envConfig";
 import { setValueINRootVariable } from "@/utils/colorChanging";
-import React, { useEffect } from "react";
 
-const Services = () => {
-	// Need to change latter
-	useEffect(() => {
-		setValueINRootVariable({
-			variable_name: "bg_color",
-			value: "#F6F3EB",
-		});
-	}, []);
+// Get Latest service
+async function getServices() {
+	const res = await fetch(
+		`${getBaseUrl()}${SERVICE_PATH}?page=1&size=200`,
+		{
+			cache: "no-store",
+		}
+	);
+	if (!res.ok) {
+		// This will activate the closest `error.js` Error Boundary
+		throw new Error("Failed to fetch data");
+	}
+	return res.json();
+}
+
+const Services = async () => {
+	const { data: services_data } = await getServices();
 
 	return (
 		<div>
-			<ServicesList />
+			<ServicesList services_data={services_data} />
+			{/*   */}
 		</div>
 	);
 };

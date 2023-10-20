@@ -9,8 +9,12 @@ import { header_menus } from "./Links";
 import Link from "next/link";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import Divider from "@/components/ui/Divider/Divider";
+import { checkUserAuthenticationFromCLientSide } from "@/utils/auth";
+import PrimaryLink from "@/components/ui/Links/PrimaryLink";
 
 const MobileHeader = () => {
+	const auth_check = checkUserAuthenticationFromCLientSide();
+
 	return (
 		<div className=" flex items-center px-8 py-3 max-w-full w-full bg-body justify-between">
 			{/* logo */}
@@ -42,15 +46,19 @@ const MobileHeader = () => {
 					})}
 				</div>
 
-				<Divider divider_style="my-1 h-[1px]  bg-black_normal" />
-				{/* Button */}
-				<div className="mb-5">
-					<PrimaryButton
-						title="SignIn"
-						onClickHandler={() => {}}
-						className="  w-full"
-					/>
-				</div>
+				{!auth_check?.is_logged_in && (
+					<>
+						<Divider divider_style="my-1 h-[1px]  bg-black_normal" />
+						{/* Button */}
+						<div className=" w-full mb-5">
+							<PrimaryLink
+								title="SignIn"
+								url="/signin"
+								className="  w-full"
+							/>
+						</div>
+					</>
+				)}
 			</Modal>
 		</div>
 	);

@@ -16,10 +16,11 @@ import Heading5 from "@/components/ui/Text/Headers/Heading5";
 import { useAppSelector } from "@/hooks/Redux";
 import { useAddServiceMutation } from "@/redux/features/service/serviceApi";
 import { useAddBlogMutation } from "@/redux/features/blogs/blogsApi";
+import { checkUserAuthenticationFromCLientSide } from "@/utils/auth";
 
 const AddNewBlog = ({ services_list }: { services_list: Service[] }) => {
 	const router = useRouter();
-	const { user } = useAppSelector((state) => state.auth);
+	const auth_check = checkUserAuthenticationFromCLientSide();
 
 	// login mutation hook
 	const [addBlog, { data, isLoading, isError, error, isSuccess }] =
@@ -35,7 +36,7 @@ const AddNewBlog = ({ services_list }: { services_list: Service[] }) => {
 	const [blogForm, setBlogForm] = useState({
 		title: "",
 		content: "",
-		author_id: user?.id,
+		author_id: auth_check?.user_details?.id,
 		image_url: "",
 		image_id: "",
 		tags: "",
