@@ -31,6 +31,11 @@ import {
 import { useEditAppointmentMutation } from "@/redux/features/appointment/appointmentApi";
 import Alert from "../Alerts/Alerts";
 import { cn } from "@/utils/classNames";
+import UserRole from "@/types/UserRole";
+import {
+	appointment_status_drop_down,
+	customer_appointment_status_drop_down,
+} from "./appointmentChange";
 
 const AppointmentsList = ({
 	appointments,
@@ -135,7 +140,7 @@ const AppointmentsList = ({
 							),
 						},
 						{
-							className: " flex items-center justify-center",
+							className: " hidden md:flex items-center justify-center",
 							component: (
 								<Title
 									styles={`text-sm font-medium `}
@@ -177,37 +182,17 @@ const AppointmentsList = ({
 											not_found_text:
 												"There have not any status for change",
 											title: "Change Status",
-											menus: getAdminStatusOptions(
-												appointment?.status
-											).map(
-												(
-													item
-												) => {
-													return {
-														title: `Change to "${item}"`,
-
-														classes: `!text-[${
-															statusColors[
-																appointment
-																	.status
-															]
-														}]`,
-														onCLickHandle:
-															() => {
-																editAppointment(
-																	{
-																		appointmentID:
-																			appointment.id,
-																		appointment_data:
-																			{
-																				status: item,
-																			},
-																	}
-																);
-															},
-													};
-												}
-											),
+											menus:
+												user?.role ===
+												UserRole.CUSTOMER
+													? customer_appointment_status_drop_down(
+															appointment,
+															editAppointment
+													  )
+													: appointment_status_drop_down(
+															appointment,
+															editAppointment
+													  ),
 										}}
 									/>
 								</div>
@@ -234,7 +219,7 @@ const AppointmentsList = ({
 					},
 					{
 						header: "Start Time",
-						className: "  text-center text-lg font-medium text-d_black",
+						className: "  hidden md:block text-center text-lg font-medium text-d_black",
 					},
 					{
 						header: "Status",

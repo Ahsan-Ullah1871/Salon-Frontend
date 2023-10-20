@@ -2,7 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { dashboard_dropdown_menus, header_menus } from "./Links";
+import {
+	customer_dropdown_menus,
+	dashboard_dropdown_menus,
+	header_menus,
+} from "./Links";
 import PrimaryButton from "@/components/ui/Buttons/PrimaryButton";
 import PopOver from "@/components/ui/PopOver/PopOver";
 import { useAppSelector } from "@/hooks/Redux";
@@ -12,7 +16,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/utils/classNames";
 import Title from "@/components/ui/Text/Paragraph/Title";
 
-const DashboardHeader = ({
+const CustomerDashboardHeader = ({
 	role,
 	left_side_component,
 	middle_component,
@@ -64,6 +68,7 @@ const DashboardHeader = ({
 								/>
 							) : (
 								<span>
+									{" "}
 									{ICONS.user}
 								</span>
 							)}
@@ -78,7 +83,7 @@ const DashboardHeader = ({
 					}
 				>
 					<div className="overflow-hidden  p-5  shadow-sm bg-white rounded-lg   min-h-[100px] flex  flex-col   justify-start gap-4">
-						{dashboard_dropdown_menus.map(
+						{customer_dropdown_menus.map(
 							(menu) => {
 								return (
 									<button
@@ -91,7 +96,7 @@ const DashboardHeader = ({
 												menu.isLinkType
 											) {
 												router.push(
-													`/admin/dashboard${menu.url}`
+													`/dashboard${menu.url}`
 												);
 											} else {
 												menu.clickHandler &&
@@ -117,10 +122,6 @@ const DashboardHeader = ({
 								);
 							}
 						)}
-
-						<Title styles="  text-center   md:text-[14px]  capitalize ">
-							Role: {`(${user?.role})`}
-						</Title>
 					</div>
 				</PopOver>
 			</div>
@@ -128,5 +129,5 @@ const DashboardHeader = ({
 	);
 };
 
-export default DashboardHeader;
+export default CustomerDashboardHeader;
 

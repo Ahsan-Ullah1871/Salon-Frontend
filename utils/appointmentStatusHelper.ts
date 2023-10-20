@@ -1,11 +1,11 @@
 import AppointmentStatus from "@/types/ServiceStatus";
 
+//
 export function getAdminStatusOptions(
 	currentStatus: AppointmentStatus
 ): AppointmentStatus[] {
 	switch (currentStatus) {
 		case AppointmentStatus.BOOKED:
-			// Options for transitioning from BOOKED
 			return [
 				AppointmentStatus.CONFIRMED,
 				AppointmentStatus.CANCELED,
@@ -13,7 +13,6 @@ export function getAdminStatusOptions(
 			];
 
 		case AppointmentStatus.CONFIRMED:
-			// Options for transitioning from CONFIRMED
 			return [
 				AppointmentStatus.COMPLETED,
 				AppointmentStatus.CANCELED,
@@ -30,7 +29,25 @@ export function getAdminStatusOptions(
 		// Add cases for other status transitions and their associated options
 
 		default:
-			// Return an empty array for unknown status or if no further transition is defined
+			return [];
+	}
+}
+
+//
+export function getCustomerStatusOptions(
+	currentStatus: AppointmentStatus
+): AppointmentStatus[] {
+	switch (currentStatus) {
+		case AppointmentStatus.BOOKED:
+			return [AppointmentStatus.CANCELED];
+
+		case AppointmentStatus.CONFIRMED:
+			return [AppointmentStatus.CANCELED];
+
+		case AppointmentStatus.COMPLETED:
+			return [];
+
+		default:
 			return [];
 	}
 }

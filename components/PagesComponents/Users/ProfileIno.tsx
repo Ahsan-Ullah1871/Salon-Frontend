@@ -59,12 +59,12 @@ const ProfileIno = ({ profile_details }: { profile_details: User }) => {
 	// useEffect
 	useEffect(() => {
 		setProfileFOrm({
-			email: profile_details.email,
-			name: profile_details.name,
-			phone_number: profile_details.phone_number,
-			address: profile_details.address,
-			profile_image: profile_details.profile_image ?? "",
-			role: profile_details.role,
+			email: profile_details?.email,
+			name: profile_details?.name,
+			phone_number: profile_details?.phone_number,
+			address: profile_details?.address,
+			profile_image: profile_details?.profile_image ?? "",
+			role: profile_details?.role,
 		});
 	}, [profile_details]);
 
@@ -89,7 +89,7 @@ const ProfileIno = ({ profile_details }: { profile_details: User }) => {
 
 	const formSubmitHandler = async () => {
 		editProfile({
-			userID: profile_details.id,
+			userID: profile_details?.id,
 			user_data: profileForm,
 		});
 	};

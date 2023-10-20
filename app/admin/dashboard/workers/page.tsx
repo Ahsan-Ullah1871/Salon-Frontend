@@ -19,7 +19,7 @@ const WorkersPage = () => {
 	return (
 		<div className=" min-h-screen w-full h-full">
 			{/* Sticky item */}
-			<div className="sticky top-12   z-10   py-3  px-6   bg-d_body">
+			<div className="sticky  top-0  md:top-4   z-10   py-3 md:px-6   bg-d_body">
 				<DashboardHeader
 					role={UserRole.ADMIN}
 					left_side_component={

@@ -43,7 +43,7 @@ const HeaderMenu = ({ user }: { user: User | undefined }) => {
 							onClick={() => {
 								if (menu.isLinkType) {
 									router.push(
-										`/admin/dashboard${menu.url}`
+										`/dashboard${menu.url}`
 									);
 								} else {
 									menu.clickHandler &&

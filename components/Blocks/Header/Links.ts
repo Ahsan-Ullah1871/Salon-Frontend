@@ -50,6 +50,13 @@ export const dashboard_dropdown_menus = [
 
 export const customer_dropdown_menus = [
 	{
+		title: "Dashboard",
+		isLinkType: true,
+		url: "/",
+		clickHandler: null,
+		icon: SM_ICONS.adjustment,
+	},
+	{
 		title: "Update profile",
 		isLinkType: true,
 		url: "/settings",
