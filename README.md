@@ -1,4 +1,4 @@
-![Alt text](image.png)
+![Alt text](image-1.png)
 
 # Salon and Beauty Marketplace Website
 
@@ -7,6 +7,8 @@ platform offers a seamless experience for users to explore services, schedule
 appointments, and connect with beauty professionals. Salon owners and
 administrators can efficiently manage services, schedules, and user interactions
 through the dashboard.
+
+## Preview website : https://salon-shop-blond.vercel.app/
 
 ## Table of Contents
 
@@ -88,3 +90,4 @@ follow these steps:
 5. Submit a pull request.
 
 Please make sure to update tests and documentation as appropriate.
+
