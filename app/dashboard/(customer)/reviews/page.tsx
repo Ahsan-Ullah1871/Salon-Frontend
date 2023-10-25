@@ -5,7 +5,7 @@ import CustomerDashboardHeader from "@/components/Blocks/Header/DashboardHeader2
 import SearchBar from "@/components/Blocks/SearchBlock/SearchBar";
 import AdminBlogs from "@/components/PagesComponents/Blog/AdminBlogList";
 import AllCatagoriesPage from "@/components/PagesComponents/Categories/AllCatagoriesPage";
-import AdminReviewsList from "@/components/PagesComponents/Reviews/AdminReviewsList";
+import ReviewsListForCustomer from "@/components/PagesComponents/Reviews/ReviewsListForCustomer";
 import AllServicesPage from "@/components/PagesComponents/Services/AllServicesPage";
 import PrimaryLink from "@/components/ui/Links/PrimaryLink";
 import Heading1 from "@/components/ui/Text/Headers/Heading1";
@@ -44,7 +44,7 @@ const ReviewsPage = () => {
 
 			{/* Body */}
 			<div className=" mt-10 h-full flex-grow">
-				<AdminReviewsList searchParam={searchParam} />
+				<ReviewsListForCustomer searchParam={searchParam} />
 			</div>
 		</div>
 	);

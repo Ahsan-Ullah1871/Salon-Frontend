@@ -80,3 +80,9 @@ export type ImageSelectType = {
 	component_styles?: string;
 };
 
+export type RatingType = {
+	current_value: number;
+	clickHandler?: (value: number) => void;
+	className?: string;
+};
+

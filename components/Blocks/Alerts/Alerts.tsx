@@ -59,12 +59,12 @@ export default function Alert({
 			>
 				<Dialog
 					as="div"
-					className="relative z-10"
+					className="relative z-40"
 					onClose={closeAlert}
 				>
 					<div
 						className={cn(
-							"fixed inset-0 left-0 right-0  mx-auto max-w-md top-5 min-h-10  "
+							"fixed inset-0 left-0 right-0  mx-auto max-w-md top-24 min-h-10  "
 						)}
 					>
 						<Transition.Child

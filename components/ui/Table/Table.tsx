@@ -15,7 +15,7 @@ const DynamicTable = ({
 	table_style: string;
 	table_header_style: string;
 	table_body_style: string;
-	is_table_body_hide: boolean;
+	is_table_body_hide?: boolean;
 }) => {
 	return (
 		<div className={cn(" w-full   min-w-full  ", table_style)}>

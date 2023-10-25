@@ -1,21 +1,14 @@
+import { ButtonType } from "@/types/ButtonTypes";
 import { cn } from "@/utils/classNames";
 import Link from "next/link";
 import React, { SVGProps } from "react";
-
-//  button type
-type buttonType = {
-	title: string;
-	url: string;
-	className: string;
-	icon?: React.ReactNode;
-};
 
 const SecondaryLink = ({
 	title,
 	url,
 	className: buttonStyle,
 	icon,
-}: buttonType) => {
+}: ButtonType) => {
 	return (
 		<Link
 			href={url}

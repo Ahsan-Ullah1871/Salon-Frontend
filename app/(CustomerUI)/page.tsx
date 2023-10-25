@@ -8,7 +8,7 @@ async function getCategories() {
 	const res = await fetch(
 		`${getBaseUrl()}${CATEGORY_PATH}?page=1&size=50`,
 		{
-			cache: "no-store",
+			cache: "force-cache",
 		}
 	);
 	if (!res.ok) {
@@ -23,7 +23,7 @@ async function getServices() {
 	const res = await fetch(
 		`${getBaseUrl()}${SERVICE_PATH}?page=1&size=10`,
 		{
-			cache: "no-store",
+			cache: "force-cache",
 		}
 	);
 	if (!res.ok) {
@@ -36,7 +36,7 @@ async function getServices() {
 // Get Latest service
 async function getBlogs() {
 	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}?blog=1&size=10`, {
-		cache: "no-store",
+		cache: "force-cache",
 	});
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary

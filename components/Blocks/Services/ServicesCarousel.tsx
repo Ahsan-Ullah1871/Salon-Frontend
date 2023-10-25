@@ -31,7 +31,7 @@ const ServicesCarousel = ({
 			</div>
 
 			<Carousel
-				swiper_slide_style="!w-[370px] !min-h-[504px]"
+				swiper_slide_style="!w-[340px] !min-h-[420px]"
 				Items={latest_services?.map((service) => {
 					return (
 						<ServiceCard
@@ -44,7 +44,7 @@ const ServicesCarousel = ({
 								"20 seats available "
 							}
 							price={`$ ${service.price}`}
-							ratings={4}
+							ratings={0}
 						/>
 					);
 				})}

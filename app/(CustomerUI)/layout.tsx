@@ -1,5 +1,5 @@
 import MainFooter from "@/components/Blocks/Footer/MainFooter";
-import Header from "@/components/Blocks/Header/Header";
+import DesktopHeader from "@/components/Blocks/Header/Header";
 import MobileHeader from "@/components/Blocks/Header/MobileHeader";
 import React from "react";
 
@@ -8,7 +8,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
 		<div className={`  bg-bg_color min-h-screen w-full `}>
 			{/* Header */}
 			<div className=" hidden md:block font-main sticky top-0 bg-bg_color_home shadow z-20">
-				<Header />
+				<DesktopHeader />
 			</div>
 			<div className="sticky top-0 bg-bg_color_home shadow z-20   md:hidden">
 				<MobileHeader />

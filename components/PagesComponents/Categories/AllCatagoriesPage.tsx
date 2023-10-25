@@ -54,7 +54,7 @@ const AllCatagoriesPage = ({ searchParam }: { searchParam: string }) => {
 				/>
 			)}
 			{categories_list?.meta?.totalPage > 1 && (
-				<div className=" flex items-center justify-center bg-d_gray bg-opacity-30 p-6 shadow sticky bottom-4">
+				<div className=" flex items-center justify-center bg-d_gray bg-opacity-60 p-6 shadow sticky bottom-4">
 					<PaginationFunction
 						current_page={
 							categories_list?.meta?.page

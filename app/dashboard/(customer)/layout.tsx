@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/components/Blocks/Header/Header";
+import DesktopHeader from "@/components/Blocks/Header/Header";
 import CustomerSidebar from "@/components/Blocks/Sidebar/CustomerSidebar";
 import CustomerBottomNavbar from "@/components/Blocks/Sidebar/CustomerSidebarMobile";
 import Sidebar from "@/components/Blocks/Sidebar/Sidebar";
