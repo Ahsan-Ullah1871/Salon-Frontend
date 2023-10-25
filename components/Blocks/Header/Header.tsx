@@ -8,7 +8,7 @@ import PrimaryLink from "@/components/ui/Links/PrimaryLink";
 import { checkUserAuthenticationFromCLientSide } from "@/utils/auth";
 import HeaderMenu from "./HeaderMenu";
 
-const Header = () => {
+const DesktopHeader = () => {
 	const auth_check = checkUserAuthenticationFromCLientSide();
 
 	return (
@@ -54,5 +54,5 @@ const Header = () => {
 	);
 };
 
-export default Header;
+export default DesktopHeader;
 

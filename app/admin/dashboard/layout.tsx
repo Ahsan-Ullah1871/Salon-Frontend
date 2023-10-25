@@ -1,5 +1,5 @@
 "use client";
-import Header from "@/components/Blocks/Header/Header";
+import DesktopHeader from "@/components/Blocks/Header/Header";
 import AdminMobileBottomNavigation from "@/components/Blocks/Sidebar/AdminMobileBottomNavigation";
 import Sidebar from "@/components/Blocks/Sidebar/Sidebar";
 import AuthChecking from "@/components/Blocks/Validation/AuthChecking";

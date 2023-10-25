@@ -1,4 +1,4 @@
-import Header from "@/components/Blocks/Header/Header";
+import DesktopHeader from "@/components/Blocks/Header/Header";
 import "./globals.css";
 import type { Metadata } from "next";
 import {

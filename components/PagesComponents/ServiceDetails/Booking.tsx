@@ -7,6 +7,8 @@ import NormalDescription from "@/components/ui/Text/Description/NormalDescriptio
 import Heading1 from "@/components/ui/Text/Headers/Heading1";
 import Title from "@/components/ui/Text/Paragraph/Title";
 import { useAppSelector } from "@/hooks/Redux";
+import { ICONS } from "@/icons/AllIcons";
+import { SM_ICONS } from "@/icons/SmalllIcon";
 import { useAddAppointmentMutation } from "@/redux/features/appointment/appointmentApi";
 import { Schedule, Service } from "@/types/CommonTypes";
 import { IGenericErrorResponse } from "@/types/DataResponseTypes";
@@ -29,7 +31,7 @@ const Booking = ({
 	setSelectedSchedule: Function;
 }) => {
 	const router = useRouter();
-	const { user } = useAppSelector((state) => state.auth);
+	const { user, isLoggedIn } = useAppSelector((state) => state.auth);
 
 	const auth_details = checkUserAuthenticationFromCLientSide();
 	// login mutation hook
@@ -56,6 +58,10 @@ const Booking = ({
 	//
 
 	const confirmHandler = async () => {
+		if (!isLoggedIn) {
+			router.push("/signin");
+			return;
+		}
 		if (selectedSchedule == null) {
 			setISAlertOpen(true);
 			setAlertType("error");
@@ -79,17 +85,13 @@ const Booking = ({
 		} else if (isSuccess) {
 			setISAlertOpen(true);
 			setAlertType("success");
-			setAlertMessage("Edited  successfully");
+			setAlertMessage("Booking confirmed  successfully");
 			router.push(`/dashboard/`);
 		}
 	}, [error, isSuccess]);
 
 	return (
-		<div
-			className="     grid grid-cols-1 md:grid-cols-6 
-         gap-10"
-		>
-			{/*Alert  */}
+		<>
 			<Alert
 				alert_type={alert_type}
 				alert_message={alert_message}
@@ -99,108 +101,132 @@ const Booking = ({
 				closeAlert={() => setISAlertOpen(false)}
 			/>
 
-			<div className=" py-8 md:col-span-4 bg-white shadow-md  rounded-md  px-6">
-				{/* 1st row */}
-				<div className="  flex flex-col gap-4 items-start justify-center  ">
+			{/*  */}
+			<div
+				className="     grid grid-cols-1 md:grid-cols-6 
+         gap-10"
+			>
+				{/*Alert  */}
+
+				<div className=" py-8 md:col-span-4 bg-white shadow-md  rounded-md  px-6">
+					{/* 1st row */}
+					<div className="  flex flex-col gap-4 items-start justify-center  ">
+						<Heading1 styles="text-start font-sub-spacial ext-[20px] md:text-[20px]  mdl:leading-[26px] ">
+							Service Details
+						</Heading1>
+
+						<div className="  w-full">
+							<ServiceCardListType
+								key={service_details.id}
+								image={
+									service_details.image_url
+								}
+								title={
+									service_details.name
+								}
+								url={"/"}
+								time={
+									service_details.duration
+								}
+								todays_available_schedule={
+									""
+								}
+								ratings={4}
+								price={service_details.price.toString()}
+							/>
+						</div>
+					</div>
+					{/* 2nd row */}
+					<div className="  flex flex-col gap-4 items-start justify-center  mt-10 ">
+						<Heading1 styles="text-start font-sub-spacial ext-[20px] md:text-[20px]  mdl:leading-[26px] ">
+							Schedule Details
+						</Heading1>
+
+						<div className="  w-full">
+							{selectedSchedule && (
+								<ScheduleCard
+									workerName={
+										selectedSchedule
+											?.worker
+											?.name
+									}
+									scheduleDate={
+										selectedSchedule?.date as unknown as string
+									}
+									duration={
+										service_details.duration
+									}
+									isAvailable={
+										selectedSchedule?.available
+									}
+									start_time={
+										selectedSchedule?.start_time as unknown as string
+									}
+									end_time={
+										selectedSchedule?.end_time as unknown as string
+									}
+								/>
+							)}
+						</div>
+					</div>
+				</div>
+				{/* Image and 2nd column */}
+				<div className=" md:col-span-2   bg-white shadow-md  rounded-md  px-6 py-8">
 					<Heading1 styles="text-start font-sub-spacial ext-[20px] md:text-[20px]  mdl:leading-[26px] ">
-						Service Details
+						Booking Details
 					</Heading1>
 
-					<div className="  w-full">
-						<ServiceCardListType
-							key={service_details.id}
-							image={
-								service_details.image_url
+					<div className="w-full flex flex-col gap-4 mt-6">
+						<div className="flex items-center justify-between gap-2">
+							<Title styles="   text-black_deep font-medium  ">
+								Subtotal
+							</Title>
+							<Title styles="    ">1</Title>
+						</div>
+						<div className="flex items-center justify-between gap-2">
+							<Title styles="   text-black_deep font-medium  ">
+								Toatl
+							</Title>
+							<Title styles="    ">
+								${service_details.price}
+							</Title>
+						</div>
+						<div className="flex items-center justify-between gap-2">
+							<Title styles="   text-black_deep font-medium  ">
+								Service Charge
+							</Title>
+							<Title styles="    ">
+								$10
+							</Title>
+						</div>
+						<div className="flex items-center justify-between gap-2">
+							<Title styles="   text-black_deep font-medium  ">
+								Estimated Total
+							</Title>
+							<Title styles="    ">
+								$
+								{service_details.price +
+									10}
+							</Title>
+						</div>
+
+						<PrimaryButton
+							title="Confirm now "
+							is_loading={isLoading}
+							icon={
+								isLoading
+									? SM_ICONS.button_loading_icon
+									: ""
 							}
-							title={service_details.name}
-							url={"/"}
-							time={service_details.duration}
-							todays_available_schedule={""}
-							ratings={4}
-							price={service_details.price.toString()}
+							onClickHandler={() =>
+								confirmHandler()
+							}
+							className=" mt-5 md:mt-8 py-3 px-5 "
 						/>
 					</div>
 				</div>
-				{/* 2nd row */}
-				<div className="  flex flex-col gap-4 items-start justify-center  mt-10 ">
-					<Heading1 styles="text-start font-sub-spacial ext-[20px] md:text-[20px]  mdl:leading-[26px] ">
-						Schedule Details
-					</Heading1>
-
-					<div className="  w-full">
-						{selectedSchedule && (
-							<ScheduleCard
-								workerName={
-									selectedSchedule
-										?.worker
-										?.name
-								}
-								scheduleDate={
-									selectedSchedule?.date as unknown as string
-								}
-								duration={
-									service_details.duration
-								}
-								isAvailable={
-									selectedSchedule?.available
-								}
-								start_time={
-									selectedSchedule?.start_time as unknown as string
-								}
-								end_time={
-									selectedSchedule?.end_time as unknown as string
-								}
-							/>
-						)}
-					</div>
-				</div>
 			</div>
-			{/* Image and 2nd column */}
-			<div className=" md:col-span-2   bg-white shadow-md  rounded-md  px-6 py-8">
-				<Heading1 styles="text-start font-sub-spacial ext-[20px] md:text-[20px]  mdl:leading-[26px] ">
-					Booking Details
-				</Heading1>
-
-				<div className="w-full flex flex-col gap-4 mt-6">
-					<div className="flex items-center justify-between gap-2">
-						<Title styles="   text-black_deep font-medium  ">
-							Subtotal
-						</Title>
-						<Title styles="    ">1</Title>
-					</div>
-					<div className="flex items-center justify-between gap-2">
-						<Title styles="   text-black_deep font-medium  ">
-							Toatl
-						</Title>
-						<Title styles="    ">
-							${service_details.price}
-						</Title>
-					</div>
-					<div className="flex items-center justify-between gap-2">
-						<Title styles="   text-black_deep font-medium  ">
-							Service Charge
-						</Title>
-						<Title styles="    ">$10</Title>
-					</div>
-					<div className="flex items-center justify-between gap-2">
-						<Title styles="   text-black_deep font-medium  ">
-							Estimated Total
-						</Title>
-						<Title styles="    ">
-							${service_details.price + 10}
-						</Title>
-					</div>
-
-					<PrimaryButton
-						title="Confirm now "
-						onClickHandler={() =>
-							confirmHandler()
-						}
-						className=" mt-5 md:mt-8 py-3 px-5 "
-					/>
-				</div>
-			</div>
-		</div>
+		</>
 	);
 };
 

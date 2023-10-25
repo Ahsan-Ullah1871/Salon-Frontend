@@ -119,6 +119,7 @@ export type Appointment = {
 	schedule_id: string;
 	schedule: Schedule;
 	is_paid: boolean;
+	is_reviewed?: boolean;
 	status: AppointmentStatus;
 	date: Date;
 	start_time: Date;
@@ -132,6 +133,8 @@ export type Review = {
 	id: string;
 	user_id: string;
 	user: User;
+	appointment_id: string;
+	appointment: User;
 	service_id: string;
 	service: Service;
 	rating: number;

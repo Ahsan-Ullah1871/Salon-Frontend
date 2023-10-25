@@ -17,6 +17,7 @@ const ActionButtons = ({
 	dropdown_action?: {
 		not_found_text: string;
 		title: string;
+		button_style?: string;
 		menus: Array<{
 			title: string;
 			onCLickHandle: () => void;
@@ -56,7 +57,12 @@ const ActionButtons = ({
 				<PopOver
 					className=" w-[250px]   right-0 mt-3 rounded-md shadow-md   "
 					button={
-						<button className="flex items-center gap-4 outline-none ring-0">
+						<button
+							className={cn(
+								dropdown_action?.button_style,
+								"flex items-center gap-4 outline-none ring-0"
+							)}
+						>
 							{dropdown_action?.title}
 							<span className=" hidden md:block4">
 								{ICONS.dow_arrow}

@@ -29,7 +29,7 @@ export const reviewAPI = apiSlice.injectEndpoints({
 				method: "POST",
 				body: data,
 			}),
-			invalidatesTags: [tagTypes.review],
+			invalidatesTags: [tagTypes.review, tagTypes.appointment],
 		}),
 
 		// //   delete review

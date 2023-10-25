@@ -36,6 +36,7 @@ import {
 	appointment_status_drop_down,
 	customer_appointment_status_drop_down,
 } from "./appointmentChange";
+import PrimaryLink from "@/components/ui/Links/PrimaryLink";
 
 const AppointmentsList = ({
 	appointments,
@@ -117,16 +118,7 @@ const AppointmentsList = ({
 								</Title>
 							),
 						},
-						{
-							className: "px-4",
-							component: (
-								<Title styles="  text-sm font-medium text-d_black_normal w-full   overflow-clip  ">
-									{new Date(
-										appointment?.created_at
-									).toDateString()}
-								</Title>
-							),
-						},
+
 						{
 							className: "hidden md:flex items-center justify-center",
 							component: (
@@ -135,7 +127,7 @@ const AppointmentsList = ({
 								>
 									{new Date(
 										appointment?.date
-									).toLocaleTimeString()}
+									).toLocaleDateString()}
 								</Title>
 							),
 						},
@@ -171,7 +163,16 @@ const AppointmentsList = ({
 						{
 							className: " ",
 							component: (
-								<div className="w-full flex items-center justify-end pl-6">
+								<div className="w-full flex items-center justify-end file: gap-5">
+									{user?.role ===
+										UserRole.CUSTOMER &&
+										!appointment.is_reviewed && (
+											<PrimaryLink
+												title="Review"
+												className="px-2 py-1 rounded-lg bg-green hover:bg-transparent border border-green text-white  hover:text-green duration-500  "
+												url={`/dashboard/reviews/${appointment.id}`}
+											/>
+										)}
 									<ActionButtons
 										// editButtonCLick={() =>
 										// 	router.push(
@@ -182,6 +183,8 @@ const AppointmentsList = ({
 											not_found_text:
 												"There have not any status for change",
 											title: "Change Status",
+											button_style:
+												"px-2 py-1 rounded-lg bg-d_primary hover:bg-d_primary border border-d_primary text-white",
 											menus:
 												user?.role ===
 												UserRole.CUSTOMER
@@ -209,10 +212,7 @@ const AppointmentsList = ({
 						header: "Service",
 						className: " hidden md:block px-4 text-lg font-medium text-d_black",
 					},
-					{
-						header: "Created AT",
-						className: " hidden md:block px-6 text-lg font-medium text-d_black",
-					},
+
 					{
 						header: " Working Date",
 						className: " hidden md:block text-center text-lg font-medium text-d_black",

@@ -1,16 +1,10 @@
 "use client";
 
+import { ButtonType } from "@/types/ButtonTypes";
 import { cn } from "@/utils/classNames";
 import Link from "next/link";
 
-//  button type
-type buttonType = {
-	title: string;
-	url: string;
-	className: string;
-};
-
-const PrimaryLink = ({ title, url, className }: buttonType) => {
+const PrimaryLink = ({ title, url, className }: ButtonType) => {
 	return (
 		<Link
 			href={url}

@@ -33,6 +33,7 @@ const SchedulesList = ({
 
 	const {
 		data: schedules,
+		isFetching,
 		isLoading,
 		isError,
 		error,
@@ -50,24 +51,22 @@ const SchedulesList = ({
 
 	return (
 		<div className=" bg-white w-full  py-[90px] md:py-[100px] px-[20px] md:px-[100px] ">
-			{isLoading && <TableSkeleton />}
-			{!isLoading && (
-				<ScheduleTab
-					schedule_list={schedules_list?.data}
-					setSelectedSchedule={(
-						schedule: Schedule
-					) => {
-						if (schedule.available) {
-							setSelectedSchedule(schedule);
-							setSelectedIndex(2);
-						}
-					}}
-					setFilter={setFilter}
-					filter={filter}
-				/>
-			)}
+			<ScheduleTab
+				schedule_list={schedules_list?.data}
+				setSelectedSchedule={(schedule: Schedule) => {
+					if (schedule.available) {
+						setSelectedSchedule(schedule);
+						setSelectedIndex(2);
+					}
+				}}
+				setFilter={setFilter}
+				filter={filter}
+				isLoading={isLoading}
+				isFetching={isFetching}
+			/>
+
 			{schedules_list?.meta?.totalPage > 1 && (
-				<div className=" flex items-center justify-center bg-d_gray bg-opacity-30 p-6 shadow sticky bottom-4">
+				<div className=" flex items-center justify-center bg-d_gray bg-opacity-60 p-6 shadow sticky bottom-4">
 					<PaginationFunction
 						current_page={
 							schedules_list?.meta?.page

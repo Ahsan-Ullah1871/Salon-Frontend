@@ -1,16 +1,9 @@
 import { ICONS } from "@/icons/AllIcons";
+import { RatingType } from "@/types/FormFieldTypes";
 import { cn } from "@/utils/classNames";
 import React from "react";
 
-const Rating = ({
-	current_value,
-	clickHandler,
-	className,
-}: {
-	current_value: number;
-	clickHandler?: (value: number) => void;
-	className?: string;
-}) => {
+const Rating = ({ current_value, clickHandler, className }: RatingType) => {
 	return (
 		<div
 			className={cn(
