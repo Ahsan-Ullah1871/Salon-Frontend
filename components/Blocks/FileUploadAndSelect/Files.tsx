@@ -43,8 +43,8 @@ const FilesList = ({
 	const files_list: UserFile[] = files_data?.data?.data;
 
 	return (
-		<div className="  py-10 flex items-start justify-start gap-6 flex-wrap">
-			<UploadImage />
+		<div className=" w-full h-[99%]   overflow-y-auto   py-10 flex items-start justify-center gap-6 flex-wrap">
+			<UploadImage user_file_length={files_list?.length || 0} />
 			{files_list?.map((file) => {
 				return (
 					<img

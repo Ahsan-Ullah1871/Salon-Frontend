@@ -6,7 +6,7 @@ import { getBaseUrl } from "@/helpers/envConfig";
 // Get Latest service
 async function getServices() {
 	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}?page=1&size=200`, {
-		cache: "no-store",
+		cache: "force-cache",
 	});
 	if (!res.ok) {
 		// This will activate the closest `error.js` Error Boundary

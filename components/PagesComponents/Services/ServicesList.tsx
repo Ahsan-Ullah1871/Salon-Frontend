@@ -8,7 +8,7 @@ async function getServices() {
 	const res = await fetch(
 		`${getBaseUrl()}${SERVICE_PATH}?page=1&size=200`,
 		{
-			cache: "no-store",
+			cache: "force-cache",
 		}
 	);
 	if (!res.ok) {

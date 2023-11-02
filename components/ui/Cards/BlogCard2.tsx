@@ -42,12 +42,14 @@ const BlogCard2 = ({
 				/>
 			</div>
 
-			<Image
-				src={image}
-				width={370}
-				height={280}
-				alt="FAQ"
-			/>
+			<div className="max-w-[370px] h-[280px] relative">
+				<Image
+					src={image}
+					fill
+					objectFit="cocer"
+					alt="blog"
+				/>
+			</div>
 			<Heading5 styles=" px-4 mt-6 ">{title}</Heading5>
 			<div className="mt-7 px-4 flex items-center justify-start gap-3">
 				{tags?.map((tag) => {

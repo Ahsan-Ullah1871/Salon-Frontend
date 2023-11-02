@@ -5,8 +5,12 @@ import { get_error_messages } from "@/utils/error_messages";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Alert from "../Alerts/Alerts";
+import { useAppSelector } from "@/hooks/Redux";
+import UserRole from "@/types/UserRole";
 
-const UploadImage = () => {
+const UploadImage = ({ user_file_length }: { user_file_length: number }) => {
+	//
+	const { user } = useAppSelector((state) => state.auth);
 	// login mutation hook
 	const [addFile, { data, isLoading, isError, error, isSuccess }] =
 		useAddFileMutation();
@@ -35,7 +39,7 @@ const UploadImage = () => {
 	}, [error, isSuccess]);
 
 	return (
-		<div className="">
+		<div className=" z-20 sticky -top-10 bg-white">
 			{/*Alert  */}
 			<Alert
 				alert_type={alert_type}
@@ -80,13 +84,36 @@ const UploadImage = () => {
 					}
 				}}
 			/>
+
+			{/* Button */}
 			<button
-				onClick={() =>
-					document
-						?.getElementById(`image_select`)
-						?.click()
-				}
-				className="h-[150px] w-[150px] bg-transparent   border rounded-md border-d_primary  flex flex-col gap-2 text-d_primary  items-center justify-center "
+				onClick={() => {
+					if (!isLoading) {
+						if (
+							(user?.role ==
+								UserRole.CUSTOMER &&
+								user_file_length < 3) ||
+							user?.role !==
+								UserRole.CUSTOMER
+						) {
+							document
+								?.getElementById(
+									`image_select`
+								)
+								?.click();
+						} else {
+							setISAlertOpen(true);
+							setAlertType("error");
+							setAlertMessage(
+								"You cannot upload any new images now. You have already exceeded your uploading limit.Z"
+							);
+						}
+					}
+				}}
+				className={[
+					"h-[150px] w-[150px] bg-transparent   border rounded-md border-d_primary  flex flex-col gap-2 text-d_primary  items-center justify-center ",
+					isLoading && "cursor-wait",
+				].join(" ")}
 			>
 				{isLoading ? ICONS.button_loading_icon : ICONS.add}
 				{isLoading
