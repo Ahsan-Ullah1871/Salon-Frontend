@@ -34,7 +34,7 @@ export const dashboard_dropdown_menus = [
 	{
 		title: "Update profile",
 		isLinkType: true,
-		url: "/admin/settings",
+		url: "/settings",
 		clickHandler: null,
 		icon: SM_ICONS.pencil,
 	},

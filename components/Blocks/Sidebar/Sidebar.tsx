@@ -37,7 +37,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 							key={item.id}
 							href={`/admin/dashboard${item.url}`}
 							className={[
-								"w-full  border-l-4  hover:border-d_gray duration-50 tooltip",
+								"w-full  border-l-4  hover:border-d_gray duration-50 tooltip cursor-pointer",
 								current_route_check(
 									`/admin/dashboard${item.url}`
 								)
@@ -59,7 +59,7 @@ const Sidebar = ({ role = UserRole.ADMIN }) => {
 				<Link
 					href={`/admin/dashboard/settings`}
 					className={[
-						"w-full  border-l-4   hover:border-d_gray duration-500",
+						"w-full  border-l-4   hover:border-d_gray duration-500  cursor-pointer",
 						current_route_check(
 							`/admin/dashboard/settings`
 						)
