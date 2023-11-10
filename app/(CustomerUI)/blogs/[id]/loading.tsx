@@ -5,7 +5,7 @@ import DetailsSkeleton from "@/components/ui/Skeleton/DetailsSkeleton";
 import TabSkeleton from "@/components/ui/Skeleton/TabSkeleton";
 import Tabs from "@/components/ui/Tab/Tabs";
 
-const loading = () => {
+const BlogLoading = () => {
 	return (
 		<div>
 			<PageHeader
@@ -18,5 +18,5 @@ const loading = () => {
 	);
 };
 
-export default loading;
+export default BlogLoading;
 

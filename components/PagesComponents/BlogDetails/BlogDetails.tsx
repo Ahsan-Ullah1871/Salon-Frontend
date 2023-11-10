@@ -3,8 +3,8 @@ import { BLOG_PATH } from "@/constants/RuterPath";
 import { getBaseUrl } from "@/helpers/envConfig";
 import FullBlogDescription from "./Details";
 //
-async function getBlogDetails(serviceID: string) {
-	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}/${serviceID}`, {
+async function getBlogDetails(blogID: string) {
+	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}/${blogID}`, {
 		cache: "no-store",
 	});
 

@@ -1,7 +1,24 @@
 import HomePage from "@/components/PagesComponents/Home/HomePage";
 import { BLOG_PATH, CATEGORY_PATH, SERVICE_PATH } from "@/constants/RuterPath";
 import { getBaseUrl } from "@/helpers/envConfig";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+// Meta Data
+export const metadata: Metadata = {
+	title: "Your Beauty Care Haven",
+	description:
+		"Discover the latest beauty tips, products, and advice for a radiant and confident you.",
+	creator: "Ahsan Ullah",
+	publisher: "Ahsan",
+	keywords: [
+		"beauty care",
+		"skincare",
+		"makeup",
+		"haircare",
+		"health and beauty",
+	],
+};
 
 // Get Categories
 async function getCategories() {
