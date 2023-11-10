@@ -4,7 +4,7 @@ import PageHeader from "@/components/ui/PageBanner/PageHeader";
 import TabSkeleton from "@/components/ui/Skeleton/TabSkeleton";
 import Tabs from "@/components/ui/Tab/Tabs";
 
-const loading = () => {
+const ServiceLoading = () => {
 	return (
 		<div>
 			<PageHeader
@@ -17,5 +17,5 @@ const loading = () => {
 	);
 };
 
-export default loading;
+export default ServiceLoading;
 
