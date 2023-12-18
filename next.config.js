@@ -9,6 +9,9 @@ const nextConfig = {
 			},
 		],
 	},
+	env: {
+		BASE_URL: "https://salonbd.vercel.app/api/v1/salon",
+	},
 };
 
 module.exports = nextConfig;

@@ -4,8 +4,6 @@ import { BlogPost } from "@/types/CommonTypes";
 import React from "react";
 
 const BlogsList = ({ blogs_data }: { blogs_data: BlogPost[] }) => {
-	console.log(blogs_data);
-
 	return (
 		<div className="grid grid-cols-1  min-[480px]:grid-cols-2   min-[700px]:grid-cols-3 lg:grid-cols-4   gap-x-8 gap-y-12 ">
 			{blogs_data?.map((blog) => {

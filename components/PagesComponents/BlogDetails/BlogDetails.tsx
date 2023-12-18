@@ -18,8 +18,6 @@ async function getBlogDetails(blogID: string) {
 const BlogDetails = async ({ blogID }: { blogID: string }) => {
 	const blog_details = await getBlogDetails(blogID);
 
-	console.log(blog_details);
-
 	return (
 		<div>
 			{/* Page Header */}

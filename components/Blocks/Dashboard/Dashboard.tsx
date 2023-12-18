@@ -27,7 +27,6 @@ async function getCategories() {
 		}
 	);
 	if (!res.ok) {
-		console.log(res);
 		// This will activate the closest `error.js` Error Boundary
 		throw new Error("Failed to fetch data");
 	}
@@ -43,8 +42,6 @@ async function getServices() {
 		}
 	);
 	if (!res.ok) {
-		console.log(res);
-
 		// This will activate the closest `error.js` Error Boundary
 		throw new Error("Failed to fetch data");
 	}
