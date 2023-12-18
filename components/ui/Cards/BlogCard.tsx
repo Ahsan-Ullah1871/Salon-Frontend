@@ -41,7 +41,9 @@ const BlogCard = ({
 					alt="blog"
 				/>
 			</div>
-			<Heading5 styles=" px-4 mt-6 ">{title}</Heading5>
+			<Heading5 styles=" mt-6 px-4  md:text-[18px] leading-[24px] truncate">
+				{title}
+			</Heading5>
 			<div className="mt-7 px-4 flex items-center justify-start flex-wrap gap-4">
 				{tags?.map((tag) => {
 					return (

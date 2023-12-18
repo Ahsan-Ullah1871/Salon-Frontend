@@ -10,14 +10,14 @@ const CategoriesListCarousel = ({ categories }: { categories: Category[] }) => {
 		<div>
 			{/* Title */}
 			<Heading1 styles=" font-special ">
-				Salon Market Spotlight
+				Tele Care Spotlight
 			</Heading1>
 
 			{/* Desc */}
 			<NormalDescription styles="mt-4 mb-9 md:mb-14 mx-auto max-w-[650px] px-12 text-center">
 				Discover the latest trends and insights in the salon
-				industry. Stay ahead of the style game with our
-				Salon Market Spotlight.
+				industry. Stay ahead of the style game with our Tele
+				Care Spotlight.
 			</NormalDescription>
 			<Carousel
 				Items={categories?.map((ct) => {
