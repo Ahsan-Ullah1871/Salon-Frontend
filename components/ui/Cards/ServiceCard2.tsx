@@ -55,14 +55,16 @@ const ServiceCard2 = ({
 				{/* <Title styles="mt-6 text-green font-medium px-4">
 					{todays_available_schedule}
 				</Title> */}
-				<Heading5 styles=" mt-2 px-4 ">{title}</Heading5>
+				<Heading5 styles=" mt-2 px-4  md:text-[18px] leading-[24px]">
+					{title}
+				</Heading5>
 
-				<Title styles="mt-6 text-green font-medium px-4">
+				<Title styles="mt-6 text-green font-medium px-4 whitespace-nowrap">
 					{price}
 				</Title>
 			</div>
 
-			<div className="flex items-center mt-4 justify-between gap-6 px-4">
+			<div className="flex items-center mt-4 justify-between gap-6 px-4 ">
 				<Rating current_value={ratings} />
 				<Title>{`${time}`}</Title>
 			</div>

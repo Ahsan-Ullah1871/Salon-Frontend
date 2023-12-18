@@ -55,7 +55,9 @@ const ServiceCard = ({
 				{/* <Title styles="mt-6 text-green font-medium px-4">
 					{todays_available_schedule}
 				</Title> */}
-				<Heading5 styles=" mt-2 px-4 ">{title}</Heading5>
+				<Heading5 styles=" mt-2 px-4  md:text-[18px] leading-[24px]">
+					{title}
+				</Heading5>
 				<Title styles="mt-6 text-green font-medium px-4 whitespace-nowrap">
 					{price}
 				</Title>
