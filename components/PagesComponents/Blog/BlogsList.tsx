@@ -3,8 +3,8 @@ import ServicesList from "@/components/Blocks/Services/ServicesList";
 import { BLOG_PATH } from "@/constants/RuterPath";
 import { getBaseUrl } from "@/helpers/envConfig";
 
-// Get Latest service
-async function getServices() {
+// Get Latest blogs
+async function getBlogs() {
 	const res = await fetch(`${getBaseUrl()}${BLOG_PATH}?page=1&size=200`, {
 		cache: "force-cache",
 	});
@@ -16,7 +16,7 @@ async function getServices() {
 }
 
 const Blogs = async () => {
-	const { data: blogs_data } = await getServices();
+	const { data: blogs_data } = await getBlogs();
 
 	return (
 		<div>

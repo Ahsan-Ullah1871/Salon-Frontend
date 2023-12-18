@@ -47,10 +47,6 @@ const AdminReviewsList = ({ searchParam }: { searchParam: string }) => {
 
 	const reviews_list = reviews?.data;
 
-	console.log("====================================");
-	console.log(reviews_list);
-	console.log("====================================");
-
 	return (
 		<div className="px-6">
 			{/* <BlogsListForAdmin blogs={reviews_list?.data} /> */}
